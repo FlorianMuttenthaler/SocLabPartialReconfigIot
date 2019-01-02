@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.1 (win64) Build 2188600 Wed Apr  4 18:40:38 MDT 2018
---Date        : Wed Jan  2 13:49:51 2019
+--Date        : Wed Jan  2 14:16:52 2019
 --Host        : DESKTOP-8PEEVNN running 64-bit major release  (build 9200)
 --Command     : generate_target zynq_design.bd
 --Design      : zynq_design
@@ -679,7 +679,7 @@ architecture STRUCTURE of zynq_design is
     PS_PORB : inout STD_LOGIC
   );
   end component zynq_design_processing_system7_0_0;
-  component zynq_design_v_ccm_0_0 is
+  component zynq_design_v_gamma_0_0 is
   port (
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
@@ -695,7 +695,7 @@ architecture STRUCTURE of zynq_design is
     m_axis_video_tlast : out STD_LOGIC;
     m_axis_video_tuser_sof : out STD_LOGIC
   );
-  end component zynq_design_v_ccm_0_0;
+  end component zynq_design_v_gamma_0_0;
   component zynq_design_axi_fifo_mm_s_0 is
   port (
     interrupt : out STD_LOGIC;
@@ -872,11 +872,11 @@ architecture STRUCTURE of zynq_design is
   signal ps7_0_axi_periph_M00_AXI_WVALID : STD_LOGIC;
   signal rst_ps7_0_100M_interconnect_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal rst_ps7_0_100M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal v_ccm_0_video_out_TDATA : STD_LOGIC_VECTOR ( 23 downto 0 );
-  signal v_ccm_0_video_out_TLAST : STD_LOGIC;
-  signal v_ccm_0_video_out_TREADY : STD_LOGIC;
-  signal v_ccm_0_video_out_TUSER : STD_LOGIC;
-  signal v_ccm_0_video_out_TVALID : STD_LOGIC;
+  signal v_gamma_0_video_out_TDATA : STD_LOGIC_VECTOR ( 23 downto 0 );
+  signal v_gamma_0_video_out_TLAST : STD_LOGIC;
+  signal v_gamma_0_video_out_TREADY : STD_LOGIC;
+  signal v_gamma_0_video_out_TUSER : STD_LOGIC;
+  signal v_gamma_0_video_out_TVALID : STD_LOGIC;
   signal NLW_axi_fifo_mm_s_axi_str_txc_tlast_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_fifo_mm_s_axi_str_txc_tvalid_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_fifo_mm_s_interrupt_UNCONNECTED : STD_LOGIC;
@@ -981,11 +981,11 @@ axis_subset_converter: component zynq_design_axis_subset_converter_0
       m_axis_tready => axis_subset_converter_M_AXIS_TREADY,
       m_axis_tuser(0) => NLW_axis_subset_converter_m_axis_tuser_UNCONNECTED(0),
       m_axis_tvalid => axis_subset_converter_M_AXIS_TVALID,
-      s_axis_tdata(23 downto 0) => v_ccm_0_video_out_TDATA(23 downto 0),
-      s_axis_tlast => v_ccm_0_video_out_TLAST,
-      s_axis_tready => v_ccm_0_video_out_TREADY,
-      s_axis_tuser(0) => v_ccm_0_video_out_TUSER,
-      s_axis_tvalid => v_ccm_0_video_out_TVALID
+      s_axis_tdata(23 downto 0) => v_gamma_0_video_out_TDATA(23 downto 0),
+      s_axis_tlast => v_gamma_0_video_out_TLAST,
+      s_axis_tready => v_gamma_0_video_out_TREADY,
+      s_axis_tuser(0) => v_gamma_0_video_out_TUSER,
+      s_axis_tvalid => v_gamma_0_video_out_TVALID
     );
 processing_system7_0: component zynq_design_processing_system7_0_0
      port map (
@@ -1135,16 +1135,16 @@ rst_ps7_0_100M: component zynq_design_rst_ps7_0_100M_0
       peripheral_reset(0) => NLW_rst_ps7_0_100M_peripheral_reset_UNCONNECTED(0),
       slowest_sync_clk => processing_system7_0_FCLK_CLK0
     );
-v_ccm_0: component zynq_design_v_ccm_0_0
+v_gamma_0: component zynq_design_v_gamma_0_0
      port map (
       aclk => processing_system7_0_FCLK_CLK0,
       aclken => '1',
       aresetn => rst_ps7_0_100M_peripheral_aresetn(0),
-      m_axis_video_tdata(23 downto 0) => v_ccm_0_video_out_TDATA(23 downto 0),
-      m_axis_video_tlast => v_ccm_0_video_out_TLAST,
-      m_axis_video_tready => v_ccm_0_video_out_TREADY,
-      m_axis_video_tuser_sof => v_ccm_0_video_out_TUSER,
-      m_axis_video_tvalid => v_ccm_0_video_out_TVALID,
+      m_axis_video_tdata(23 downto 0) => v_gamma_0_video_out_TDATA(23 downto 0),
+      m_axis_video_tlast => v_gamma_0_video_out_TLAST,
+      m_axis_video_tready => v_gamma_0_video_out_TREADY,
+      m_axis_video_tuser_sof => v_gamma_0_video_out_TUSER,
+      m_axis_video_tvalid => v_gamma_0_video_out_TVALID,
       s_axis_video_tdata(23 downto 0) => axis_dwidth_converter_M_AXIS_TDATA(23 downto 0),
       s_axis_video_tlast => axis_dwidth_converter_M_AXIS_TLAST,
       s_axis_video_tready => axis_dwidth_converter_M_AXIS_TREADY,
