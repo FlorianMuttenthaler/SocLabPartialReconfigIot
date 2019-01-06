@@ -156,7 +156,7 @@ void write_png_file(char *filename) {
   fclose(fp);
 }
 
-void process_png_file() {
+/*void process_png_file() {
   for(int y = 0; y < height; y++) {
     png_bytep row = row_pointers[y];
     for(int x = 0; x < width; x++) {
@@ -165,13 +165,18 @@ void process_png_file() {
       //printf("%4d, %4d = RGBA(%3d, %3d, %3d, %3d)\n", x, y, px[0], px[1], px[2], px[3]);
     }
   }
-}
+}*/
 
 int main(void) {
-	int * dev_base_vaddr = getvaddr(BASE_ADDR);
-		
+	png_bytep * dev_base_vaddr = getvaddr(BASE_ADDR);
+	png_bytep *row_pointers_send = dev_base_vaddr;
+	png_bytep *row_pointers_receive = dev_base_vaddr;
+	
 	read_png_file("example.png");
-  	process_png_file();
+	*row_pointers_send = *row_pointers;
+  	// process_png_file();
+	sleep(10000);
+	*row_pointers = *row_pointers_receive;
   	write_png_file("exampleout.png");
 	
     return 0;
