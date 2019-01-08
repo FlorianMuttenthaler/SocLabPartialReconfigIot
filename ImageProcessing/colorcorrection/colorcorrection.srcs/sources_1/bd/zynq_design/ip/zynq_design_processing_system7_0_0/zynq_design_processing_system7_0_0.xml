@@ -14035,18 +14035,17 @@
         <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
-        <spirit:modelName>processing_system7_v5_5_processing_system7</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:08 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:11 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:1f12ef0d</spirit:value>
+            <spirit:value>7:3807d34a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14055,18 +14054,17 @@
         <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
         <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
         <spirit:language>verilog</spirit:language>
-        <spirit:modelName>zynq_design_processing_system7_0_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:08 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:11 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:1f12ef0d</spirit:value>
+            <spirit:value>7:3807d34a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14074,7 +14072,6 @@
         <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:modelName>processing_system7_v1_0_processing_system7_vip</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_axi_infrastructure_1_1__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -14093,7 +14090,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:d09f01c1</spirit:value>
+            <spirit:value>7:aeb401b6</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14101,18 +14098,17 @@
         <spirit:name>xilinx_anylanguagebehavioralsimulation_1</spirit:name>
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:modelName>processing_system7</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_1_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:08 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:11 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:d09f01c1</spirit:value>
+            <spirit:value>7:aeb401b6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>sim_type</spirit:name>
@@ -14128,18 +14124,17 @@
         <spirit:name>xilinx_anylanguagesimulationwrapper</spirit:name>
         <spirit:displayName>Simulation Wrapper</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
-        <spirit:modelName>zynq_design_processing_system7_0_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesimulationwrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:09 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:11 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:d09f01c1</spirit:value>
+            <spirit:value>7:aeb401b6</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14147,18 +14142,17 @@
         <spirit:name>xilinx_anylanguagesimulationwrapper_1</spirit:name>
         <spirit:displayName>Simulation Wrapper</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
-        <spirit:modelName>zynq_design_processing_system7_0_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesimulationwrapper_1_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:11 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:14 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:d09f01c1</spirit:value>
+            <spirit:value>7:aeb401b6</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>sim_type</spirit:name>
@@ -14176,11 +14170,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:51:29 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:49:51 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:1f12ef0d</spirit:value>
+            <spirit:value>7:3807d34a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -31323,14 +31317,14 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_axi_protocol_checker_2_0__ref_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/3755/hdl/axi_protocol_checker_v2_0_vl_rfs.sv</spirit:name>
+        <spirit:name>../../ipshared/3b24/hdl/axi_protocol_checker_v2_0_vl_rfs.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>axi_protocol_checker_v2_0_2</spirit:logicalName>
+        <spirit:logicalName>axi_protocol_checker_v2_0_1</spirit:logicalName>
       </spirit:file>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_protocol_checker" xilinx:version="2.0" xilinx:isGenerated="true" xilinx:checksum="50816af7">
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_protocol_checker" xilinx:version="2.0" xilinx:isGenerated="true" xilinx:checksum="e30750e7">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -31339,14 +31333,14 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_axi_vip_1_1__ref_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/725c/hdl/axi_vip_v1_1_vl_rfs.sv</spirit:name>
+        <spirit:name>../../ipshared/a16a/hdl/axi_vip_v1_1_vl_rfs.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>axi_vip_v1_1_2</spirit:logicalName>
+        <spirit:logicalName>axi_vip_v1_1_1</spirit:logicalName>
       </spirit:file>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_vip" xilinx:version="1.1" xilinx:isGenerated="true" xilinx:checksum="6eeadda3">
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="axi_vip" xilinx:version="1.1" xilinx:isGenerated="true" xilinx:checksum="1335553b">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -31355,70 +31349,70 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_processing_system7_vip_1_0__ref_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_local_params.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_local_params.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_vl_rfs.sv</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_vl_rfs.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_reg_params.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_reg_params.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_reg_init.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_reg_init.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_apis.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_apis.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_unused_ports.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_unused_ports.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_axi_gp.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_axi_gp.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_axi_acp.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_axi_acp.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/b193/hdl/processing_system7_vip_v1_0_4_axi_hp.v</spirit:name>
+        <spirit:name>../../ipshared/1313/hdl/processing_system7_vip_v1_0_3_axi_hp.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
         <spirit:isIncludeFile>true</spirit:isIncludeFile>
-        <spirit:logicalName>processing_system7_vip_v1_0_4</spirit:logicalName>
+        <spirit:logicalName>processing_system7_vip_v1_0_3</spirit:logicalName>
       </spirit:file>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="processing_system7_vip" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="f9f637b2">
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="processing_system7_vip" xilinx:version="1.0" xilinx:isGenerated="true" xilinx:checksum="caf1c967">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -32153,12 +32147,12 @@
     <spirit:parameter>
       <spirit:name>PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2</spirit:name>
       <spirit:displayName>PCW UIPARAM DDR DQS TO CLK DELAY 2</spirit:displayName>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2" spirit:order="15400" spirit:minimum="-0.100000" spirit:maximum="100.000000">0.001</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2" spirit:order="15400" spirit:minimum="-0.100000" spirit:maximum="100.000000">-0.009</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3</spirit:name>
       <spirit:displayName>PCW UIPARAM DDR DQS TO CLK DELAY 3</spirit:displayName>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3" spirit:order="15500" spirit:minimum="-0.100000" spirit:maximum="100.000000">0.001</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3" spirit:order="15500" spirit:minimum="-0.100000" spirit:maximum="100.000000">-0.061</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PCW_UIPARAM_DDR_BOARD_DELAY0</spirit:name>
@@ -38873,7 +38867,7 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2018.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2017.4.1</xilinx:xilinxVersion>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

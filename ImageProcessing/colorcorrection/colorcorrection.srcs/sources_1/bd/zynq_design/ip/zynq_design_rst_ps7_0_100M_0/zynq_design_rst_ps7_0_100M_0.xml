@@ -294,7 +294,6 @@
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>proc_sys_reset</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -304,11 +303,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:17 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:44861b9c</spirit:value>
+            <spirit:value>7:30a0b283</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -322,11 +321,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:17 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:44861b9c</spirit:value>
+            <spirit:value>7:30a0b283</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -335,18 +334,17 @@
         <spirit:displayName>VHDL Synthesis Wrapper</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>zynq_design_rst_ps7_0_100M_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:17 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:44861b9c</spirit:value>
+            <spirit:value>7:30a0b283</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -355,7 +353,6 @@
         <spirit:displayName>VHDL Simulation</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>proc_sys_reset</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -365,11 +362,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:5c432a0e</spirit:value>
+            <spirit:value>7:2060356c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -378,18 +375,17 @@
         <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>zynq_design_rst_ps7_0_100M_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:17 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:5c432a0e</spirit:value>
+            <spirit:value>7:2060356c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -403,11 +399,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:15 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:17 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:44861b9c</spirit:value>
+            <spirit:value>7:30a0b283</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -421,11 +417,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:51:21 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:43:45 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:44861b9c</spirit:value>
+            <spirit:value>7:30a0b283</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -850,7 +846,7 @@
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2018.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2017.4.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="26169568"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d414b4cd"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="f2ac9635"/>

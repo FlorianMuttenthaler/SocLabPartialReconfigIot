@@ -1028,7 +1028,6 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:displayName>VHDL Synthesis</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>v_ccm</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesis_xilinx_com_ip_axi_lite_ipif_3_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -1041,11 +1040,11 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:45cc5ad1</spirit:value>
+            <spirit:value>7:6f6ad897</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductLicenses</spirit:name>
@@ -1063,11 +1062,11 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:45cc5ad1</spirit:value>
+            <spirit:value>7:6f6ad897</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductLicenses</spirit:name>
@@ -1080,18 +1079,17 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:displayName>VHDL Synthesis Wrapper</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>zynq_design_v_ccm_0_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:45cc5ad1</spirit:value>
+            <spirit:value>7:6f6ad897</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductLicenses</spirit:name>
@@ -1104,7 +1102,6 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:displayName>VHDL Simulation</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>v_ccm</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_axi_lite_ipif_3_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -1117,11 +1114,11 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:4872b9c9</spirit:value>
+            <spirit:value>7:9054a763</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductLicenses</spirit:name>
@@ -1134,18 +1131,17 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:displayName>VHDL Simulation Wrapper</spirit:displayName>
         <spirit:envIdentifier>vhdlSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
         <spirit:language>vhdl</spirit:language>
-        <spirit:modelName>zynq_design_v_ccm_0_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_vhdlsimulationwrapper_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:50:14 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:37:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:4872b9c9</spirit:value>
+            <spirit:value>7:9054a763</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductLicenses</spirit:name>
@@ -1163,11 +1159,11 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jan 02 12:51:42 UTC 2019</spirit:value>
+            <spirit:value>Tue Jan 08 10:51:32 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:45cc5ad1</spirit:value>
+            <spirit:value>7:6f6ad897</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductLicenses</spirit:name>
@@ -2468,7 +2464,7 @@ dency video_comp2_offset format long minimum {} maximum {}} value 16} integer {s
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2018.1</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2017.4.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="5a0e1524"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="55b75fc2"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="59690447"/>
