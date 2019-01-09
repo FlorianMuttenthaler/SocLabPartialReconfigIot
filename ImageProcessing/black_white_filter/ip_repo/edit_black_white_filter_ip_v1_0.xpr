@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="35" Path="/home/soc-lab/Desktop/SoC-Lab/ImageProcessing/black_white_filter/ip_repo/edit_black_white_filter_ip_v1_0.xpr">
+<Project Version="7" Minor="35" Path="/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/black_white_filter/ip_repo/edit_black_white_filter_ip_v1_0.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="941bb597d66e48d8ae51da4349dd6cc5"/>
@@ -65,6 +65,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/source/black_white_filter_logic.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../source/black_white_filter_logic.vhd"/>
+          <Attr Name="ImportTime" Val="1547036874"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/black_white_filter_ip_1.0/hdl/black_white_filter_ip_v1_0.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -73,6 +81,15 @@
       </File>
       <File Path="$PPRDIR/black_white_filter_ip_1.0/component.xml">
         <FileInfo SFType="IPXACT"/>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/source/black_white_filter_logic_pkg.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../source/black_white_filter_logic_pkg.vhd"/>
+          <Attr Name="ImportTime" Val="1547036874"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
@@ -87,6 +104,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
+      <Filter Type="Srcs"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="black_white_filter_ip_v1_0"/>
@@ -122,9 +140,7 @@
   <Runs Version="1" Minor="10">
     <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg484-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017"/>
         <Step Id="synth_design"/>
       </Strategy>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2017"/>
@@ -132,9 +148,7 @@
     </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
