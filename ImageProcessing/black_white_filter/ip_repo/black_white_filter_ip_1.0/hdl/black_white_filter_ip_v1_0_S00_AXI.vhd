@@ -7773,7 +7773,7 @@ begin
         -- Width of S_AXI data bus
         C_S_AXI_DATA_WIDTH  =>  C_S_AXI_DATA_WIDTH,
         THRESHOLD           =>  128 
-		);
+		)
       port map(
         clk                 =>  S_AXI_ACLK,
         reg001in    =>   slv_reg0,
