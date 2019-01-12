@@ -10,8 +10,27 @@
 
 #define ImageRowNumb			16u
 #define ImageColumnNumb			16u
+#define ImageAddressRange		256u
 
-//unsigned int Image[ImageColumnNumb][ImageRowNumb];
+/*
+	The following steps have to be done for using the Image Interface:
+*/
 
+/*
+	Step 1:
+	ImageInterfaceWrite: Use this function to write image array to dedicated memory space
+	param: unsigned int ImageIn[ImageAddressRange]
+	return: ImageInterfaceNullError if address of ImageIn is Null, else ImageInterfaceOK
+*/
 extern unsigned int ImageInterfaceWrite(unsigned int* ImageIn);
+/*
+	Step 2:
+	wait a Time until hardware process is finalized
+*/
+/*	
+	Step 3:
+	ImageInterfaceRead: Use this function to read image array to dedicated memory space
+	param: unsigned int ImageIn[ImageAddressRange]
+	return: ImageInterfaceNullError if address of ImageIn is Null, else ImageInterfaceOK
+*/
 extern unsigned int ImageInterfaceRead(unsigned int* ImageOut);

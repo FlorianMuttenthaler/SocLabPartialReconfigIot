@@ -56,9 +56,9 @@ static void *getvaddr(int phys_addr) {
 unsigned int ImageInterfaceWrite(unsigned int* ImageIn)
 {
 	unsigned int error = ImageInterfaceOK;
-	unsigned int i,j;
+	unsigned int i;
 	unsigned int * dev_base_vaddr = getvaddr(BASE_ADDR);
-	unsigned int ImagePost[ImageColumnNumb][ImageRowNumb] = dev_base_vaddr;
+	unsigned int * ImagePost = dev_base_vaddr;
 	
 	if (ImageIn == NULL)
 	{
@@ -66,14 +66,10 @@ unsigned int ImageInterfaceWrite(unsigned int* ImageIn)
 	}
 	else
 	{
-		//dev_base_vaddr = getvaddr(BASE_ADDR);
-		for (i = 0; i < ImageRowNumb; i++)
+
+		for (i = 0; i < ImageAddressRange; i++)
 		{
-			for (j = 0; j < ImageColumnNumb; j++)
-			{
-				//&ImagePost[j][i] = dev_base_vaddr + (i * j);
-				ImagePost[j][i] = ImageIn[j][i];
-			}
+			ImagePost[i] = ImageIn[i];
 		}
 	}
 
@@ -83,35 +79,29 @@ unsigned int ImageInterfaceWrite(unsigned int* ImageIn)
 unsigned int ImageInterfaceRead(unsigned int* ImageOut)
 {
 	unsigned int error = ImageInterfaceOK;
-	unsigned int i,j;
+	unsigned int i;
 	unsigned int * dev_base_vaddr = getvaddr(BASE_ADDR_OUT);
-	unsigned int ImagePre[ImageColumnNumb][ImageRowNumb] = dev_base_vaddr;
+	unsigned int * ImagePre = dev_base_vaddr;
 	
-	if (ImageIn == NULL)
+	if (ImageOut == NULL)
 	{
 		error = ImageInterfaceNullError;
 	}
 	else
 	{
-		//dev_base_vaddr = getvaddr(BASE_ADDR_OUT);
-		for (i = 0; i < ImageRowNumb; i++)
+		for (i = 0; i < ImageAddressRange; i++)
 		{
-			for (j = 0; j < ImageColumnNumb; j++)
-			{
-				//&ImagePre[j][i] = dev_base_vaddr + (i * j);
-				ImageOut[j][i] = ImagePre[j][i];
-			}
+			ImageOut[i] = ImagePre[i];
 		}
 	}
 
 	return error;
 }
 
-/*int main(void) {
-	int * dev_base_vaddr = getvaddr(BASE_ADDR);
-	int *row_pointers_send = dev_base_vaddr;
-	int *row_pointers_receive = dev_base_vaddr;
-	
-	
+int main(void) {
+	while (1)
+	{
+
+	}		
     return 0;
-}*/
+}
