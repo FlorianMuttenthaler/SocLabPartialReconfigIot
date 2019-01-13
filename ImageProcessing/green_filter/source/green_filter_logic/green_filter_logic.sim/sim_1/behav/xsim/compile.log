@@ -1,0 +1,11 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity green_filter_logic
+ERROR: [VRFC 10-616] entity blue_filter_logic is not yet compiled [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:20]
+ERROR: [VRFC 10-91] c_s_axi_data_width is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:24]
+ERROR: [VRFC 10-2123] 0 definitions of operator "-" match here [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:24]
+ERROR: [VRFC 10-29] "**" expects 2 arguments [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:24]
+ERROR: [VRFC 10-91] regout is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:26]
+ERROR: [VRFC 10-91] regout is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:28]
+ERROR: [VRFC 10-91] k is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:25]
+ERROR: [VRFC 10-91] regin is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd:22]
+INFO: [VRFC 10-240] VHDL file /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic.vhd ignored due to errors
