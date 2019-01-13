@@ -8,9 +8,13 @@
 #define ImageInterfaceOK 		0u
 #define ImageInterfaceNullError 	1u
 
-#define ImageRowNumb			16u
-#define ImageColumnNumb			16u
-#define ImageAddressRange		256u
+/*
+	The maximum address range of an image related storage is 2000u
+	ImageRowNumb, ImageColumnNumb can be used as terms for resolution
+*/
+#define ImageRowNumb			40u
+#define ImageColumnNumb			50u
+#define ImageAddressRange		2000u
 
 /*
 	The following steps have to be done for using the Image Interface:

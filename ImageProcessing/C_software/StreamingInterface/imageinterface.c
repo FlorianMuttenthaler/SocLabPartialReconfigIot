@@ -58,7 +58,7 @@ unsigned int ImageInterfaceWrite(unsigned int* ImageIn)
 	unsigned int error = ImageInterfaceOK;
 	unsigned int i;
 	unsigned int * dev_base_vaddr = getvaddr(BASE_ADDR);
-	unsigned int * ImagePost = dev_base_vaddr;
+	unsigned int * ImagePost = dev_base_vaddr + 4u;// + 4 because of internal structure of AXI address handeling
 	
 	if (ImageIn == NULL)
 	{
@@ -81,7 +81,7 @@ unsigned int ImageInterfaceRead(unsigned int* ImageOut)
 	unsigned int error = ImageInterfaceOK;
 	unsigned int i;
 	unsigned int * dev_base_vaddr = getvaddr(BASE_ADDR_OUT);
-	unsigned int * ImagePre = dev_base_vaddr;
+	unsigned int * ImagePre = dev_base_vaddr + 4u;
 	
 	if (ImageOut == NULL)
 	{
