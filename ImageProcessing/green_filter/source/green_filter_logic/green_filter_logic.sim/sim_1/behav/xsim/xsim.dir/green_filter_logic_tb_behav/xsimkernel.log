@@ -1,0 +1,7 @@
+Running: xsim.dir/green_filter_logic_tb_behav/xsimk -simmode gui -wdb green_filter_logic_tb_behav.wdb -simrunnum 0 -socket 55591
+Design successfully loaded
+Design Loading Memory Usage: 47748 KB (Peak: 47800 KB)
+Design Loading CPU Usage: 10 ms
+Simulation completed
+Simulation Memory Usage: 129484 KB (Peak: 195020 KB)
+Simulation CPU Usage: 10 ms

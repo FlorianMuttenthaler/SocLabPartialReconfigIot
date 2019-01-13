@@ -1,0 +1,4 @@
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+Note: end of test
+Time: 22 ns  Iteration: 0  Process: /green_filter_logic_tb/stimuli  File: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/source/green_filter_logic_tb.vhd

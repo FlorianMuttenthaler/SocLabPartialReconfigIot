@@ -1,0 +1,1 @@
+-wto "248db5a411a0454eb7643422b9f5b60a" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" --snapshot "green_filter_logic_tb_behav" "xil_defaultlib.green_filter_logic_tb" -log "elaborate.log" 
