@@ -116,6 +116,20 @@ architecture arch_imp of blue_filter_ip_v1_0_S00_AXI is
 	
 	type slv_array is array (OPT_MEM_ADDR_BITS downto 0) of std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
 	signal slv_regs : slv_array := (others => (others => '0'));
+	signal array_index : integer := 0;
+	signal filter_out : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
+	signal filter_in : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
+	
+	component blue_filter_logic
+        generic(
+            C_S_AXI_DATA_WIDTH	: integer	:= 32
+        );
+        port(
+            clk 	: in std_logic;
+            regin       : in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+            regout       : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)
+        );
+    end component;
 
 begin
 	-- I/O Connections assignments
@@ -217,6 +231,7 @@ begin
 	      --slv_reg2 <= (others => '0');
 	      --slv_reg3 <= (others => '0');
 	      slv_regs <= (others => (others => '0'));
+	      array_index <= 0;
 	    else
 	      loc_addr := axi_awaddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
 	      if (slv_reg_wren = '1') then
@@ -225,6 +240,7 @@ begin
                 -- Respective byte enables are asserted as per write strobes                   
                 -- slave registor 0
                 slv_regs(to_integer(unsigned(loc_addr)))(byte_index*8+7 downto byte_index*8) <= S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
+                array_index <= to_integer(unsigned(loc_addr));
               end if;
             end loop;
 	      end if;
@@ -313,12 +329,12 @@ begin
 	-- and the slave is ready to accept the read address.
 	slv_reg_rden <= axi_arready and S_AXI_ARVALID and (not axi_rvalid) ;
 
-	process (slv_regs, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
+	process (filter_out, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
 	variable loc_addr :std_logic_vector(OPT_MEM_ADDR_BITS downto 0);
 	begin
 	    -- Address decoding for reading registers
 	    loc_addr := axi_araddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
-	    reg_data_out <= slv_regs(to_integer(unsigned(loc_addr)));
+	    reg_data_out <= filter_out;
 	end process; 
 
 	-- Output register or memory read data
@@ -341,6 +357,21 @@ begin
 
 
 	-- Add user logic here
+	
+	process (slv_regs)
+	begin
+	   filter_in <= slv_regs(array_index);
+	end process;
+	
+	blue_filter_logic_0 : blue_filter_logic
+	   generic map(
+	       C_S_AXI_DATA_WIDTH => C_S_AXI_DATA_WIDTH
+	   )
+	   port map(
+	       clk => S_AXI_ACLK,
+	       regin => filter_in,
+	       regout => filter_out
+	   );
 
 	-- User logic ends
 

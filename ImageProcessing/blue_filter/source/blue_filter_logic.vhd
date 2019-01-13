@@ -17,12 +17,17 @@ entity blue_filter_logic is
 end blue_filter_logic;
 
 architecture IMP of blue_filter_logic is
- 
 begin
   process (clk)
   begin
     if clk'event and clk = '1' then
-      regout <= regin(7 downto 0);
+        for k in 0 to (C_S_AXI_DATA_WIDTH - 1) loop
+            if k < 8 then
+                regout(k) <= regin(k);
+            else
+                regout(k) <= '0';
+            end if;
+        end loop;
     end if;
   end process;
 end IMP;
