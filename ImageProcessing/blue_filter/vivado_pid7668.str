@@ -1,0 +1,414 @@
+/*
+
+Xilinx Vivado v2017.4.1 (64-bit) [Major: 2017, Minor: 4]
+SW Build: 2117270 on Tue Jan 30 15:31:13 MST 2018
+IP Build: 2095745 on Tue Jan 30 17:13:15 MST 2018
+
+Process ID: 7668
+License: Customer
+
+Current time: 	Sun Jan 13 20:27:43 CET 2019
+Time zone: 	Central European Time (Europe/Vienna)
+
+OS: Ubuntu
+OS Version: 4.15.0-43-generic
+OS Architecture: amd64
+Available processors (cores): 1
+
+Display: :0
+Screen size: 2560x1285
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 7 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	/opt/Xilinx/Vivado/2017.4/tps/lnx64/jre
+JVM executable location: 	/opt/Xilinx/Vivado/2017.4/tps/lnx64/jre/bin/java
+
+User name: 	soc-lab
+User home directory: /home/soc-lab
+User working directory: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2017.4
+RDI_DATADIR: /opt/Xilinx/Vivado/2017.4/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2017.4/bin
+
+Vivado preferences file location: /home/soc-lab/.Xilinx/Vivado/2017.4/vivado.xml
+Vivado preferences directory: /home/soc-lab/.Xilinx/Vivado/2017.4/
+Vivado layouts directory: /home/soc-lab/.Xilinx/Vivado/2017.4/layouts
+PlanAhead jar file location: 	/opt/Xilinx/Vivado/2017.4/lib/classes/planAhead.jar
+Vivado log file location: 	/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/vivado.log
+Vivado journal file location: 	/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-7668-soclab-VirtualBox
+
+GUI allocated memory:	122 MB
+GUI max memory:		3,066 MB
+Engine allocated memory: 599 MB
+
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// [GUI Memory]: 63 MB (+63684kb) [00:00:11]
+// [Engine Memory]: 596 MB (+473352kb) [00:00:11]
+// HMemoryUtils.trashcanNow. Engine heap size: 600 MB. GUI used memory: 73 MB. Current time: 1/13/19 8:27:45 PM CET
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic/blue_filter_logic.xpr", 4); // q (O, cj)
+// [Engine Memory]: 629 MB (+3237kb) [00:00:16]
+// Opening Vivado Project: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic/blue_filter_logic.xpr. Version: Vivado v2017.4.1 
+// bs (cj):  Open Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic/blue_filter_logic.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic/blue_filter_logic.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 684 MB (+25203kb) [00:00:21]
+// [GUI Memory]: 74 MB (+7980kb) [00:00:22]
+// [GUI Memory]: 95 MB (+18425kb) [00:00:25]
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.4/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 5933.371 ; gain = 81.004 ; free physical = 1885 ; free virtual = 5354 
+// Project name: blue_filter_logic; location: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic; part: xc7z020clg484-1
+// Elapsed time: 11 seconds
+dismissDialog("Open Project"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 730 MB (+11574kb) [00:00:28]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent Project"); // Z (cj, Popup.HeavyWeightWindow)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ac (cj, Popup.HeavyWeightWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// HMemoryUtils.trashcanNow. Engine heap size: 759 MB. GUI used memory: 74 MB. Current time: 1/13/19 8:28:05 PM CET
+// TclEventType: DG_GRAPH_GENERATED
+// Tcl Message: update_compile_order -fileset sources_1 
+setFileChooser("/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/edit_blue_filter_ip_v1_0.xpr");
+// TclEventType: PROJECT_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 756 MB. GUI used memory: 47 MB. Current time: 1/13/19 8:28:12 PM CET
+// bs (cj):  Open Project : addNotify
+// Opening Vivado Project: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/edit_blue_filter_ip_v1_0.xpr. Version: Vivado v2017.4.1 
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_Yes", "Yes"); // JButton (A, G)
+// Tcl Message: close_project 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/edit_blue_filter_ip_v1_0.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/blue_filter_ip_1.0'. 
+// TclEventType: PROJECT_NEW
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.4/data/ip'. 
+// Project name: edit_blue_filter_ip_v1_0; location: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo; part: xc7z020clg484-1
+// 'i' command handler elapsed time: 16 seconds
+dismissDialog("Open Project"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// Tcl Message: update_compile_order -fileset sources_1 
+// PAPropertyPanels.initPanels (blue_filter_ip_v1_0_tb.vhd) elapsed time: 0.3s
+// Elapsed time: 11 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, testbench(Behavioral) (blue_filter_ip_v1_0_tb.vhd)]", 1, true); // B (D, cj) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, testbench(Behavioral) (blue_filter_ip_v1_0_tb.vhd)]", 1, true, false, false, false, true, false); // B (D, cj) - Popup Trigger - Node
+selectMenuItem(RDIResourceCommand.RDICommands_DELETE, "Remove File from Project..."); // ac (ai, Popup.HeavyWeightWindow)
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+// as (cj): Remove Sources: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (as)
+dismissDialog("Remove Sources"); // as (cj)
+// as (cj): Remove Sources: addNotify
+// bs (as):  Remove Sources : addNotify
+// Tcl Message: export_ip_user_files -of_objects  [get_files /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/blue_filter_ip_1.0/hdl/blue_filter_ip_v1_0_tb.vhd] -no_script -reset -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: remove_files  /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/blue_filter_ip_1.0/hdl/blue_filter_ip_v1_0_tb.vhd 
+// [Engine Memory]: 766 MB (+53kb) [00:01:14]
+dismissDialog("Remove Sources"); // bs (as)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// HMemoryUtils.trashcanNow. Engine heap size: 783 MB. GUI used memory: 82 MB. Current time: 1/13/19 8:28:50 PM CET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed time: 14 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, blue_filter_ip_v1_0(arch_imp) (blue_filter_ip_v1_0.vhd)]", 1); // B (D, cj)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, Package IP]", 5, false); // u (O, cj)
+// bs (cj):  Open Project Manager : addNotify
+// Run Command: PAResourceCommand.PACommandNames_IP_PACKAGER
+dismissDialog("Open Project Manager"); // bs (cj)
+// bs (cj):  IP Packager : addNotify
+// TclEventType: LOAD_FEATURE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: LOAD_FEATURE
+// Tcl Message: ipx::open_ipxact_file /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/blue_filter_ip_1.0/component.xml 
+// TclEventType: LOAD_FEATURE
+// TclEventType: PACKAGER_CURRENT_CORE
+// Run Command: PAResourceCommand.PACommandNames_IP_PACKAGER
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// [Engine Memory]: 814 MB (+10462kb) [00:01:36]
+// HMemoryUtils.trashcanNow. Engine heap size: 836 MB. GUI used memory: 61 MB. Current time: 1/13/19 8:29:07 PM CET
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: PACKAGER_OBJECT_CHANGE
+dismissDialog("IP Packager"); // bs (cj)
+// [GUI Memory]: 101 MB (+1581kb) [00:01:39]
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "File Groups", 2); // an (O, cj)
+selectList(PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, "Review and Package", 7); // an (O, cj)
+selectButton(PAResourceQtoS.ReviewContentPanel_RE_PACKAGE_IP, "Re-Package IP"); // a (c, cj)
+// TclEventType: PACKAGER_OBJECT_CHANGE
+// Tcl Message: set_property core_revision 4 [ipx::current_core] 
+// bs (cj):  Package IP : addNotify
+// Tcl Message: ipx::create_xgui_files [ipx::current_core] 
+// Tcl Message: ipx::update_checksums [ipx::current_core] 
+// Tcl Message: ipx::save_core [ipx::current_core] 
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// TclEventType: CREATE_IP_CATALOG
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_MESSAGE_UPDATE
+// Tcl Message: update_ip_catalog -rebuild -repo_path /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/blue_filter_ip_1.0 
+// Tcl Message: INFO: [IP_Flow 19-725] Reloaded user IP repository '/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo/blue_filter_ip_1.0' 
+// TclEventType: FILE_SET_CHANGE
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking too long to process. Increasing delay to 3000 ms.
+// [GUI Memory]: 113 MB (+6418kb) [00:01:53]
+selectButton("PAResourceQtoS.ReviewContentPanel_FINISHED_PACKAGING_SUCCESSFULLY_OK", "OK"); // JButton (A, G)
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+selectMenu(PAResourceItoN.MainMenuMgr_EDIT, "Edit"); // U (q, cj)
+dismissMenu(PAResourceItoN.MainMenuMgr_EDIT, "Edit"); // U (q, cj)
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+selectMenu(PAResourceItoN.MainMenuMgr_EDIT, "Edit"); // U (q, cj)
+dismissMenu(PAResourceItoN.MainMenuMgr_EDIT, "Edit"); // U (q, cj)
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_PROJECT, "Open Project..."); // ac (cj, Popup.HeavyWeightWindow)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // U (q, cj)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+setFileChooser("/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.xpr");
+// TclEventType: PROJECT_CLOSE
+// HMemoryUtils.trashcanNow. Engine heap size: 813 MB. GUI used memory: 63 MB. Current time: 1/13/19 8:29:42 PM CET
+// bs (cj):  Open Project : addNotify
+selectButton("PAResourceOtoP.PABaseTab_WOULD_YOU_LIKE_TO_CLOSE_CURRENTLY_Yes", "Yes"); // JButton (A, G)
+// Opening Vivado Project: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.xpr. Version: Vivado v2017.4.1 
+// Tcl Message: close_project 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories 
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.4/data/ip'. 
+// Project name: blue_filter; location: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter; part: xc7z020clg484-1
+// 'i' command handler elapsed time: 16 seconds
+dismissDialog("Open Project"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, IP Catalog]", 4, false); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_CORE_GEN
+// bs (cj):  IP Catalog : addNotify
+dismissDialog("IP Catalog"); // bs (cj)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "User Repository ;  ;  ;  ; ", 0, "User Repository", 0, false); // O (O, cj)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "User Repository ;  ;  ;  ; ", 0, "User Repository", 0, false, false, false, false, true, false); // O (O, cj) - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_PROPERTIES, "Properties..."); // ac (ai, cj)
+// Run Command: RDIResourceCommand.RDICommands_PROPERTIES
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "User Repository ;  ;  ;  ; ", 0, "User Repository", 0, false, false, false, false, true, false); // O (O, cj) - Popup Trigger
+selectMenuItem(PAResourceCommand.PACommandNames_IP_SETTINGS, "IP Settings..."); // ac (ai, cj)
+// Run Command: PAResourceCommand.PACommandNames_IP_SETTINGS
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// v (cj): Settings: addNotify
+// 'dw' command handler elapsed time: 3 seconds
+dismissDialog("Settings"); // v (cj)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "User Repository ;  ;  ;  ; ", 0, "User Repository", 0, false, false, false, false, true, false); // O (O, cj) - Popup Trigger
+selectMenuItem(PAResourceAtoD.CoreAndInterfacesBaseTreeTablePanel_ADD_REPOSITORY, "Add Repository..."); // ac (ai, cj)
+// [GUI Memory]: 119 MB (+1162kb) [00:02:50]
+setFolderChooser("/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo");
+// TclEventType: PROJECT_CHANGE
+// Tcl Message: set_property  ip_repo_paths  {/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter_ip_1.0 /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo} [current_project] 
+// TclEventType: CREATE_IP_CATALOG
+// Tcl Message: update_ip_catalog 
+// bs (cj):  Refresh All IP Repositories : addNotify
+// TclEventType: CREATE_IP_CATALOG
+// [GUI Memory]: 144 MB (+19956kb) [00:02:56]
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories 
+// Tcl Message: INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/ip_repo'. 
+// c (cj): Add Repository: addNotify
+// [Engine Memory]: 882 MB (+27811kb) [00:02:59]
+// HMemoryUtils.trashcanNow. Engine heap size: 882 MB. GUI used memory: 75 MB. Current time: 1/13/19 8:30:30 PM CET
+selectButton(RDIResource.AddRepositoryInfoDialog_OK, "OK"); // a (c)
+dismissDialog("Add Repository"); // c (cj)
+expandTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "AXI Peripheral ;  ;  ;  ; ", 2); // O (O, cj)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "blue_filter_ip_v1.0 ; AXI4 ; Pre-Production ; Included ; user.org:user:blue_filter_ip:1.0", 3, "blue_filter_ip_v1.0", 0, false); // O (O, cj)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // k (j, cj)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Create Block Design]", 6, false); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_CREATE_NEW_DIAGRAM
+// aF (cj): Create Block Design: addNotify
+dismissDialog("Create Block Design"); // aF (cj)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // u (O, cj)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// bs (cj):  Open Block Design : addNotify
+// Tcl Message: open_bd_design {/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/zynq_design.bd} 
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_OPEN_DIAGRAM
+// [Engine Memory]: 951 MB (+26254kb) [00:03:19]
+// TclEventType: RSB_CONNECTION_CHANGE
+// Tcl Message: Successfully read diagram <zynq_design> from BD file </home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/zynq_design.bd> 
+// TclEventType: RSB_CONNECTION_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 957 MB. GUI used memory: 117 MB. Current time: 1/13/19 8:30:51 PM CET
+// Tcl Message: open_bd_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 6092.438 ; gain = 64.254 ; free physical = 1691 ; free virtual = 5160 
+// 'bA' command handler elapsed time: 8 seconds
+dismissDialog("Open Block Design"); // bs (cj)
+selectView(PAResourceOtoP.PAViews_SYSTEM, "System", 1251, 440, 1790, 802, false, false, false, true, false); // fJ (k, cj) - Popup Trigger
+selectMenuItem(PAResourceQtoS.SystemBuilderMenu_ADD_IP, "Add IP..."); // ac (ai, cj)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "blue_filter_ip_v1.0", 74, "blue_filter_ip_v1.0", 0, false); // O (O, ResizableWindow)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "blue_filter_ip_v1.0", 74, "blue_filter_ip_v1.0", 0, false); // O (O, ResizableWindow)
+expandTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "blue_filter_ip_v1.0", 74); // O (O, ResizableWindow)
+selectTreeTable(PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, "blue_filter_ip_v1.0", 74, "blue_filter_ip_v1.0", 0, false, false, false, false, false, true); // O (O, ResizableWindow) - Double Click
+// bs (cj):  Add IP : addNotify
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: DG_GRAPH_STALE
+// Tcl Message: startgroup 
+// Tcl Message: create_bd_cell -type ip -vlnv user.org:user:blue_filter_ip:1.0 blue_filter_ip_0 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: RSB_ADD_OBJECT
+// Tcl Message: endgroup 
+dismissDialog("Add IP"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// HMemoryUtils.trashcanNow. Engine heap size: 975 MB. GUI used memory: 81 MB. Current time: 1/13/19 8:31:10 PM CET
+// Elapsed time: 16 seconds
+selectButton(PAResourceQtoS.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // h (cC, cj)
+// PAPropertyPanels.initPanels (S00_AXI) elapsed time: 0.2s
+// w (cj): Run Connection Automation: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (w)
+// TclEventType: RSB_SCRIPT_TASK
+dismissDialog("Run Connection Automation"); // w (cj)
+// bs (cj):  Run Connection Automation : addNotify
+// Tcl Message: apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/processing_system7_0/M_AXI_GP0" intc_ip "New AXI Interconnect" Clk_xbar "Auto" Clk_master "Auto" Clk_slave "Auto" }  [get_bd_intf_pins blue_filter_ip_0/S00_AXI] 
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI 
+// Tcl Message: </blue_filter_ip_0/S00_AXI/S00_AXI_reg> is being mapped into </processing_system7_0/Data> at <0x43C00000 [ 64K ]> 
+dismissDialog("Run Connection Automation"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aF (Q, cj)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_design (zynq_design.bd)]", 1, true); // B (D, cj) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, zynq_design (zynq_design.bd)]", 1, true, false, false, false, true, false); // B (D, cj) - Popup Trigger - Node
+selectMenuItem(PAResourceCommand.PACommandNames_CREATE_TOP_HDL, "Create HDL Wrapper..."); // ac (ai, Popup.HeavyWeightWindow)
+// Run Command: PAResourceCommand.PACommandNames_CREATE_TOP_HDL
+// a (cj): Create HDL Wrapper: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (a)
+// TclEventType: RSB_SCRIPT_TASK
+dismissDialog("Create HDL Wrapper"); // a (cj)
+// bs (cj):  Create HDL Wrapper : addNotify
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// Tcl Message: make_wrapper -files [get_files /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/zynq_design.bd] -top 
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// [Engine Memory]: 1,026 MB (+29092kb) [00:04:13]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,053 MB. GUI used memory: 116 MB. Current time: 1/13/19 8:31:45 PM CET
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /zynq_design 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// Tcl Message: Wrote  : </home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/zynq_design.bd>  Wrote  : </home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/ui/bd_50bb9c9b.ui>  
+// [Engine Memory]: 1,081 MB (+3435kb) [00:04:20]
+// Tcl Message: VHDL Output written to : /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/synth/zynq_design.vhd VHDL Output written to : /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/sim/zynq_design.vhd 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// CommandFailedException: ERROR: [BD 41-45] Cell path not found: /zynq_design 
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: RSB_SCRIPT_TASK
+// Tcl Message: VHDL Output written to : /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/hdl/zynq_design_wrapper.vhd 
+// Tcl Message: make_wrapper: Time (s): cpu = 00:00:06 ; elapsed = 00:00:13 . Memory (MB): peak = 6237.598 ; gain = 120.258 ; free physical = 1557 ; free virtual = 5028 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/hdl/zynq_design_wrapper.vhd 
+// a (cj): Critical Messages: addNotify
+// Elapsed time: 14 seconds
+dismissDialog("Create HDL Wrapper"); // bs (cj)
+// TclEventType: DG_ANALYSIS_MSG_RESET
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f (a)
+dismissDialog("Critical Messages"); // a (cj)
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// [Engine Memory]: 1,140 MB (+5573kb) [00:04:38]
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// TclEventType: DG_ANALYSIS_MSG_RESET
+// TclEventType: DG_GRAPH_GENERATED
+// WARNING: HTimer (FileMgr Design Graph Update Timer) is taking too long to process. Increasing delay to 3000 ms.
+// Elapsed time: 69 seconds
+selectCodeEditor(RDIResource.TclConsoleView_TCL_CONSOLE_CODE_EDITOR, 808, 121); // dw (ad, cj)
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
+// CommandFailedException: ERROR: [BD 41-113] Interface Net not found: /processing_system7_0_FCLK_CLK0 
