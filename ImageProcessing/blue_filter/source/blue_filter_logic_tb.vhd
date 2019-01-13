@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 --
--- black_white_filter_logic Testbench
+-- blue_filter_logic Testbench
 --
 -------------------------------------------------------------------------------
 --
@@ -28,28 +28,27 @@ architecture beh of blue_filter_logic_tb is
 	constant clk_period : time := 1 ns;
 	constant DATA_WIDTH : integer := 32;
 
-	
-	signal Clk : std_logic := '0';
-	signal testdata_in		:	std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
-	signal testdata_out	:	std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
+    signal clk : std_logic := '0';
 
 	--  Component instantiation.
-	black_white_filter_logic_0: black_white_filter_logic
+	blue_filter_logic_0: blue_filter_logic
 		generic map(
 			C_S_AXI_DATA_WIDTH	=> DATA_WIDTH
 		)
 		port map (
-			clk => Clk,
+			clk => clk,
 			regin => testdata_in,
 			regout => testdata_out
 		);
 		
+	
+		
 	Clk_process : process
 	
 	begin
-		Clk <= '0';
+		clk <= '0';
 		wait for clk_period/2;
-		Clk <= '1';
+		clk <= '1';
 		wait for clk_period/2;
 
 	end process clk_process;	
