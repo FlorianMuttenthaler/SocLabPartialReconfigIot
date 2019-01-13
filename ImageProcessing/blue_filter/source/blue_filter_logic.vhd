@@ -14,9 +14,9 @@ entity blue_filter_logic is
     regin   	: in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     regout   	: out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)
   );
-end black_white_filter_logic;
+end blue_filter_logic;
 
-architecture IMP of black_white_filter_logic is
+architecture IMP of blue_filter_logic is
  
 begin
   process (clk)
