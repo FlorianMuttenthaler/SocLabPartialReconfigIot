@@ -134,6 +134,21 @@ architecture arch_imp of green_filter_ip_v1_0_S00_AXI is
     end component;
 
 begin
+	-- I/O Connections assignments
+
+	S_AXI_AWREADY	<= axi_awready;
+	S_AXI_WREADY	<= axi_wready;
+	S_AXI_BRESP	<= axi_bresp;
+	S_AXI_BVALID	<= axi_bvalid;
+	S_AXI_ARREADY	<= axi_arready;
+	S_AXI_RDATA	<= axi_rdata;
+	S_AXI_RRESP	<= axi_rresp;
+	S_AXI_RVALID	<= axi_rvalid;
+	-- Implement axi_awready generation
+	-- axi_awready is asserted for one S_AXI_ACLK clock cycle when both
+	-- S_AXI_AWVALID and S_AXI_WVALID are asserted. axi_awready is
+	-- de-asserted when reset is low.
+
 	process (S_AXI_ACLK)
 	begin
 	  if rising_edge(S_AXI_ACLK) then 
