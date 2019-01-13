@@ -12,7 +12,7 @@ entity green_filter_ip_v1_0_S00_AXI is
 		-- Width of S_AXI data bus
 		C_S_AXI_DATA_WIDTH	: integer	:= 32;
 		-- Width of S_AXI address bus
-		C_S_AXI_ADDR_WIDTH	: integer	:= 4
+		C_S_AXI_ADDR_WIDTH	: integer	:= 16
 	);
 	port (
 		-- Users to add ports here
@@ -103,7 +103,7 @@ architecture arch_imp of green_filter_ip_v1_0_S00_AXI is
 	-- ADDR_LSB = 2 for 32 bits (n downto 2)
 	-- ADDR_LSB = 3 for 64 bits (n downto 3)
 	constant ADDR_LSB  : integer := (C_S_AXI_DATA_WIDTH/32)+ 1;
-	constant OPT_MEM_ADDR_BITS : integer := 1;
+	constant OPT_MEM_ADDR_BITS : integer := 13;
 	------------------------------------------------
 	---- Signals for user logic register space example
 	--------------------------------------------------
@@ -121,7 +121,7 @@ architecture arch_imp of green_filter_ip_v1_0_S00_AXI is
     signal filter_out : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
     signal filter_in : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
 	
-	component blue_filter_logic
+	component green_filter_logic
         generic(
             C_S_AXI_DATA_WIDTH    : integer    := 32
         );
