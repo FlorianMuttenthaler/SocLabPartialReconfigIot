@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../blue_filter_ip_1.0/hdl/blue_filter_ip_v1_0.vhd" \
+"../../../../blue_filter_ip_1.0/hdl/blue_filter_ip_v1_0_S00_AXI.vhd" \
+"../../../../edit_blue_filter_ip_v1_0.srcs/sources_1/imports/source/blue_filter_logic.vhd" \
+"../../../../blue_filter_ip_1.0/hdl/blue_filter_ip_v1_0_tb.vhd" \
+
+# Do not sort compile order
+nosort

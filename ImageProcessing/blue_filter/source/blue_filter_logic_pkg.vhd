@@ -22,9 +22,10 @@ package blue_filter_logic_pkg is
 		C_S_AXI_DATA_WIDTH	: integer	:= 32
 	  );
 	  port(
-		clk 	: in std_logic;
-    		regin   	: in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    		regout   	: out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)	  
+	    clk 	    : in std_logic;
+	    rst         : in std_logic;
+	    regin   	: in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+	    regout   	: out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)  
 	);
 	
 	end component blue_filter_logic;

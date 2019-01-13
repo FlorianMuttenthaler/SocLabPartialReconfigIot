@@ -1,0 +1,35 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_pkg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic_tb
+ERROR: [VRFC 10-1412] syntax error near blue_filter_logic_0 [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:37]
+ERROR: [VRFC 10-91] clk is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:50]
+ERROR: [VRFC 10-1412] syntax error near wait [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:51]
+ERROR: [VRFC 10-91] clk is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:52]
+ERROR: [VRFC 10-1412] syntax error near wait [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:53]
+ERROR: [VRFC 10-91] testdata_in is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:64]
+ERROR: [VRFC 10-91] testdata_in is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:68]
+ERROR: [VRFC 10-91] testdata_in is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:72]
+ERROR: [VRFC 10-91] testdata_in is not declared [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:76]
+ERROR: [VRFC 10-1504] unit beh ignored due to previous errors [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd:23]
+INFO: [VRFC 10-240] VHDL file /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd ignored due to errors
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_pkg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic_tb
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic
+ERROR: [VRFC 10-1412] syntax error near end [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd:31]
+ERROR: [VRFC 10-1472] type error near imp ; expected type  void [/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd:33]
+INFO: [VRFC 10-240] VHDL file /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd ignored due to errors
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic_tb
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_pkg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity blue_filter_logic_tb

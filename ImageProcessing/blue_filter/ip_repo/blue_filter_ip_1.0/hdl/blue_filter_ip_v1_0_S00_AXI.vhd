@@ -116,6 +116,7 @@ architecture arch_imp of blue_filter_ip_v1_0_S00_AXI is
 	
 	type slv_array is array (OPT_MEM_ADDR_BITS downto 0) of std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
 	signal slv_regs : slv_array := (others => (others => '0'));
+	signal slv_regs_out : slv_array := (others => (others => '0'));
 	signal array_index : integer := 0;
 	signal filter_out : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
 	signal filter_in : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
@@ -126,6 +127,7 @@ architecture arch_imp of blue_filter_ip_v1_0_S00_AXI is
         );
         port(
             clk 	: in std_logic;
+            rst     : in std_logic;
             regin       : in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
             regout       : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)
         );
@@ -329,13 +331,15 @@ begin
 	-- and the slave is ready to accept the read address.
 	slv_reg_rden <= axi_arready and S_AXI_ARVALID and (not axi_rvalid) ;
 
-	process (filter_out, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
+	process (slv_regs_out, axi_araddr)
 	variable loc_addr :std_logic_vector(OPT_MEM_ADDR_BITS downto 0);
 	begin
-	    -- Address decoding for reading registers
-	    loc_addr := axi_araddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
-	    reg_data_out <= filter_out;
-	end process; 
+        -- Address decoding for reading registers
+        loc_addr := axi_araddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
+        if to_integer(unsigned(loc_addr)) < 8192 then
+            reg_data_out <= slv_regs_out(to_integer(unsigned(loc_addr)));
+        end if;
+    end process; 
 
 	-- Output register or memory read data
 	process( S_AXI_ACLK ) is
@@ -357,11 +361,28 @@ begin
 
 
 	-- Add user logic here
-	
-	process (slv_regs)
-	begin
-	   filter_in <= slv_regs(array_index);
-	end process;
+        -- Output register or memory read data
+    process( S_AXI_ACLK ) is
+    begin
+      if (rising_edge (S_AXI_ACLK)) then
+        if ( S_AXI_ARESETN = '0' ) then
+            filter_in  <= (others => '0');
+        else
+	       filter_in <= slv_regs(array_index);
+        end if;
+     end if;
+   end process;
+   
+    process( S_AXI_ACLK ) is
+       begin
+         if (rising_edge (S_AXI_ACLK)) then
+           if ( S_AXI_ARESETN = '0' ) then
+               --filter_in  <= (others => '0');
+           else
+                slv_regs_out(array_index) <= filter_out;
+            end if;
+        end if;
+  end process;
 	
 	blue_filter_logic_0 : blue_filter_logic
 	   generic map(
@@ -369,6 +390,7 @@ begin
 	   )
 	   port map(
 	       clk => S_AXI_ACLK,
+	       rst => S_AXI_ARESETN,
 	       regin => filter_in,
 	       regout => filter_out
 	   );
