@@ -29,6 +29,7 @@ architecture beh of blue_filter_logic_tb is
 	constant DATA_WIDTH : integer := 32;
 
     signal clk : std_logic := '0';
+    signal rst : std_logic := '0';
 	signal testdata_in		:	std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
 	signal testdata_out		:	std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
 begin
@@ -39,6 +40,7 @@ begin
 		)
 		port map (
 			clk => clk,
+			rst => rst,
 			regin => testdata_in,
 			regout => testdata_out
 		);

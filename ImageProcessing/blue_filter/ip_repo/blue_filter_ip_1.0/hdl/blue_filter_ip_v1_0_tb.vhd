@@ -140,7 +140,7 @@ begin
     wait for 15 ns;
         S_AXI_ARESETN<='1';
 
-        S_AXI_AWADDR<=(others => '0');
+        S_AXI_AWADDR<="0000000000000000";
         S_AXI_WDATA<=(others => '0');
         S_AXI_WSTRB<=b"1111";
         sendIt<='1';                --Start AXI Write to Slave
@@ -149,7 +149,7 @@ begin
     wait until S_AXI_BVALID = '0';  --AXI Write finished
         S_AXI_WSTRB<=b"0000";
             
-        S_AXI_AWADDR<="0000000000000001";
+        S_AXI_AWADDR<="0000000000000100";
         S_AXI_WDATA<=(others => '1');
         S_AXI_WSTRB<=b"1111";
         sendIt<='1';                --Start AXI Write to Slave
@@ -158,7 +158,7 @@ begin
     wait until S_AXI_BVALID = '0';  --AXI Write finished
         S_AXI_WSTRB<=b"0000";
         
-        S_AXI_AWADDR<="0000000000000010";
+        S_AXI_AWADDR<="0000000000001000";
         S_AXI_WDATA<="00000000000000000000000000111011";
         S_AXI_WSTRB<=b"1111";
         sendIt<='1';                --Start AXI Write to Slave
@@ -167,8 +167,8 @@ begin
     wait until S_AXI_BVALID = '0';  --AXI Write finished
         S_AXI_WSTRB<=b"0000";
         
-        S_AXI_AWADDR<="0000000000000011";
-        S_AXI_WDATA<="00000000000011000000000000111011";
+        S_AXI_AWADDR<="0000000000001100";
+        S_AXI_WDATA<="00000000000011000000000000111001";
         S_AXI_WSTRB<=b"1111";
         sendIt<='1';                --Start AXI Write to Slave
         wait for 1 ns; sendIt<='0'; --Clear Start Send Flag
@@ -176,22 +176,22 @@ begin
     wait until S_AXI_BVALID = '0';  --AXI Write finished
         S_AXI_WSTRB<=b"0000";
         
-        S_AXI_ARADDR<=(others => '0');
+        S_AXI_ARADDR<="0000000000000000";
         readIt<='1';                --Start AXI Read from Slave
         wait for 1 ns; readIt<='0'; --Clear "Start Read" Flag
     wait until S_AXI_RVALID = '1';
     wait until S_AXI_RVALID = '0';
-        S_AXI_ARADDR<="0000000000000001";
+        S_AXI_ARADDR<="0000000000000100";
         readIt<='1';                --Start AXI Read from Slave
         wait for 1 ns; readIt<='0'; --Clear "Start Read" Flag
     wait until S_AXI_RVALID = '1';
     wait until S_AXI_RVALID = '0';
-        S_AXI_ARADDR<="0000000000000010";
+        S_AXI_ARADDR<="0000000000001000";
         readIt<='1';                --Start AXI Read from Slave
         wait for 1 ns; readIt<='0'; --Clear "Start Read" Flag
     wait until S_AXI_RVALID = '1';
     wait until S_AXI_RVALID = '0';
-        S_AXI_ARADDR<="0000000000000011";
+        S_AXI_ARADDR<="0000000000001100";
         readIt<='1';                --Start AXI Read from Slave
         wait for 1 ns; readIt<='0'; --Clear "Start Read" Flag
     wait until S_AXI_RVALID = '1';

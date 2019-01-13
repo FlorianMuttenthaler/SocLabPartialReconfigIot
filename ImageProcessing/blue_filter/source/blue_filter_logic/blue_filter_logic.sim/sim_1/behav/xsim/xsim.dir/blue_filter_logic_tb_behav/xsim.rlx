@@ -1,0 +1,12 @@
+
+{ 
+    crc :  2393208613475801568  , 
+    ccp_crc :  0  , 
+    cmdline : " -wto 5566104913e8453eb3d363c17e54f798 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot blue_filter_logic_tb_behav xil_defaultlib.blue_filter_logic_tb" , 
+    buildDate : "Jan 30 2018" , 
+    buildTime : "15:35:49" , 
+    linkCmd : "/usr/bin/gcc -Wa,-W  -O -fPIC  -m64  -Wl,--unresolved-symbols=ignore-all  -o \"xsim.dir/blue_filter_logic_tb_behav/xsimk\"   \"xsim.dir/blue_filter_logic_tb_behav/obj/xsim_0.lnx64.o\" \"xsim.dir/blue_filter_logic_tb_behav/obj/xsim_1.lnx64.o\" \"/opt/Xilinx/Vivado/2017.4/lib/lnx64.o/librdi_simulator_kernel.so\" \"/opt/Xilinx/Vivado/2017.4/lib/lnx64.o/librdi_simbridge_kernel.so\"" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 
