@@ -29,7 +29,9 @@ architecture beh of blue_filter_logic_tb is
 	constant DATA_WIDTH : integer := 32;
 
     signal clk : std_logic := '0';
-
+	signal testdata_in		:	std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
+	signal testdata_out		:	std_logic_vector(DATA_WIDTH-1 downto 0) := (others => '0');
+begin
 	--  Component instantiation.
 	blue_filter_logic_0: blue_filter_logic
 		generic map(
