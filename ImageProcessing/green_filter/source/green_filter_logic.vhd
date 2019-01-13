@@ -17,7 +17,7 @@ entity green_filter_logic is
   );
 end green_filter_logic;
 
-architecture IMP of blue_filter_logic is
+architecture IMP of green_filter_logic is
 begin
   process (regin)
   begin
