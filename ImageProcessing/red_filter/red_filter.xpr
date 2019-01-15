@@ -23,6 +23,8 @@
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/ip_repo/red_filter_ip_1.0"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/ref_filter_ip_1.0"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/ip_repo/red_filter_ip_1.0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/ip_repo/red_filter_ip_1.0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/ip_repo/red_filter_1.0"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>

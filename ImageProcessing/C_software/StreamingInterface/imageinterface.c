@@ -53,7 +53,7 @@ static void *getvaddr(int phys_addr) {
 	return mapped_dev_base;
 }
 
-unsigned int ImageInterfaceWrite(unsigned int* ImageIn)
+unsigned int ImageInterfaceWrite(unsigned int* ImageIn, int length)
 {
 	unsigned int error = ImageInterfaceOK;
 	unsigned int i;
@@ -66,17 +66,23 @@ unsigned int ImageInterfaceWrite(unsigned int* ImageIn)
 	}
 	else
 	{
-
-		for (i = 0; i < ImageAddressRange; i++)
+		if (length >= ImageAddressRange)
 		{
-			ImagePost[i] = ImageIn[i];
+			error = ImageInterfaceAddressRangeError;
+		}
+		else
+		{
+			for (i = 0; i < ImageAddressRange; i++)
+			{
+				ImagePost[i] = ImageIn[i];
+			}
 		}
 	}
 
 	return error;
 }
 
-unsigned int ImageInterfaceRead(unsigned int* ImageOut)
+unsigned int ImageInterfaceRead(unsigned int* ImageOut, int length)
 {
 	unsigned int error = ImageInterfaceOK;
 	unsigned int i;
@@ -89,9 +95,16 @@ unsigned int ImageInterfaceRead(unsigned int* ImageOut)
 	}
 	else
 	{
-		for (i = 0; i < ImageAddressRange; i++)
+		if (length >= ImageAddressRange)
 		{
-			ImageOut[i] = ImagePre[i];
+			error = ImageInterfaceAddressRangeError;
+		}
+		else
+		{
+			for (i = 0; i < ImageAddressRange; i++)
+			{
+				ImageOut[i] = ImagePre[i];
+			}
 		}
 	}
 

@@ -7,14 +7,15 @@
 
 #define ImageInterfaceOK 		0u
 #define ImageInterfaceNullError 	1u
+#define ImageInterfaceAddressRangeError	2u
 
 /*
-	The maximum address range of an image related storage is 2000u
+	The maximum address range of an image related storage is 8192u related to allocated 2^13 registers of the memory
 	ImageRowNumb, ImageColumnNumb can be used as terms for resolution
 */
-#define ImageRowNumb			40u
-#define ImageColumnNumb			50u
-#define ImageAddressRange		2000u
+#define ImageRowNumb			80u
+#define ImageColumnNumb			100u
+#define ImageAddressRange		8192u
 
 /*
 	The following steps have to be done for using the Image Interface:
@@ -26,7 +27,7 @@
 	param: unsigned int ImageIn[ImageAddressRange]
 	return: ImageInterfaceNullError if address of ImageIn is Null, else ImageInterfaceOK
 */
-extern unsigned int ImageInterfaceWrite(unsigned int* ImageIn);
+extern unsigned int ImageInterfaceWrite(unsigned int* ImageIn, int length);
 /*
 	Step 2:
 	wait a Time until hardware process is finalized
@@ -37,4 +38,4 @@ extern unsigned int ImageInterfaceWrite(unsigned int* ImageIn);
 	param: unsigned int ImageIn[ImageAddressRange]
 	return: ImageInterfaceNullError if address of ImageIn is Null, else ImageInterfaceOK
 */
-extern unsigned int ImageInterfaceRead(unsigned int* ImageOut);
+extern unsigned int ImageInterfaceRead(unsigned int* ImageOut, int length);
