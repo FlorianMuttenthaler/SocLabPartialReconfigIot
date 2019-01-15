@@ -104,6 +104,8 @@ architecture arch_imp of red_filter_ip_v1_0_S00_AXI is
 	-- ADDR_LSB = 3 for 64 bits (n downto 3)
 	constant ADDR_LSB  : integer := (C_S_AXI_DATA_WIDTH/32)+ 1;
 	constant OPT_MEM_ADDR_BITS : integer := 13;
+	
+	constant ADDR_RANGE_MAX : integer := 8192;
 	------------------------------------------------
 	---- Signals for user logic register space example
 	--------------------------------------------------
@@ -336,7 +338,7 @@ begin
 	begin
         -- Address decoding for reading registers
         loc_addr := axi_araddr(ADDR_LSB + OPT_MEM_ADDR_BITS downto ADDR_LSB);
-        if to_integer(unsigned(loc_addr)) < 8192 then
+        if to_integer(unsigned(loc_addr)) < ADDR_RANGE_MAX then
             reg_data_out <= slv_regs_out(to_integer(unsigned(loc_addr)));
         end if;
     end process; 
