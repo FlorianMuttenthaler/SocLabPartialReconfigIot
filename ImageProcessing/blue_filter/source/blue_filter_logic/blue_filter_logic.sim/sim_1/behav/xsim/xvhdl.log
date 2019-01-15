@@ -1,5 +1,4 @@
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic.vhd" into library xil_defaultlib
 INFO: [VRFC 10-307] analyzing entity blue_filter_logic
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_pkg.vhd" into library xil_defaultlib
 INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/source/blue_filter_logic_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-307] analyzing entity blue_filter_logic_tb

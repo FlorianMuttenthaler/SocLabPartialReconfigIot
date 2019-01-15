@@ -20,13 +20,15 @@ end green_filter_logic;
 architecture IMP of green_filter_logic is
 begin
   process (regin)
+  variable temp : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');
   begin
     for k in 0 to (C_S_AXI_DATA_WIDTH - 1) loop
         if (k > 7) and (k < 16) then
-            regout(k) <= regin(k);
+            temp(k) := regin(k);
         else
-            regout(k) <= '0';
+            temp(k) := '0';
         end if;
     end loop;
+    regout <= temp;
   end process;
 end IMP;

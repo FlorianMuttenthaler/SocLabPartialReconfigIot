@@ -813,8 +813,8 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>green_filter_ip_v1.0</xilinx:displayName>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-01-13T20:59:14Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2019-01-15T08:36:01Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="user.org:user:green_filter_ip:1.0_ARCHIVE_LOCATION">/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/green_filter/ip_repo/green_filter_ip_1.0</xilinx:tag>
       </xilinx:tags>
