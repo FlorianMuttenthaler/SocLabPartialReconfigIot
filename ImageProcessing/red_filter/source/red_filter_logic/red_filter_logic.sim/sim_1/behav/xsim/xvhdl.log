@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/red_filter/source/red_filter_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity red_filter_logic
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/red_filter/source/red_filter_logic_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity red_filter_logic_tb
