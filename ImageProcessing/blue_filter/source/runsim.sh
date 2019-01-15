@@ -11,7 +11,7 @@ rm -f *.o *.cf *.vcd
 ghdl -s blue_filter_logic.vhd blue_filter_logic_pkg.vhd blue_filter_logic_tb.vhd
 
 # Compile the design
-ghdl -a black_white_filter_logic.vhd black_white_filter_logic_pkg.vhd black_white_filter_logic_tb.vhd
+ghdl -a blue_filter_logic.vhd blue_filter_logic_pkg.vhd blue_filter_logic_tb.vhd
 
 # Create executable
 ghdl -e blue_filter_logic_tb
