@@ -24,10 +24,10 @@
 /*
 	Step 1:
 	ImageInterfaceWrite: Use this function to write image array to dedicated memory space
-	param: unsigned int ImageIn[ImageAddressRange]
+	param: unsigned long ImageIn[ImageAddressRange]
 	return: ImageInterfaceNullError if address of ImageIn is Null, else ImageInterfaceOK
 */
-extern unsigned int ImageInterfaceWrite(unsigned int* ImageIn, int length);
+extern unsigned int ImageInterfaceWrite(unsigned long* ImageIn, int length);
 /*
 	Step 2:
 	wait a Time until hardware process is finalized
@@ -35,7 +35,7 @@ extern unsigned int ImageInterfaceWrite(unsigned int* ImageIn, int length);
 /*	
 	Step 3:
 	ImageInterfaceRead: Use this function to read image array to dedicated memory space
-	param: unsigned int ImageIn[ImageAddressRange]
+	param: unsigned long ImageIn[ImageAddressRange]
 	return: ImageInterfaceNullError if address of ImageIn is Null, else ImageInterfaceOK
 */
-extern unsigned int ImageInterfaceRead(unsigned int* ImageOut, int length);
+extern unsigned int ImageInterfaceRead(unsigned long* ImageOut, int length);
