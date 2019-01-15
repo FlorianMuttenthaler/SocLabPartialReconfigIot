@@ -53,12 +53,12 @@ static void *getvaddr(int phys_addr) {
 	return mapped_dev_base;
 }
 
-unsigned int ImageInterfaceWrite(unsigned int* ImageIn, int length)
+unsigned int ImageInterfaceWrite(unsigned long* ImageIn, int length)
 {
 	unsigned int error = ImageInterfaceOK;
 	unsigned int i;
-	unsigned int * dev_base_vaddr = getvaddr(BASE_ADDR);
-	unsigned int * ImagePost = dev_base_vaddr + 4u;// + 4 because of internal structure of AXI address handeling
+	unsigned long * dev_base_vaddr = getvaddr(BASE_ADDR);
+	unsigned long * ImagePost = dev_base_vaddr + 4u;// + 4 because of internal structure of AXI address handeling
 	
 	if (ImageIn == NULL)
 	{
@@ -82,12 +82,12 @@ unsigned int ImageInterfaceWrite(unsigned int* ImageIn, int length)
 	return error;
 }
 
-unsigned int ImageInterfaceRead(unsigned int* ImageOut, int length)
+unsigned int ImageInterfaceRead(unsigned long* ImageOut, int length)
 {
 	unsigned int error = ImageInterfaceOK;
 	unsigned int i;
-	unsigned int * dev_base_vaddr = getvaddr(BASE_ADDR_OUT);
-	unsigned int * ImagePre = dev_base_vaddr + 4u;
+	unsigned long * dev_base_vaddr = getvaddr(BASE_ADDR_OUT);
+	unsigned long * ImagePre = dev_base_vaddr + 4u;
 	
 	if (ImageOut == NULL)
 	{
