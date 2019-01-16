@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4.1 (lin64) Build 2117270 Tue Jan 30 15:31:13 MST 2018
-// Date        : Sun Jan 13 20:47:01 2019
+// Date        : Wed Jan 16 14:31:12 2019
 // Host        : soclab-VirtualBox running 64-bit Ubuntu 18.04.1 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/ip/zynq_design_rst_ps7_0_100M_0/zynq_design_rst_ps7_0_100M_0_sim_netlist.v
@@ -25,7 +25,7 @@ module zynq_design_rst_ps7_0_100M_0
     peripheral_reset,
     interconnect_aresetn,
     peripheral_aresetn);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 clock CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN zynq_design_processing_system7_0_0_FCLK_CLK0" *) input slowest_sync_clk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 clock CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN zynq_design_processing_system7_0_0_FCLK_CLK0" *) input slowest_sync_clk;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 ext_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME ext_reset, BOARD.ASSOCIATED_PARAM RESET_BOARD_INTERFACE, POLARITY ACTIVE_LOW" *) input ext_reset_in;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 aux_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME aux_reset, POLARITY ACTIVE_LOW" *) input aux_reset_in;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 dbg_reset RST" *) (* x_interface_parameter = "XIL_INTERFACENAME dbg_reset, POLARITY ACTIVE_HIGH" *) input mb_debug_sys_rst;
@@ -380,12 +380,12 @@ module zynq_design_rst_ps7_0_100M_0_lpf
         .Q(lpf_exr),
         .R(1'b0));
   LUT4 #(
-    .INIT(16'hFFEF)) 
+    .INIT(16'hFFFD)) 
     lpf_int0
-       (.I0(Q),
-        .I1(lpf_asr),
-        .I2(dcm_locked),
-        .I3(lpf_exr),
+       (.I0(dcm_locked),
+        .I1(Q),
+        .I2(lpf_exr),
+        .I3(lpf_asr),
         .O(lpf_int0__0));
   FDRE #(
     .INIT(1'b0)) 

@@ -1,7 +1,7 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4.1 (lin64) Build 2117270 Tue Jan 30 15:31:13 MST 2018
---Date        : Sun Jan 13 20:37:28 2019
+--Date        : Wed Jan 16 14:24:39 2019
 --Host        : soclab-VirtualBox running 64-bit Ubuntu 18.04.1 LTS
 --Command     : generate_target zynq_design_wrapper.bd
 --Design      : zynq_design_wrapper
