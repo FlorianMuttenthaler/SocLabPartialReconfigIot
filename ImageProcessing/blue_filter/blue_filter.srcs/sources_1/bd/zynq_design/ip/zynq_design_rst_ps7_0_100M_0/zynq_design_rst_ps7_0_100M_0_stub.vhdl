@@ -1,7 +1,7 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4.1 (lin64) Build 2117270 Tue Jan 30 15:31:13 MST 2018
--- Date        : Sun Jan 13 20:47:01 2019
+-- Date        : Wed Jan 16 14:31:11 2019
 -- Host        : soclab-VirtualBox running 64-bit Ubuntu 18.04.1 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/ImageProcessing/blue_filter/blue_filter.srcs/sources_1/bd/zynq_design/ip/zynq_design_rst_ps7_0_100M_0/zynq_design_rst_ps7_0_100M_0_stub.vhdl
