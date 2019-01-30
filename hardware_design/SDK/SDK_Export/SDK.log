@@ -1,0 +1,5 @@
+16:23:40.424 INFO  - Processing command line option -hwspec /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/SDK/SDK_Export/hw/system.xml. 
+16:34:31.704 INFO  - Invoking Bootgen:  
+16:34:32.241 INFO  - Bootgen command execution is done. 
+16:35:40.267 INFO  - Invoking Bootgen:  
+16:35:40.794 INFO  - Bootgen command execution is done. 
