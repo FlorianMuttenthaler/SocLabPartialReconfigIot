@@ -2632,3 +2632,32 @@ Done writing filter settings to:
 	/home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/etc/system.filters
 Done writing Tab View settings to:
 	/home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/etc/system.gui
+Xilinx Platform Studio (XPS)
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+
+********************************************************************************
+At Local date and time: Thu Feb  7 09:12:55 2019
+ make -f system.make clean started...
+rm -f implementation/system.ngc
+rm -f implementation/system_vga_flyinglogo_0_wrapper.ngc implementation/system_util_vector_logic_0_wrapper.ngc implementation/system_processing_system7_0_wrapper.ngc implementation/system_myled_0_wrapper.ngc implementation/system_clock_generator_0_wrapper.ngc implementation/system_axi_vdma_0_wrapper.ngc implementation/system_axi_spdif_tx_0_wrapper.ngc implementation/system_axi_interconnect_2_wrapper.ngc implementation/system_axi_interconnect_1_wrapper.ngc implementation/system_axi_interconnect_0_wrapper.ngc implementation/system_axi_iic_0_wrapper.ngc implementation/system_axi_hdmi_tx_16b_0_wrapper.ngc implementation/system_axi_dma_0_wrapper.ngc implementation/system_axi_clkgen_0_wrapper.ngc
+rm -f platgen.log
+rm -f __xps/ise/_xmsgs/platgen.xmsgs
+rm -f implementation/system.bmm
+rm -rf implementation/cache
+rm -f implementation/system.bit
+rm -f implementation/system.ncd
+rm -f implementation/system_bd.bmm 
+rm -f implementation/system_map.ncd 
+rm -f implementation/download.bit 
+rm -f __xps/system_bits
+rm -rf implementation synthesis xst hdl
+rm -rf xst.srp system.srp
+rm -f __xps/ise/_xmsgs/bitinit.xmsgs
+rm -rf __xps/ps7_instance.mhs
+rm -rf simulation/behavioral
+rm -f simgen.log
+rm -f __xps/ise/_xmsgs/simgen.xmsgs
+rm -f _impact.cmd
+Done!
