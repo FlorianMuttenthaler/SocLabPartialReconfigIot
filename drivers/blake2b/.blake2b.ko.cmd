@@ -1,1 +1,0 @@
-cmd_/home/benedikt/git_repo/drivers/blake2b/blake2b.ko := arm-xilinx-linux-gnueabi-ld -EL -r  -T /home/benedikt/linux-digilent/scripts/module-common.lds --build-id  -o /home/benedikt/git_repo/drivers/blake2b/blake2b.ko /home/benedikt/git_repo/drivers/blake2b/blake2b.o /home/benedikt/git_repo/drivers/blake2b/blake2b.mod.o
