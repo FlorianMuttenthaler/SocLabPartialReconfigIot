@@ -2661,3 +2661,105 @@ rm -f simgen.log
 rm -f __xps/ise/_xmsgs/simgen.xmsgs
 rm -f _impact.cmd
 Done!
+WARNING:EDK:4092 - IPNAME: clock_generator, INSTANCE: clock_generator_0 - Pre-Production version not verified on hardware for architecture 'zynq' - /home/benedikt/git_repo/hardware_design/_xps_tempmhsfilename.mhs line 187 
+WARNING:EDK:4088 - IPNAME: axi_dma, INSTANCE: axi_dma_0 - Superseded core for architecture 'zynq' - /home/benedikt/git_repo/hardware_design/_xps_tempmhsfilename.mhs line 291 
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui
+Assigned Driver blake2b 1.00.a for instance blake2b_0
+blake2b_0 has been added to the project
+WARNING:EDK:2137 - Peripheral blake2b_0 is not accessible from any processor in the system. Check Bus Interface connections and address parameters. 
+WARNING:EDK:2137 - Peripheral blake2b_0 is not accessible from any processor in the system. Check Bus Interface connections and address parameters. 
+blake2b_0 has been deleted from the project
+Assigned Driver blake2b 1.00.a for instance blake2b_0
+blake2b_0 has been added to the project
+WARNING:EDK:2137 - Peripheral blake2b_0 is not accessible from any processor in the system. Check Bus Interface connections and address parameters. 
+ERROR:EDK:3759 - AddresGen MHS Error Address Generator can not generate address map for your design. Please check if there is address conflict, clear the conflict and re-generate the address map.Please consult the online help for how to let Address Generator to overwrite the address. If Address Generator still can not generate the address map, please provide the address map manually.
+INFO:EDK - Do connection by refering to bus interface of a processing_system7_0 in design
+INFO:EDK - Connect bus interface S_AXI to axi_interconnect_0
+INFO:EDK - Connect clock port S_AXI_ACLK to processing_system7_0_FCLK_CLK0
+INFO:EDK - Successfully did connection by refering to M_AXI_GP0 bus interface in processing_system7_0
+INFO:EDK - External IO port grouping doneWARNING:EDK - Generate address failed during auto bus connection
+INFO:EDK - Successfully finished auto bus connection for IP instance: blake2b_0, however there is problem when generating address, please generate address manually
+Overriding Xilinx file <TextEditor.cfg> with local file </opt/Xilinx/14.7/ISE_DS/EDK/data/TextEditor.cfg>
+blake2b_0 has been deleted from the project
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui
+Xilinx Platform Studio (XPS)
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+WARNING:EDK:4092 - IPNAME: clock_generator, INSTANCE: clock_generator_0 - Pre-Production version not verified on hardware for architecture 'zynq' - /home/benedikt/git_repo/hardware_design/_xps_tempmhsfilename.mhs line 187 
+WARNING:EDK:4088 - IPNAME: axi_dma, INSTANCE: axi_dma_0 - Superseded core for architecture 'zynq' - /home/benedikt/git_repo/hardware_design/_xps_tempmhsfilename.mhs line 291 
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui
+Assigned Driver generic 1.00.a for instance blake2b_0
+blake2b_0 has been added to the project
+WARNING:EDK:2137 - Peripheral blake2b_0 is not accessible from any processor in the system. Check Bus Interface connections and address parameters. 
+ERROR:EDK:3759 - AddresGen MHS Error Address Generator can not generate address map for your design. Please check if there is address conflict, clear the conflict and re-generate the address map.Please consult the online help for how to let Address Generator to overwrite the address. If Address Generator still can not generate the address map, please provide the address map manually.
+INFO:EDK - Do connection by refering to bus interface of a processing_system7_0 in design
+INFO:EDK - Connect bus interface S_AXI to axi_interconnect_0
+INFO:EDK - Connect clock port S_AXI_ACLK to processing_system7_0_FCLK_CLK0
+INFO:EDK - Successfully did connection by refering to M_AXI_GP0 bus interface in processing_system7_0
+INFO:EDK - External IO port grouping doneWARNING:EDK - Generate address failed during auto bus connection
+INFO:EDK - Successfully finished auto bus connection for IP instance: blake2b_0, however there is problem when generating address, please generate address manually
+Overriding Xilinx file <TextEditor.cfg> with local file </opt/Xilinx/14.7/ISE_DS/EDK/data/TextEditor.cfg>
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui
+WARNING:EDK:4131 - IPNAME: blake2b_0, PROPERTY: Interrupt - Failure in evaluting ISVALID expresion "(C_INTERRUPT_PRESENT == 1)" - /home/benedikt/git_repo/hardware_design/pcores/blake2b_v1_00_a/data/blake2b_v2_1_0.mpd line 60 
+WARNING:EDK:4131 - IPNAME: blake2b_0, PROPERTY: Interrupt - Failure in evaluting ISVALID expresion "(C_INTERRUPT_PRESENT == 1)" - /home/benedikt/git_repo/hardware_design/pcores/blake2b_v1_00_a/data/blake2b_v2_1_0.mpd line 60 
+WARNING:EDK:4131 - IPNAME: blake2b_0, PROPERTY: Interrupt - Failure in evaluting ISVALID expresion "(C_INTERRUPT_PRESENT == 1)" - /home/benedikt/git_repo/hardware_design/pcores/blake2b_v1_00_a/data/blake2b_v2_1_0.mpd line 60 
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui
+WARNING:EDK:4131 - IPNAME: blake2b_0, PROPERTY: Interrupt - Failure in evaluting ISVALID expresion "(C_INTERRUPT_PRESENT == 1)" - /home/benedikt/git_repo/hardware_design/pcores/blake2b_v1_00_a/data/blake2b_v2_1_0.mpd line 60 
+WARNING:EDK:4131 - IPNAME: blake2b_0, PROPERTY: Interrupt - Failure in evaluting ISVALID expresion "(C_INTERRUPT_PRESENT == 1)" - /home/benedikt/git_repo/hardware_design/pcores/blake2b_v1_00_a/data/blake2b_v2_1_0.mpd line 60 
+WARNING:EDK:4131 - IPNAME: blake2b_0, PROPERTY: Interrupt - Failure in evaluting ISVALID expresion "(C_INTERRUPT_PRESENT == 1)" - /home/benedikt/git_repo/hardware_design/pcores/blake2b_v1_00_a/data/blake2b_v2_1_0.mpd line 60 
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui
+
+********************************************************************************
+At Local date and time: Thu Feb  7 09:33:35 2019
+ make -f system.make clean started...
+rm -f implementation/system.ngc
+rm -f implementation/system_vga_flyinglogo_0_wrapper.ngc implementation/system_util_vector_logic_0_wrapper.ngc implementation/system_processing_system7_0_wrapper.ngc implementation/system_myled_0_wrapper.ngc implementation/system_clock_generator_0_wrapper.ngc implementation/system_blake2b_0_wrapper.ngc implementation/system_axi_vdma_0_wrapper.ngc implementation/system_axi_spdif_tx_0_wrapper.ngc implementation/system_axi_interconnect_2_wrapper.ngc implementation/system_axi_interconnect_1_wrapper.ngc implementation/system_axi_interconnect_0_wrapper.ngc implementation/system_axi_iic_0_wrapper.ngc implementation/system_axi_hdmi_tx_16b_0_wrapper.ngc implementation/system_axi_dma_0_wrapper.ngc implementation/system_axi_clkgen_0_wrapper.ngc
+rm -f platgen.log
+rm -f __xps/ise/_xmsgs/platgen.xmsgs
+rm -f implementation/system.bmm
+rm -rf implementation/cache
+rm -f implementation/system.bit
+rm -f implementation/system.ncd
+rm -f implementation/system_bd.bmm 
+rm -f implementation/system_map.ncd 
+rm -f implementation/download.bit 
+rm -f __xps/system_bits
+rm -rf implementation synthesis xst hdl
+rm -rf xst.srp system.srp
+rm -f __xps/ise/_xmsgs/bitinit.xmsgs
+rm -rf __xps/ps7_instance.mhs
+rm -rf simulation/behavioral
+rm -f simgen.log
+rm -f __xps/ise/_xmsgs/simgen.xmsgs
+rm -f _impact.cmd
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.filters
+Done writing Tab View settings to:
+	/home/benedikt/git_repo/hardware_design/etc/system.gui

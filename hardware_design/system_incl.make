@@ -122,6 +122,8 @@ CORE_STATE_DEVELOPMENT_FILES = /opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPL
 /opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd \
 pcores/myled_v1_00_a/hdl/vhdl/user_logic.vhd \
 pcores/myled_v1_00_a/hdl/vhdl/myled.vhd \
+pcores/blake2b_v1_00_a/hdl/vhdl/user_logic.vhd \
+pcores/blake2b_v1_00_a/hdl/vhdl/blake2b.vhd \
 pcores/axi_spdif_tx_v1_00_a/hdl/vhdl/user_logic.vhd \
 pcores/axi_spdif_tx_v1_00_a/hdl/vhdl/axi_spdif_tx.vhd \
 pcores/axi_spdif_tx_v1_00_a/hdl/vhdl/tx_package.vhd \
@@ -147,6 +149,7 @@ implementation/system_util_vector_logic_0_wrapper.ngc \
 implementation/system_processing_system7_0_wrapper.ngc \
 implementation/system_myled_0_wrapper.ngc \
 implementation/system_clock_generator_0_wrapper.ngc \
+implementation/system_blake2b_0_wrapper.ngc \
 implementation/system_axi_vdma_0_wrapper.ngc \
 implementation/system_axi_spdif_tx_0_wrapper.ngc \
 implementation/system_axi_interconnect_2_wrapper.ngc \
