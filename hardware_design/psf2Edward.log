@@ -1,35 +1,27 @@
 WARNING:EDK:4092 - IPNAME: clock_generator, INSTANCE: clock_generator_0 -
    Pre-Production version not verified on hardware for architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 187 
+   /home/benedikt/git_repo/hardware_design/system.mhs line 187 
 WARNING:EDK:4088 - IPNAME: axi_dma, INSTANCE: axi_dma_0 - Superseded core for
-   architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 291 
+   architecture 'zynq' - /home/benedikt/git_repo/hardware_design/system.mhs line
+   301 
 WARNING:EDK:4092 - IPNAME: clock_generator, INSTANCE: clock_generator_0 -
    Pre-Production version not verified on hardware for architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 187 
+   /home/benedikt/git_repo/hardware_design/system.mhs line 187 
 WARNING:EDK:4088 - IPNAME: axi_dma, INSTANCE: axi_dma_0 - Superseded core for
-   architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 291 
+   architecture 'zynq' - /home/benedikt/git_repo/hardware_design/system.mhs line
+   301 
 WARNING:EDK:4092 - IPNAME: clock_generator, INSTANCE: clock_generator_0 -
    Pre-Production version not verified on hardware for architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 187 
+   /home/benedikt/git_repo/hardware_design/system.mhs line 187 
 WARNING:EDK:4088 - IPNAME: axi_dma, INSTANCE: axi_dma_0 - Superseded core for
-   architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 291 
+   architecture 'zynq' - /home/benedikt/git_repo/hardware_design/system.mhs line
+   301 
 WARNING:EDK:4092 - IPNAME: clock_generator, INSTANCE: clock_generator_0 -
    Pre-Production version not verified on hardware for architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 187 
+   /home/benedikt/git_repo/hardware_design/system.mhs line 187 
 WARNING:EDK:4088 - IPNAME: axi_dma, INSTANCE: axi_dma_0 - Superseded core for
-   architecture 'zynq' -
-   /home/benedikt/hardware_project/ZedBoard_OOB_Design/hw/xps_proj/system.mhs
-   line 291 
+   architecture 'zynq' - /home/benedikt/git_repo/hardware_design/system.mhs line
+   301 
 WARNING:EDK:2486 - The bitwidth 52 of new value 0xc00000000fe81 is greater than
    32
 WARNING:EDK:4131 - IPNAME: ps7_usb_0, PROPERTY: C_INTERCONNECT_M_AXI_BASE_ID -
@@ -505,6 +497,7 @@ axi_spdif_tx_0	ps7_axi_interconnect_0->axi_interconnect_0
   (0x79000000-0x7900ffff)
 axi_clkgen_0	ps7_axi_interconnect_0->axi_interconnect_0
   (0x7e400000-0x7e40ffff) myled_0	ps7_axi_interconnect_0->axi_interconnect_0
+  (0x7e410000-0x7e41ffff) blake2b_0	ps7_axi_interconnect_0->axi_interconnect_0
   (0xe0001000-0xe0001fff) ps7_uart_1	ps7_axi_interconnect_0
   (0xe0002000-0xe0002fff) ps7_usb_0	ps7_axi_interconnect_0
   (0xe000a000-0xe000afff) ps7_gpio_0	ps7_axi_interconnect_0
@@ -548,6 +541,7 @@ axi_spdif_tx_0	ps7_axi_interconnect_0->axi_interconnect_0
   (0x79000000-0x7900ffff)
 axi_clkgen_0	ps7_axi_interconnect_0->axi_interconnect_0
   (0x7e400000-0x7e40ffff) myled_0	ps7_axi_interconnect_0->axi_interconnect_0
+  (0x7e410000-0x7e41ffff) blake2b_0	ps7_axi_interconnect_0->axi_interconnect_0
   (0xe0001000-0xe0001fff) ps7_uart_1	ps7_axi_interconnect_0
   (0xe0002000-0xe0002fff) ps7_usb_0	ps7_axi_interconnect_0
   (0xe000a000-0xe000afff) ps7_gpio_0	ps7_axi_interconnect_0

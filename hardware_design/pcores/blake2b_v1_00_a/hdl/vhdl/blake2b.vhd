@@ -171,6 +171,7 @@ entity blake2b is
   attribute MAX_FANOUT of S_AXI_ARESETN       : signal is "10000";
   attribute SIGIS of S_AXI_ACLK       : signal is "Clk";
   attribute SIGIS of S_AXI_ARESETN       : signal is "Rst";
+  attribute SIGIS of Interrupt : signal is "Interrupt";
 end entity blake2b;
 
 ------------------------------------------------------------------------------

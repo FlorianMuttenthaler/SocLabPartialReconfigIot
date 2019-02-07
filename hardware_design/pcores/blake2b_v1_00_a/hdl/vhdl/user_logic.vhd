@@ -131,6 +131,8 @@ end entity user_logic;
 architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
+  
+  signal interrupt_s : std_logic;
 
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
@@ -149,7 +151,7 @@ begin
 
   --USER logic implementation added here
   
-  Interrupt <= '0';
+  Interrupt <= interrupt_s;
 
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
@@ -184,6 +186,7 @@ begin
         slv_reg1 <= (others => '0');
         slv_reg2 <= (others => '0');
         slv_reg3 <= (others => '0');
+		  interrupt_s <= '0';
       else
         case slv_reg_write_sel is
           when "1000" =>
@@ -192,25 +195,30 @@ begin
                 slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
+				interrupt_s <= '1';
           when "0100" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
                 slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
+				interrupt_s <= '0';
           when "0010" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
                 slv_reg2(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
+				interrupt_s <= '0';
           when "0001" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
                 slv_reg3(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
-          when others => null;
+				interrupt_s <= '0';
+          when others =>
+				interrupt_s <= '0';
         end case;
       end if;
     end if;
