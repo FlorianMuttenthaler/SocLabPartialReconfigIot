@@ -65,9 +65,7 @@ init_bram: $(DOWNLOAD_BIT)
 
 sim: $(DEFAULT_SIM_SCRIPT)
 	cd simulation/behavioral ; \
-	sh system_fuse.sh;
-	cd simulation/behavioral ; \
-	$(SIM_CMD) -gui -tclbatch system_setup.tcl &
+	$(SIM_CMD) -gui -do $(^F) &
 
 simmodel: $(DEFAULT_SIM_SCRIPT)
 

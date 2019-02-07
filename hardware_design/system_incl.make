@@ -45,17 +45,17 @@ BRAMINIT_ELF_IMP_FILE_ARGS =
 BRAMINIT_ELF_SIM_FILES =
 BRAMINIT_ELF_SIM_FILE_ARGS =
 
-SIM_CMD = xterm -e ./isim_system
+SIM_CMD = vsim
 
-BEHAVIORAL_SIM_SCRIPT = simulation/behavioral/$(SYSTEM)_setup.tcl
+BEHAVIORAL_SIM_SCRIPT = simulation/behavioral/$(SYSTEM)_setup.do
 
-STRUCTURAL_SIM_SCRIPT = simulation/structural/$(SYSTEM)_setup.tcl
+STRUCTURAL_SIM_SCRIPT = simulation/structural/$(SYSTEM)_setup.do
 
-TIMING_SIM_SCRIPT = simulation/timing/$(SYSTEM)_setup.tcl
+TIMING_SIM_SCRIPT = simulation/timing/$(SYSTEM)_setup.do
 
 DEFAULT_SIM_SCRIPT = $(BEHAVIORAL_SIM_SCRIPT)
 
-SIMGEN_OPTIONS = -p $(DEVICE) -lang $(XPS_HDL_LANG) -intstyle $(INTSTYLE) $(SEARCHPATHOPT) $(BRAMINIT_ELF_SIM_FILE_ARGS) -msg __xps/ise/xmsgprops.lst -s isim
+SIMGEN_OPTIONS = -p $(DEVICE) -lang $(XPS_HDL_LANG) -intstyle $(INTSTYLE) $(SEARCHPATHOPT) $(BRAMINIT_ELF_SIM_FILE_ARGS) -msg __xps/ise/xmsgprops.lst -s mgm
 
 
 CORE_STATE_DEVELOPMENT_FILES = /opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_common_v3_00_a/hdl/vhdl/family.vhd \
