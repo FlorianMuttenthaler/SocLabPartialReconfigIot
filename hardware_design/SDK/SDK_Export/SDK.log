@@ -80,3 +80,33 @@
 19:50:18.003 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
 19:51:09.319 INFO  - Invoking Bootgen:  
 19:51:09.910 INFO  - Bootgen command execution is done. 
+13:14:38.142 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+13:14:48.514 INFO  - Invoking Bootgen:  
+13:14:49.089 INFO  - Bootgen command execution is done. 
+13:58:02.061 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+13:58:09.051 INFO  - Invoking Bootgen:  
+13:58:09.656 INFO  - Bootgen command execution is done. 
+16:35:04.259 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+16:35:32.975 INFO  - Invoking Bootgen:  
+16:35:33.516 INFO  - Bootgen command execution is done. 
+17:01:19.187 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+17:01:53.075 INFO  - Invoking Bootgen:  
+17:01:53.176 INFO  - Bootgen command execution is done. 
+10:19:31.973 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+10:20:35.749 INFO  - Invoking Bootgen:  
+10:20:36.313 INFO  - Bootgen command execution is done. 
+10:52:09.051 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+10:52:15.219 INFO  - Invoking Bootgen:  
+10:52:15.758 INFO  - Bootgen command execution is done. 
+11:39:29.376 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+11:40:52.981 INFO  - Invoking Bootgen:  
+11:40:53.525 INFO  - Bootgen command execution is done. 
+12:45:25.795 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+12:45:43.340 INFO  - Invoking Bootgen:  
+12:45:43.930 INFO  - Bootgen command execution is done. 
+14:32:19.978 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+14:32:26.550 INFO  - Invoking Bootgen:  
+14:32:27.123 INFO  - Bootgen command execution is done. 
+15:40:17.647 INFO  - Processing command line option -hwspec /home/benedikt/git_repo/hardware_design/SDK/SDK_Export/hw/system.xml. 
+15:40:26.890 INFO  - Invoking Bootgen:  
+15:40:27.440 INFO  - Bootgen command execution is done. 
