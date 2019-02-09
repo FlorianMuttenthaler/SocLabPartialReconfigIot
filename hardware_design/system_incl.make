@@ -122,6 +122,8 @@ CORE_STATE_DEVELOPMENT_FILES = /opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPL
 /opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/axi_lite_ipif_v1_01_a/hdl/vhdl/axi_lite_ipif.vhd \
 pcores/myled_v1_00_a/hdl/vhdl/user_logic.vhd \
 pcores/myled_v1_00_a/hdl/vhdl/myled.vhd \
+pcores/blake2b_v1_00_a/hdl/vhdl/blake2.vhd \
+pcores/blake2b_v1_00_a/hdl/vhdl/blake2b_wrapper.vhd \
 pcores/blake2b_v1_00_a/hdl/vhdl/user_logic.vhd \
 pcores/blake2b_v1_00_a/hdl/vhdl/blake2b.vhd \
 pcores/axi_spdif_tx_v1_00_a/hdl/vhdl/user_logic.vhd \

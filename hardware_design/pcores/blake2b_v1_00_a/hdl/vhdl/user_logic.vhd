@@ -1,28 +1,4 @@
 ------------------------------------------------------------------------------
--- user_logic.vhd - entity/architecture pair
-------------------------------------------------------------------------------
---
--- ***************************************************************************
--- ** Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.            **
--- **                                                                       **
--- ** Xilinx, Inc.                                                          **
--- ** XILINX IS PROVIDING THIS DESIGN, CODE, OR INFORMATION "AS IS"         **
--- ** AS A COURTESY TO YOU, SOLELY FOR USE IN DEVELOPING PROGRAMS AND       **
--- ** SOLUTIONS FOR XILINX DEVICES.  BY PROVIDING THIS DESIGN, CODE,        **
--- ** OR INFORMATION AS ONE POSSIBLE IMPLEMENTATION OF THIS FEATURE,        **
--- ** APPLICATION OR STANDARD, XILINX IS MAKING NO REPRESENTATION           **
--- ** THAT THIS IMPLEMENTATION IS FREE FROM ANY CLAIMS OF INFRINGEMENT,     **
--- ** AND YOU ARE RESPONSIBLE FOR OBTAINING ANY RIGHTS YOU MAY REQUIRE      **
--- ** FOR YOUR IMPLEMENTATION.  XILINX EXPRESSLY DISCLAIMS ANY              **
--- ** WARRANTY WHATSOEVER WITH RESPECT TO THE ADEQUACY OF THE               **
--- ** IMPLEMENTATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OR        **
--- ** REPRESENTATIONS THAT THIS IMPLEMENTATION IS FREE FROM CLAIMS OF       **
--- ** INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS       **
--- ** FOR A PARTICULAR PURPOSE.                                             **
--- **                                                                       **
--- ***************************************************************************
---
-------------------------------------------------------------------------------
 -- Filename:          user_logic.vhd
 -- Version:           1.00.a
 -- Description:       User logic.
@@ -48,18 +24,9 @@
 --   component instantiations:              "<ENTITY_>I_<#|FUNC>"
 ------------------------------------------------------------------------------
 
--- DO NOT EDIT BELOW THIS LINE --------------------
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
-
-library proc_common_v3_00_a;
-use proc_common_v3_00_a.proc_common_pkg.all;
-
--- DO NOT EDIT ABOVE THIS LINE --------------------
-
---USER libraries added here
+use ieee.numeric_std.all;
 
 ------------------------------------------------------------------------------
 -- Entity section
@@ -69,6 +36,7 @@ use proc_common_v3_00_a.proc_common_pkg.all;
 --   C_SLV_DWIDTH                 -- Slave interface data bus width
 --
 -- Definition of Ports:
+--   Interrupt                    -- High-active interrupt to PS
 --   Bus2IP_Clk                   -- Bus to IP clock
 --   Bus2IP_Resetn                -- Bus to IP reset
 --   Bus2IP_Data                  -- Bus to IP data bus
@@ -84,25 +52,13 @@ use proc_common_v3_00_a.proc_common_pkg.all;
 entity user_logic is
   generic
   (
-    -- ADD USER GENERICS BELOW THIS LINE ---------------
-    --USER generics added here
-    -- ADD USER GENERICS ABOVE THIS LINE ---------------
-
-    -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol parameters, do not add to or delete
     C_NUM_REG                      : integer              := 4;
     C_SLV_DWIDTH                   : integer              := 32
-    -- DO NOT EDIT ABOVE THIS LINE ---------------------
   );
   port
   (
-    -- ADD USER PORTS BELOW THIS LINE ------------------
-    --USER ports added here
 	 Interrupt : out std_logic;
-    -- ADD USER PORTS ABOVE THIS LINE ------------------
-
-    -- DO NOT EDIT BELOW THIS LINE ---------------------
-    -- Bus protocol ports, do not add to or delete
     Bus2IP_Clk                     : in  std_logic;
     Bus2IP_Resetn                  : in  std_logic;
     Bus2IP_Data                    : in  std_logic_vector(C_SLV_DWIDTH-1 downto 0);
@@ -113,7 +69,6 @@ entity user_logic is
     IP2Bus_RdAck                   : out std_logic;
     IP2Bus_WrAck                   : out std_logic;
     IP2Bus_Error                   : out std_logic
-    -- DO NOT EDIT ABOVE THIS LINE ---------------------
   );
 
   attribute MAX_FANOUT : string;
@@ -137,21 +92,102 @@ architecture IMP of user_logic is
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
-  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg2                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg3                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal task_reg                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal message_reg                    : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal status_reg                     : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal hash_reg                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_reg_write_sel              : std_logic_vector(3 downto 0);
   signal slv_reg_read_sel               : std_logic_vector(3 downto 0);
   signal slv_ip2bus_data                : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_read_ack                   : std_logic;
   signal slv_write_ack                  : std_logic;
+  
+  signal task_reg_changed               : std_logic;
+  signal message_reg_changed            : std_logic;
+  signal next_chunk                     : std_logic_vector(128 * 8 - 1 downto 0);
+  signal hash_out                       : std_logic_vector(64 * 8 - 1 downto 0);
+  signal bytes_left                     : integer range 0 to 2147483647;
+  signal subchunk_index                 : integer range 0 to 32;
+  signal hash_out_index                 : integer range 0 to 15;
+  signal reset_hash_out_index           : std_logic;
+  
+  signal status_waiting_for_data        : std_logic;
+  signal status_hash_ready              : std_logic;
+  signal status_ready                   : std_logic;
+  
+  --connections to blake2b_wrapper instance
+  signal message                        : std_logic_vector(128 * 8 - 1 downto 0);
+  signal message_valid                  : std_logic;
+  signal message_len                    : integer range 0 to 2147483647;
+  signal compress_ready                 : std_logic;
+  signal last_chunk                     : std_logic;
+  signal hash_valid                     : std_logic;
+  signal hash                           : std_logic_vector(64 * 8 - 1 downto 0);
+  
+  signal Bus2IP_Reset                   : std_logic;
+  
+  --
+  -- States for the state machine
+  --
+  type state_type is (
+    STATE_READY,                        --Ready to start hashing
+	 STATE_PREPARE_KEY,                  --message_len received, start hashing by passing the key
+	 STATE_WAIT_SUBCHUNK,                --Wait for the software to send a subchunk
+	 STATE_WAIT_COMPRESS_READY,          --Wait until the entity is ready to receive the new chunk
+	 STATE_HASH_CHUNK,                   --Hash that chunk
+	 STATE_WAIT_DONE                     --Wait until the hash is ready
+  );
+  signal state: state_type;
+  
+  constant KEY : std_logic_vector(128*8-1 downto 0) :=
+    X"54686973206973207468652067726561" &
+	 X"74657374204b657920657665722e2049" &
+	 X"7427732066616e7461737469632e204c" &
+	 X"45542773204d414b45204b4559532043" &
+	 X"41505320414741494e212049206e6565" &
+	 X"64203132382063686172616374657273" &
+	 X"20666f722074686973206b65792e204e" &
+	 X"6f77204920616d20646f6f6f6f6e652e";
+  
+  component blake2b_wrapper is
+    port (
+      reset          : in  std_logic;
+      clk            : in  std_logic;
+      message        : in  std_logic_vector(128 * 8 - 1 downto 0);
+      hash_len       : in  integer range 1 to 64;
+      key_len        : in integer range 0 to 128*8;
+      valid_in       : in  std_logic;
+      message_len    : in  integer range 0 to 2147483647;
+      compress_ready : out std_logic;
+      last_chunk     : in  std_logic;
+      valid_out      : out std_logic;
+      hash           : out std_logic_vector(64 * 8 - 1 downto 0)
+    );
+  end component;
 
 begin
 
   --USER logic implementation added here
   
   Interrupt <= interrupt_s;
+  Bus2IP_Reset <= not Bus2IP_Resetn;
+  
+  status_reg <= status_waiting_for_data & status_hash_ready & status_ready & "0" & X"00000" & std_logic_vector(to_unsigned(state_type'POS(state), 8));
+  
+  blake2_inst : blake2b_wrapper
+  port map (
+    reset          => Bus2IP_Reset,
+    clk            => Bus2IP_Clk,
+    message        => message,
+    valid_in       => message_valid,
+    message_len    => message_len,
+    hash_len       => 64,
+    key_len        => 128,
+    compress_ready => compress_ready,
+    last_chunk     => last_chunk,
+    valid_out      => hash_valid,
+    hash           => hash
+  );
 
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
@@ -179,46 +215,171 @@ begin
   -- implement slave model software accessible register(s)
   SLAVE_REG_WRITE_PROC : process( Bus2IP_Clk ) is
   begin
-
+  
     if Bus2IP_Clk'event and Bus2IP_Clk = '1' then
       if Bus2IP_Resetn = '0' then
-        slv_reg0 <= (others => '0');
-        slv_reg1 <= (others => '0');
-        slv_reg2 <= (others => '0');
-        slv_reg3 <= (others => '0');
+        task_reg <= (others => '0');
+        message_reg <= (others => '0');
+        --status_reg <= (others => '0');
+        hash_reg <= (others => '0');
+		  
+		  next_chunk <= (others => '0');
+		  hash_out <= (others => '0');
+		  bytes_left <= 0;
+		  subchunk_index <= 0;
+		  
+		  message <= (others => '0');
+		  message_valid <= '0';
+		  message_len <= 0;
+		  last_chunk <= '0';
+		  
 		  interrupt_s <= '0';
+		  task_reg_changed <= '0';
+		  message_reg_changed <= '0';
+		  
+		  status_waiting_for_data <= '0';
+		  status_hash_ready <= '0';
+		  status_ready <= '1';
+		  
+		  state <= STATE_READY;
+		  
       else
+		  --
+		  -- State Machine
+		  --
+		  case state is
+		    when STATE_READY =>
+				status_ready <= '1';
+				subchunk_index <= 0;
+				interrupt_s <= '0';
+				if task_reg_changed = '1' then
+					message_len <= to_integer(unsigned(task_reg));
+					bytes_left <=  to_integer(unsigned(task_reg));
+					state <= STATE_PREPARE_KEY;
+				end if;
+		    when STATE_PREPARE_KEY =>
+			   message <= KEY;
+				message_valid <= '1';
+				message_len <= bytes_left + 128;
+				status_ready <= '0';
+				if bytes_left > 0 then
+					last_chunk <= '0';
+					interrupt_s <= '1';
+					status_waiting_for_data <= '1';
+					state <= STATE_WAIT_SUBCHUNK;
+				else
+					last_chunk <= '1';
+					interrupt_s <= '0';
+					state <= STATE_WAIT_DONE;
+				end if;
+		    when STATE_WAIT_SUBCHUNK =>
+				message_valid <= '0';
+				if message_reg_changed = '1' then
+				
+					for i in 0 to 3 loop
+						for j in 0 to 7 loop
+							next_chunk(subchunk_index*32+i*8+j) <= message_reg((3 - i)*8 + j);
+						end loop;
+					end loop;
+					
+					if bytes_left <= 4 then
+						bytes_left <= 0;
+						subchunk_index <= 0;
+						status_waiting_for_data <= '0';
+						interrupt_s <= '0';
+						state <= STATE_WAIT_COMPRESS_READY;
+					else
+						bytes_left <= bytes_left - 4;
+						if subchunk_index = 31 then
+							subchunk_index <= 0;
+							status_waiting_for_data <= '0';
+							interrupt_s <= '0';
+							state <= STATE_WAIT_COMPRESS_READY;
+						else
+							status_waiting_for_data <= '1';
+							interrupt_s <= '1';
+							subchunk_index <= subchunk_index + 1;
+						end if;
+					end if;
+				else
+					interrupt_s <= '0';
+				end if;
+		    when STATE_WAIT_COMPRESS_READY =>
+			   if compress_ready = '1' then
+					state <= STATE_HASH_CHUNK;
+				end if;
+		    when STATE_HASH_CHUNK =>
+				message <= next_chunk;
+				next_chunk <= (others => '0');
+				message_valid <= '1';
+				if bytes_left > 0 then
+					last_chunk <= '0';
+					interrupt_s <= '1';
+					status_waiting_for_data <= '1';
+					state <= STATE_WAIT_SUBCHUNK;
+				else
+					last_chunk <= '1';
+					interrupt_s <= '0';
+					state <= STATE_WAIT_DONE;
+				end if;
+		    when STATE_WAIT_DONE =>
+				status_waiting_for_data <= '0';
+				message_valid <= '0';
+				if hash_valid = '1' then
+					interrupt_s <= '1';
+					status_hash_ready <= '1';
+					hash_out <= hash;
+					state <= STATE_READY;
+				end if;
+		    when others =>
+			   message <= (others => '0');
+				message_valid <= '0';
+				message_len <= 0;
+				last_chunk <= '0';
+				interrupt_s <= '0';
+				status_waiting_for_data <= '0';
+				status_hash_ready <= '0';
+				status_ready <= '1';
+				hash_out <= (others => '0');
+				state <= STATE_READY;
+		  end case;
+		  
+        --
+        -- Writes from Software to Logic
+        --
         case slv_reg_write_sel is
           when "1000" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+                task_reg(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
-				interrupt_s <= '1';
+		      task_reg_changed <= '1';
+		      message_reg_changed <= '0';
           when "0100" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+                message_reg(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
-				interrupt_s <= '0';
-          when "0010" =>
-            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
-              if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg2(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-              end if;
-            end loop;
-				interrupt_s <= '0';
+		      task_reg_changed <= '0';
+		      message_reg_changed <= '1';
+          --Register 0010 is not writable from software!
+          --when "0010" =>
+          --  for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
+          --    if ( Bus2IP_BE(byte_index) = '1' ) then
+          --      status_reg(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+          --    end if;
+          --  end loop;
+          --  interrupt_s <= '0';
           when "0001" =>
-            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
-              if ( Bus2IP_BE(byte_index) = '1' ) then
-                slv_reg3(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-              end if;
-            end loop;
-				interrupt_s <= '0';
+				if ( Bus2IP_BE(0) = '1' ) then
+					hash_reg <= hash_out((to_integer(unsigned(Bus2IP_Data(7 downto 0)))+1)*32-1 downto to_integer(unsigned(Bus2IP_Data(7 downto 0)))*32);
+				end if;
+            interrupt_s <= '0';
           when others =>
-				interrupt_s <= '0';
+		      task_reg_changed <= '0';
+		      message_reg_changed <= '0';
         end case;
       end if;
     end if;
@@ -226,14 +387,17 @@ begin
   end process SLAVE_REG_WRITE_PROC;
 
   -- implement slave model software accessible register(s) read mux
-  SLAVE_REG_READ_PROC : process( slv_reg_read_sel, slv_reg0, slv_reg1, slv_reg2, slv_reg3 ) is
+  SLAVE_REG_READ_PROC : process( slv_reg_read_sel, task_reg, message_reg, status_reg, hash_reg ) is
   begin
 
+    --
+    -- Software reads Logic registers
+    --
     case slv_reg_read_sel is
-      when "1000" => slv_ip2bus_data <= slv_reg0;
-      when "0100" => slv_ip2bus_data <= slv_reg1;
-      when "0010" => slv_ip2bus_data <= slv_reg2;
-      when "0001" => slv_ip2bus_data <= slv_reg3;
+      when "1000" => slv_ip2bus_data <= task_reg;
+      when "0100" => slv_ip2bus_data <= message_reg;
+      when "0010" => slv_ip2bus_data <= status_reg;
+      when "0001" => slv_ip2bus_data <= hash_reg;
       when others => slv_ip2bus_data <= (others => '0');
     end case;
 

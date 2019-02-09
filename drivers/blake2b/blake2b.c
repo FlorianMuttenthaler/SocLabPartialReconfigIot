@@ -18,10 +18,11 @@
 #define IRQ_NUM		87
 #define SYSCALL_MAJOR	22
 
-#define FLAG_SINK_READY	0x01
-#define FLAG_HASH_READY 0x02
+#define FLAG_SINK_READY	0x80000000
+#define FLAG_HASH_READY 0x40000000
+#define FLAG_READY	0x20000000
 
-unsigned long *base_addr;	/* Vitual Base Address */
+//unsigned long *base_addr;	/* Vitual Base Address */
 unsigned long *task_reg_addr;
 unsigned long *message_reg_addr;
 unsigned long *status_reg_addr;
@@ -31,10 +32,66 @@ unsigned long remap_size;	/* Device Memory Size */
 
 static struct file *filp = NULL;
 static uint32_t filesize = 0;
+static uint32_t bytes_sent = 0;
+
+static uint32_t hash[16];
 
 static irqreturn_t irq_handler(int irq, void* dev_id)
 {
-	printk("Interrupt!\n");
+	uint32_t status;
+	uint32_t size;
+	//printk("Interrupt!\n");
+	wmb();
+	status = ioread32(status_reg_addr);
+
+	if(status & FLAG_SINK_READY)
+	{
+		uint32_t data;
+		mm_segment_t oldfs;
+		int ret;
+
+		//printk("WAITING FOR DATA (0x%x)\n", status);
+		//printk("Sent %u, size is %u\n", bytes_sent, filesize);
+		size = 4;
+		if(bytes_sent + 4 > filesize)
+		{
+			size = filesize - bytes_sent;
+		}
+		//printk("Reading %u bytes\n", size);
+
+		//read from file
+		oldfs = get_fs();
+		set_fs(get_ds());
+		ret = vfs_read(filp, &data, size, &filp->f_pos);
+		set_fs(oldfs);
+
+		if(size != ret)
+		{
+			printk("Could only read %u bytes, need %u\n",ret,size);
+		}
+
+		iowrite32(data, message_reg_addr);
+
+		bytes_sent += size;
+	} else if (status & FLAG_HASH_READY)
+	{
+		int i;
+		printk("HASH READY        (x%x)\n", status);
+		filp_close(filp, 0);
+		filp = NULL;
+		for(i = 15; i >= 0; i--)
+		{
+			wmb();
+			iowrite32(i,hash_reg_addr);
+			wmb();
+			hash[i] = ioread32(hash_reg_addr);
+			printk("%08x", hash[i]);
+		}
+		printk("\n");
+	} else {
+		printk("STATUS           (0x%x)\n", status);
+	}
+
 	return IRQ_HANDLED;
 }
 
@@ -75,8 +132,9 @@ static ssize_t proc_blake2b_write(struct file *file, const char __user * buf, si
 
 	filesize = vfs_llseek(filp, 0, SEEK_END);
 	vfs_llseek(filp, 0, 0);
-	printk("File %s is %d bytes long\n", filename, filesize);
+	printk("File %s is %u (0x%x) bytes long\n", filename, filesize, filesize);
 
+	bytes_sent = 0;
 	//Write file size to task_reg to start hashing
 	wmb();
 	iowrite32(filesize, task_reg_addr);
@@ -90,20 +148,15 @@ static ssize_t proc_blake2b_write(struct file *file, const char __user * buf, si
 
 static int proc_blake2b_show(struct seq_file *p, void *v)
 {
-	//@TODO Implement
-	uint32_t value;
-	wmb();
-	value = ioread32(task_reg_addr);
-	seq_printf(p, "0x%x\n", value);
-	wmb();
-	value = ioread32(message_reg_addr);
-	seq_printf(p, "0x%x\n", value);
-	wmb();
-	value = ioread32(status_reg_addr);
-	seq_printf(p, "0x%x\n", value);
-	wmb();
-	value = ioread32(hash_reg_addr);
-	seq_printf(p, "0x%x\n", value);
+	int i;
+	for(i = 15; i >= 0; i--)
+	{
+		wmb();
+		iowrite32(i,hash_reg_addr);
+		wmb();
+		hash[i] = ioread32(hash_reg_addr);
+		seq_printf(p, "%08x", hash[i]);
+	}
 	return 0;
 }
 
