@@ -1,0 +1,2 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/blue_filter_v1_00_a/hdl/vhdl/user_logic_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity user_logic_tb
