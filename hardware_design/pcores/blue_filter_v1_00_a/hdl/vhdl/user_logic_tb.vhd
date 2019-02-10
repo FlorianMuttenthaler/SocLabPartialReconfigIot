@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.math_real.all;
+--use ieee.math_real.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
 use ieee.numeric_std.all;
@@ -46,14 +46,13 @@ architecture behav of user_logic_tb is
 
 	end component;
 
-	signal Interrupt                      : std_logic;
 	signal Bus2IP_Clk                     : std_logic;
 	signal Bus2IP_Resetn                  : std_logic;
-	signal Bus2IP_Data                    : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-	signal Bus2IP_BE                      : std_logic_vector(C_SLV_DWIDTH/8-1 downto 0);
-	signal Bus2IP_RdCE                    : std_logic_vector(C_NUM_REG-1 downto 0);
-	signal Bus2IP_WrCE                    : std_logic_vector(C_NUM_REG-1 downto 0);
-	signal IP2Bus_Data                    : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+	signal Bus2IP_Data                    : std_logic_vector(32-1 downto 0);
+	signal Bus2IP_BE                      : std_logic_vector(32/8-1 downto 0);
+	signal Bus2IP_RdCE                    : std_logic_vector(1-1 downto 0);
+	signal Bus2IP_WrCE                    : std_logic_vector(1-1 downto 0);
+	signal IP2Bus_Data                    : std_logic_vector(32-1 downto 0);
 	signal IP2Bus_RdAck                   : std_logic;
 	signal IP2Bus_WrAck                   : std_logic;
 	signal IP2Bus_Error                   : std_logic;
