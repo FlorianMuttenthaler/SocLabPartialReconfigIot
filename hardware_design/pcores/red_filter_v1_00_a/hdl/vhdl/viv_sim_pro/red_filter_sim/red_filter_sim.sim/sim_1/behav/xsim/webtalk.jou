@@ -2,8 +2,8 @@
 # Webtalk v2017.4.1 (64-bit)
 # SW Build 2117270 on Tue Jan 30 15:31:13 MST 2018
 # IP Build 2095745 on Tue Jan 30 17:13:15 MST 2018
-# Start of session at: Sun Feb 10 17:03:29 2019
-# Process ID: 7966
+# Start of session at: Tue Feb 12 11:54:09 2019
+# Process ID: 5460
 # Current directory: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/viv_sim_pro/red_filter_sim/red_filter_sim.sim/sim_1/behav/xsim
 # Command line: wbtcv -mode batch -source /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/viv_sim_pro/red_filter_sim/red_filter_sim.sim/sim_1/behav/xsim/xsim.dir/user_logic_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/viv_sim_pro/red_filter_sim/red_filter_sim.sim/sim_1/behav/xsim/webtalk.log

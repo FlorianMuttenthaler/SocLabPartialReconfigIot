@@ -26,7 +26,7 @@
 -- Filename:          user_logic.vhd
 -- Version:           1.00.a
 -- Description:       User logic.
--- Date:              Sun Feb 10 14:34:57 2019 (by Create and Import Peripheral Wizard)
+-- Date:              Tue Feb 12 10:02:38 2019 (by Create and Import Peripheral Wizard)
 -- VHDL Standard:     VHDL'93
 ------------------------------------------------------------------------------
 -- Naming Conventions:
@@ -59,9 +59,8 @@ use ieee.std_logic_unsigned.all;
 
 -- DO NOT EDIT ABOVE THIS LINE --------------------
 
-use work.red_filter_logic_pkg.all;
-
 --USER libraries added here
+use work.red_filter_logic_pkg.all;
 
 ------------------------------------------------------------------------------
 -- Entity section
@@ -92,7 +91,7 @@ entity user_logic is
 
     -- DO NOT EDIT BELOW THIS LINE ---------------------
     -- Bus protocol parameters, do not add to or delete
-    C_NUM_REG                      : integer              := 1;
+    C_NUM_REG                      : integer              := 2;
     C_SLV_DWIDTH                   : integer              := 32
     -- DO NOT EDIT ABOVE THIS LINE ---------------------
   );
@@ -132,19 +131,24 @@ end entity user_logic;
 architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
-  signal filter_data_in			: std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal filter_data_out		: std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  --type slv_array is array (OPT_MEM_ADDR_BITS downto 0) of std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-	--signal slv_regs : slv_array := (others => (others => '0'));
-	--signal slv_regs_out : slv_array := (others => (others => '0'));
-	--signal array_index : integer := 0;
-
+  signal filter_data_in			: std_logic_vector(C_SLV_DWIDTH-1 downto 0) := (others => '0');
+  signal filter_data_out		: std_logic_vector(C_SLV_DWIDTH-1 downto 0) := (others => '0');
+  signal enable_img_proc		: std_logic := '0';
+  --
+  -- States for the state machine
+  --
+  type state_type is (
+    STATE_IDLE,                 --IDLE state
+    STATE_PROC                  --enable state to start processing
+  );
+  signal state, state_next 		: state_type 		:= STATE_IDLE;
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
-  --signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
-  signal slv_reg_write_sel              : std_logic_vector(0 to 0);
-  signal slv_reg_read_sel               : std_logic_vector(0 to 0);
+  signal slv_reg0                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal slv_reg1                       : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal slv_reg_write_sel              : std_logic_vector(1 downto 0);
+  signal slv_reg_read_sel               : std_logic_vector(1 downto 0);
   signal slv_ip2bus_data                : std_logic_vector(C_SLV_DWIDTH-1 downto 0);
   signal slv_read_ack                   : std_logic;
   signal slv_write_ack                  : std_logic;
@@ -164,11 +168,11 @@ architecture IMP of user_logic is
 	
 	end component red_filter_logic;
 
+
 begin
 
   --USER logic implementation added here
-
-	--  Component instantiation.
+  --  Component instantiation.
 	red_filter_logic_0: red_filter_logic
 		generic map(
 			C_S_AXI_DATA_WIDTH	=> C_SLV_DWIDTH
@@ -179,6 +183,7 @@ begin
 			regin => filter_data_in,
 			regout => filter_data_out
 		);
+
 
   ------------------------------------------
   -- Example code to read/write user logic slave model s/w accessible registers
@@ -198,10 +203,10 @@ begin
   --                     "0001"   C_BASEADDR + 0xC
   -- 
   ------------------------------------------
-  slv_reg_write_sel <= Bus2IP_WrCE(0 downto 0);
-  slv_reg_read_sel  <= Bus2IP_RdCE(0 downto 0);
-  slv_write_ack     <= Bus2IP_WrCE(0);
-  slv_read_ack      <= Bus2IP_RdCE(0);
+  slv_reg_write_sel <= Bus2IP_WrCE(1 downto 0);
+  slv_reg_read_sel  <= Bus2IP_RdCE(1 downto 0);
+  slv_write_ack     <= Bus2IP_WrCE(0) or Bus2IP_WrCE(1);
+  slv_read_ack      <= Bus2IP_RdCE(0) or Bus2IP_RdCE(1);
 
   -- implement slave model software accessible register(s)
   SLAVE_REG_WRITE_PROC : process( Bus2IP_Clk ) is
@@ -209,15 +214,22 @@ begin
 
     if Bus2IP_Clk'event and Bus2IP_Clk = '1' then
       if Bus2IP_Resetn = '0' then
-	--slv_reg0 <= (others => '0');
-	filter_data_in <= (others => '0');
+        slv_reg0 <= (others => '0');
+        slv_reg1 <= (others => '0');
       else
         case slv_reg_write_sel is
-          when "1" =>
+          when "10" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
-                --slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-		filter_data_in(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8); 
+                slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+		enable_img_proc <= '0';
+              end if;
+            end loop;
+          when "01" =>
+            for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
+              if ( Bus2IP_BE(byte_index) = '1' ) then
+                slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
+		enable_img_proc <= '1';
               end if;
             end loop;
           when others => null;
@@ -228,11 +240,12 @@ begin
   end process SLAVE_REG_WRITE_PROC;
 
   -- implement slave model software accessible register(s) read mux
-  SLAVE_REG_READ_PROC : process( slv_reg_read_sel, filter_data_out ) is
+  SLAVE_REG_READ_PROC : process( slv_reg_read_sel, slv_reg0, slv_reg1 ) is
   begin
 
     case slv_reg_read_sel is
-      when "1" => slv_ip2bus_data <= filter_data_out;
+      when "10" => slv_ip2bus_data <= filter_data_out;
+      when "01" => slv_ip2bus_data <= slv_reg1;
       when others => slv_ip2bus_data <= (others => '0');
     end case;
 
@@ -247,5 +260,39 @@ begin
   IP2Bus_WrAck <= slv_write_ack;
   IP2Bus_RdAck <= slv_read_ack;
   IP2Bus_Error <= '0';
+
+  ------------------------------------------
+  -- State maschine for processing image data
+  ------------------------------------------
+  STATE_MASCHINE_PROC : process (state, enable_img_proc) is
+  begin
+	--prevent latches
+	state_next <= state;
+	case state is 
+	  when STATE_IDLE =>
+		if (enable_img_proc = '1') then
+			state_next <= 	STATE_PROC;	
+		end if;
+	  when STATE_PROC =>
+		filter_data_in <= slv_reg0;
+		if (enable_img_proc = '1') then
+			state_next <= 	STATE_IDLE;	
+		end if;
+	  when others =>
+	end case;
+
+  end process STATE_MASCHINE_PROC;
+
+  ------------------------------------------
+  -- General sync process for own user logic
+  ------------------------------------------
+  sync_proc : process (Bus2IP_Clk, Bus2IP_Resetn) is
+  begin
+	if (Bus2IP_Resetn = '0') then
+		state <= STATE_IDLE;
+	elsif (rising_edge(Bus2IP_Clk)) then
+		state <= state_next;
+	end if;
+  end process sync_proc; 
 
 end IMP;
