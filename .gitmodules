@@ -1,0 +1,6 @@
+[submodule "linux-digilent"]
+	path = linux-digilent
+	url = https://github.com/Digilent/linux-digilent.git
+[submodule "u-boot-digilent"]
+	path = u-boot-digilent
+	url = https://github.com/Digilent/u-boot-digilent.git
