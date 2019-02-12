@@ -1,0 +1,14 @@
+android
+repo
+*.o
+*.ko
+*.BIN
+**/zImage
+*.elf
+*.img
+*.dtb
+*.order
+*.symvers
+drivers/**/*.cmd
+*.mod.c
+*.log
