@@ -1,8 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../../green_filter_logic.vhd" \
-"../../../../../green_filter_logic_pkg.vhd" \
-"../../../../../green_filter_logic_tb.vhd" \
-
-# Do not sort compile order
-nosort
