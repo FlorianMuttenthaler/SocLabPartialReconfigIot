@@ -2,5 +2,5 @@ the_ROM_image:
 {
 	[bootloader]./SDK/SDK_Export/FSBL/Debug/FSBL.elf
 	./SDK/SDK_Export/xps_proj_hw_platform/system.bit
-	../u-boot-digilent/u-boot.elf
+	../bootimage/u-boot.elf
 }
