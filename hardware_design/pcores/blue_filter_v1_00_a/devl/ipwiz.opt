@@ -4,5 +4,5 @@
 -dir "/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design" 
 -lang vhdl 
 -bus axi4lite s 
--reg 1 
+-reg 2 
 -xps 
