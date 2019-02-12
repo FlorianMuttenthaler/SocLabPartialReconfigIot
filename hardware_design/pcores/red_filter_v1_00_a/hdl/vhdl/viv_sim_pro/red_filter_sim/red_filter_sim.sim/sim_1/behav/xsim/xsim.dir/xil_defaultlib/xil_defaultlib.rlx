@@ -4,5 +4,5 @@ Jan 30 2018
 15:35:49
 /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/red_filter_logic.vhd,1547542471,vhdl,,,,red_filter_logic,,,,,,,,
 /home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/red_filter_logic_pkg.vhd,1547542112,vhdl,/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/user_logic.vhd,,,red_filter_logic_pkg,,,,,,,,
-/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/user_logic.vhd,1549814471,vhdl,,,,user_logic,,,,,,,,
-/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/user_logic_tb.vhd,1549812235,vhdl,,,,user_logic_tb,,,,,,,,
+/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/user_logic.vhd,1549968605,vhdl,,,,user_logic,,,,,,,,
+/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/red_filter_v1_00_a/hdl/vhdl/user_logic_tb.vhd,1549965352,vhdl,,,,user_logic_tb,,,,,,,,

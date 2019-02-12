@@ -35,7 +35,7 @@
 -- Filename:          green_filter.vhd
 -- Version:           1.00.a
 -- Description:       Top level design, instantiates library components and user logic.
--- Date:              Sun Feb 10 16:41:07 2019 (by Create and Import Peripheral Wizard)
+-- Date:              Tue Feb 12 11:30:34 2019 (by Create and Import Peripheral Wizard)
 -- VHDL Standard:     VHDL'93
 ------------------------------------------------------------------------------
 -- Naming Conventions:
@@ -192,7 +192,7 @@ architecture IMP of green_filter is
       ZERO_ADDR_PAD & USER_SLV_HIGHADDR   -- user logic slave space high address
     );
 
-  constant USER_SLV_NUM_REG               : integer              := 1;
+  constant USER_SLV_NUM_REG               : integer              := 2;
   constant USER_NUM_REG                   : integer              := USER_SLV_NUM_REG;
   constant TOTAL_IPIF_CE                  : integer              := USER_NUM_REG;
 

@@ -1,8 +1,0 @@
-0.6
-2017.4
-Jan 30 2018
-15:35:49
-/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/green_filter_v1_00_a/hdl/vhdl/green_filter_logic.vhd,1547540958,vhdl,,,,green_filter_logic,,,,,,,,
-/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/green_filter_v1_00_a/hdl/vhdl/green_filter_logic_pkg.vhd,1547543506,vhdl,/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/green_filter_v1_00_a/hdl/vhdl/user_logic.vhd,,,green_filter_logic_pkg,,,,,,,,
-/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/green_filter_v1_00_a/hdl/vhdl/user_logic.vhd,1549813695,vhdl,,,,user_logic,,,,,,,,
-/home/soc-lab/Desktop/SoC-Lab/SocLabPartialReconfigIot/hardware_design/pcores/green_filter_v1_00_a/hdl/vhdl/user_logic_tb.vhd,1549814058,vhdl,,,,user_logic_tb,,,,,,,,
