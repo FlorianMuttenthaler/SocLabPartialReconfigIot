@@ -1,7 +1,0 @@
-Running: xsim.dir/red_filter_logic_tb_behav/xsimk -simmode gui -wdb red_filter_logic_tb_behav.wdb -simrunnum 0 -socket 51195
-Design successfully loaded
-Design Loading Memory Usage: 47744 KB (Peak: 47796 KB)
-Design Loading CPU Usage: 10 ms
-Simulation completed
-Simulation Memory Usage: 129480 KB (Peak: 195016 KB)
-Simulation CPU Usage: 10 ms
