@@ -276,5 +276,10 @@
 			interrupt-parent = <&gic>;
 		};
 
+		image_filter {
+			compatible = "dglnt,image_filter-1.00.a";
+			reg = <0x7e420000 0x1000>;
+		};
+
 	};
 };
