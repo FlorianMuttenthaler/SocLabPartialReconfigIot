@@ -5,11 +5,13 @@
 #include <linux/proc_fs.h> /* Needed for Proc File System Functions */
 #include <linux/seq_file.h> /* Needed for Sequence File Operations */
 #include <linux/platform_device.h> /* Needed for Platform Driver Functions */
+#include <linux/delay.h>	/* Needed for udelay function */
 
 /* Define Driver Name */
 #define DRIVER_NAME "image_filter"
 
-#define IMAGE_SIZE_MAX 4096	/* Maximum Imgae resolution is 64 * 64 */
+/* reason for minimizing the maximum array size is that ist is not allowed to transfer more than than 1 KByte via write/read from device driver*/
+#define IMAGE_SIZE_MAX 256	/* Maximum Imgae resolution is 16 * 16 */
 
 //unsigned long *base_addr;	/* Vitual Base Address */
 unsigned long *image_addr;	
@@ -46,7 +48,6 @@ static ssize_t proc_image_filter_write(struct file *file, const char __user * bu
 		*/
 		if (copy_from_user(image_data, buf, count))	 
 			return -EFAULT;
-		//image_data_char[count] = '\0';
 	}
 	
 	for (i = 0; i < (count/4); i++)
@@ -54,22 +55,9 @@ static ssize_t proc_image_filter_write(struct file *file, const char __user * bu
 		wmb();
 		iowrite32(image_data[i], image_addr);
 	}
-	wmb();
-	iowrite32(count, enable_addr);
+	//udelay(10);
 	
 	return count;	
-
-	/*char myled_phrase[16];
-	u32 myled_value;
-	if (count < 11) {
-		if (copy_from_user(myled_phrase, buf, count))
-			return -EFAULT;
-		myled_phrase[count] = '\0';
-	}
-	myled_value = simple_strtoul(myled_phrase, NULL, 0);
-	wmb();
-	iowrite32(myled_value, base_addr);
-	return count;*/
 }
 
 /* Callback function when opening file /proc/image_filter
@@ -84,6 +72,9 @@ static int proc_image_filter_show(struct seq_file *p, void *v)
 	u32 image_data;
 	u32 i;
 
+	wmb();
+	iowrite32(size_image, enable_addr);
+
 	for (i = 0 ; i < (size_image/4); i++)
 	{
 		wmb();
@@ -91,12 +82,6 @@ static int proc_image_filter_show(struct seq_file *p, void *v)
 		seq_printf(p, "0x%x", image_data);
 	}
 	return 0;
-	
-
-	/*u32 myled_value;
-	myled_value = ioread32(base_addr);
-	seq_printf(p, "0x%x", myled_value);
-	return 0;*/
 }
 
 /* Open function for /proc/image_filter
@@ -181,7 +166,7 @@ static int __devinit image_filter_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "Cannot request IO\n");
 	return -ENXIO;
 	}
-	printk("base_addr is at %#x, device is %#x bytes long\n", res->start, remap_size);
+	printk("base_addr is at %#x, device is %#x bytes long\n", res->start,(unsigned int) remap_size);
 	image_addr = ioremap_nocache(res->start, 0x4);
 	enable_addr = ioremap_nocache(res->start+0x4, 0x4);
 	if ((image_addr == NULL) || (enable_addr == NULL)) {
@@ -216,7 +201,7 @@ static const struct of_device_id image_filter_of_match[] __devinitconst = {
 MODULE_DEVICE_TABLE(of, image_filter_of_match);
 
 /* platform driver structure for image_filter driver */
-static struct platform_driver image_filter = {
+static struct platform_driver image_filter_driver = {
 	.driver = {
 		.name = DRIVER_NAME,
 		.owner = THIS_MODULE,
