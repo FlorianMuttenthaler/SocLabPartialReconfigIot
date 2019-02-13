@@ -17,10 +17,7 @@ unsigned long *enable_addr;
 struct resource *res;		/* Device Resource Structure */
 unsigned long remap_size;	/* Device Memory Size */
 
-static struct file *filp = NULL;
-static uint32_t filesize = 0;
-
-static uint32_t image_data[IMAGE_SIZE_MAX];
+u32 size_image;
 
 /* Write operation for /proc/image_filter
 * -----------------------------------
@@ -31,46 +28,38 @@ static uint32_t image_data[IMAGE_SIZE_MAX];
 * and turn on the corresponding LEDs eventually.
 */
 static ssize_t proc_image_filter_write(struct file *file, const char __user * buf, size_t count, loff_t * ppos)
-{
-	char filename[64];
-	mm_segment_t oldfs;
-	unsigned long i;
+{	
+	u32 image_data[IMAGE_SIZE_MAX];
+	u32 i;
 
-	if(filp > 0 && !IS_ERR(filp))
+	size_image = count;
+	if (count <  (IMAGE_SIZE_MAX * 4 + 1))
 	{
-		printk("image_filter Module busy");
-		return -EFAULT;
-	}
-
-	if (count < 64) {
-		if (copy_from_user(filename, buf, count))
+		/*
+			Copy data from user space to kernel space.
+			Returns number of bytes that could not be copied. On success, this will be zero.
+			*
+			unsigned long copy_from_user(void *to,const void __user *from,unsigned long n);
+			to	Destination address, in kernel space. 
+			from	Source address, in user space. 
+			n	Number of bytes to copy. 
+		*/
+		if (copy_from_user(image_data, buf, count))	 
 			return -EFAULT;
-		filename[count-1] = '\0';
+		//image_data_char[count] = '\0';
 	}
-
-	oldfs = get_fs();
-	set_fs(get_ds());
-	filp = filp_open(filename, O_RDONLY, 0);
-
-	if(IS_ERR(filp))
+	
+	for (i = 0; i < (count/4); i++)
 	{
-		printk("File \"%s\" is invalid\n", filename);
-		return -EFAULT;
+		wmb();
+		iowrite32(image_data[i], image_addr);
 	}
+	wmb();
+	iowrite32(count, enable_addr);
+	
+	return count;	
 
-	set_fs(oldfs);
-
-	filesize = vfs_llseek(filp, 0, SEEK_END);
-	vfs_llseek(filp, 0, 0);
-	printk("File %s is %u (0x%x) bytes long\n", filename, filesize, filesize);
-
-	for(i = 0; i < filesize; i++)
-	{
-
-	}
-
-
-	char myled_phrase[16];
+	/*char myled_phrase[16];
 	u32 myled_value;
 	if (count < 11) {
 		if (copy_from_user(myled_phrase, buf, count))
@@ -80,7 +69,7 @@ static ssize_t proc_image_filter_write(struct file *file, const char __user * bu
 	myled_value = simple_strtoul(myled_phrase, NULL, 0);
 	wmb();
 	iowrite32(myled_value, base_addr);
-	return count;
+	return count;*/
 }
 
 /* Callback function when opening file /proc/image_filter
@@ -92,10 +81,22 @@ static ssize_t proc_image_filter_write(struct file *file, const char __user * bu
 */
 static int proc_image_filter_show(struct seq_file *p, void *v)
 {
-	u32 myled_value;
+	u32 image_data;
+	u32 i;
+
+	for (i = 0 ; i < (size_image/4); i++)
+	{
+		wmb();
+		image_data = ioread32(image_addr);
+		seq_printf(p, "0x%x", image_data);
+	}
+	return 0;
+	
+
+	/*u32 myled_value;
 	myled_value = ioread32(base_addr);
 	seq_printf(p, "0x%x", myled_value);
-	return 0;
+	return 0;*/
 }
 
 /* Open function for /proc/image_filter
@@ -133,42 +134,42 @@ static const struct file_operations proc_image_filter_operations = {
 	.release = single_release
 };
 
-/* Shutdown function for myled
-* -----------------------------------
-* Before myled shutdown, turn-off all the leds
+/* -----------------------------------
+* image_filter shutdown
 */
-static void myled_shutdown(struct platform_device *pdev)
+static void image_filter_shutdown(struct platform_device *pdev)
 {
-	iowrite32(0, base_addr);
+	printk("Exit image_filter Module. \n");	// print unload message
 }
 
-/* Remove function for myled
+/* Remove function for image_filter
 * ----------------------------------
-* When myled module is removed, turn off all the leds first,
-* release virtual address and the memory region requested.
+* When image_filter module is removed, release virtual address and the memory
+* region requested.
 */
-static int myled_remove(struct platform_device *pdev)
+static int image_filter_remove(struct platform_device *pdev)
 {
-	myled_shutdown(pdev);
+	image_filter_shutdown(pdev);
 	/* Remove /proc/myled entry */
 	remove_proc_entry(DRIVER_NAME, NULL);
 	/* Release mapped virtual address */
-	iounmap(base_addr);
+	iounmap(image_addr);
+	iounmap(enable_addr);
 	/* Release the region */
 	release_mem_region(res->start, remap_size);
 	return 0;
 }
 
-/* Device Probe function for myled
+/* Device Probe function for image_filter
 * ------------------------------------
 * Get the resource structure from the information in device tree.
 * request the memory regioon needed for the controller, and map it into
 * kernel virtual memory space. Create an entry under /proc file system
 * and register file operations for that entry.
 */
-static int __devinit myled_probe(struct platform_device *pdev)
+static int __devinit image_filter_probe(struct platform_device *pdev)
 {
-	struct proc_dir_entry *myled_proc_entry;
+	struct proc_dir_entry *image_filter_proc_entry;
 	int ret = 0;
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (!res) {
@@ -180,38 +181,41 @@ static int __devinit myled_probe(struct platform_device *pdev)
 		dev_err(&pdev->dev, "Cannot request IO\n");
 	return -ENXIO;
 	}
-	base_addr = ioremap(res->start, remap_size);
-	if (base_addr == NULL) {
+	printk("base_addr is at %#x, device is %#x bytes long\n", res->start, remap_size);
+	image_addr = ioremap_nocache(res->start, 0x4);
+	enable_addr = ioremap_nocache(res->start+0x4, 0x4);
+	if ((image_addr == NULL) || (enable_addr == NULL)) {
 		dev_err(&pdev->dev, "Couldn't ioremap memory at 0x%08lx\n",
 		(unsigned long)res->start);
 		ret = -ENOMEM;
 		goto err_release_region;
 	}
-	myled_proc_entry = proc_create(DRIVER_NAME, 0, NULL,
-	&proc_myled_operations);
-	if (myled_proc_entry == NULL) {
+	image_filter_proc_entry = proc_create(DRIVER_NAME, 0, NULL,
+	&proc_image_filter_operations);
+	if (image_filter_proc_entry == NULL) {
 		dev_err(&pdev->dev, "Couldn't create proc entry\n");
 		ret = -ENOMEM;
 		goto err_create_proc_entry;
 	}
-	printk(KERN_INFO DRIVER_NAME " probed at VA 0x%08lx\n",(unsigned long) base_addr);
+	printk(KERN_INFO DRIVER_NAME " probed at VA 0x%08lx\n",(unsigned long) image_addr);
 	return 0;
 	err_create_proc_entry:
-iounmap(base_addr);
+iounmap(image_addr);
+iounmap(enable_addr);
 	err_release_region:
 release_mem_region(res->start, remap_size);
 	return ret;
 }
 
 /* device match table to match with device node in device tree */
-static const struct of_device_id myled_of_match[] __devinitconst = {
-	{.compatible = "dglnt,myled-1.00.a"},
+static const struct of_device_id image_filter_of_match[] __devinitconst = {
+	{.compatible = "dglnt,image_filter-1.00.a"},
 	{},
 };
 
-MODULE_DEVICE_TABLE(of, myled_of_match);
+MODULE_DEVICE_TABLE(of, image_filter_of_match);
 
-/* platform driver structure for myled driver */
+/* platform driver structure for image_filter driver */
 static struct platform_driver image_filter = {
 	.driver = {
 		.name = DRIVER_NAME,

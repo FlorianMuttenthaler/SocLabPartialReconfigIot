@@ -5,6 +5,8 @@
 ##############################################################################
 
 lib proc_common_v3_00_a  all 
-lib axi_lite_ipif_v1_01_a  all 
+lib axi_lite_ipif_v1_01_a  all
+lib red_filter_v1_00_a red_filter_logic_pkg vhdl
+lib red_filter_v1_00_a red_filter_logic vhdl
 lib red_filter_v1_00_a user_logic vhdl
 lib red_filter_v1_00_a red_filter vhdl
