@@ -63,8 +63,10 @@ cd ../../../../../
 cd hardware_design
 
 pretty_header "Generating BOOT.BIN"
-bootgen -image boot.bif -o i ../bootimage/BOOT.BIN
+bootgen -image boot.bif -w -o i ../bootimage/BOOT.BIN
 
 rm ../bootimage/u-boot.elf
+
+cd ..
 
 cp linux-files/startup.sh bootimage
