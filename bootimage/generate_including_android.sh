@@ -55,4 +55,5 @@ cp root.img ../bootimage
 cd ..
 
 cp linux-files/startup.sh bootimage
+cp linux-files/startup_android.sh bootimage
 cp linux-files/ramdisk8M.image.gz bootimage
