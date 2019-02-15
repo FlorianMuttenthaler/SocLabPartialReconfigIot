@@ -134,15 +134,22 @@ end entity user_logic;
 architecture IMP of user_logic is
 
   --USER signal declarations added here, as needed for user logic
-  --signal filter_data_in			: std_logic_vector(C_SLV_DWIDTH-1 downto 0) := (others => '0');
+  signal filter_data_in			: std_logic_vector(C_SLV_DWIDTH-1 downto 0) := (others => '0');
   signal filter_data_out		: std_logic_vector(C_SLV_DWIDTH-1 downto 0) := (others => '0');
-  signal enable_img_proc		: std_logic := '0';
+  signal enable_write   		: std_logic := '0';
+  signal enable_read   		    : std_logic := '0';
+  
+  signal write_toggle           : std_logic := '0';
+  signal read_toggle            : std_logic := '0';
   --
   -- States for the state machine
   --
   type state_type is (
     STATE_IDLE,                 --IDLE state
-    STATE_PROC                 --enable state to start read processing
+    STATE_FIFO_WR_EN,
+    STATE_FIFO_WR,
+    STATE_FIFO_RD_EN,
+    STATE_FIFO_RD           
   );
   signal state, state_next 		: state_type 		:= STATE_IDLE;
   --
@@ -155,6 +162,9 @@ architecture IMP of user_logic is
   signal fifo_read_en		: std_logic;
 
   signal slave_out			: std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal fifo_out			: std_logic_vector(C_SLV_DWIDTH-1 downto 0);
+  signal counter            : integer := 0;
+  signal counter_next       : integer := 0;
   ------------------------------------------
   -- Signals for user logic slave model s/w accessible register example
   ------------------------------------------
@@ -192,7 +202,7 @@ component fifo_buffer is
 		constant DATA_IN_WIDTH	: integer	:=	1;	--number of units stored on write
 		constant DATA_OUT_WIDTH	: integer	:=	1;	--number of units loaded on read
 		--constant FIFO_DEPTH	: integer	:=	2147483547--number of available units
-		constant FIFO_DEPTH	: integer	:=	10000--number of available units
+		constant FIFO_DEPTH	: integer	:=	256--number of available units
 	);
 	Port ( 
 		clk		: in  std_logic;
@@ -221,7 +231,7 @@ begin
 		port map (
 			clk => Bus2IP_Clk,
 			rst => Bus2IP_Resetn,
-			regin => slv_reg0,
+			regin => filter_data_in,
 			regout => filter_data_out
 		);
 
@@ -238,7 +248,7 @@ begin
 			write	=> fifo_write_en,
 			dataIn	=> filter_data_out,
 			read	=> fifo_read_en,
-			dataOut	=> slave_out,
+			dataOut	=> fifo_out,
 			empty	=> fifo_empty,
 			full	=> fifo_full
 		);
@@ -280,14 +290,15 @@ begin
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
                 slv_reg0(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-		enable_img_proc <= '0';
+		          enable_write <= '1';
+		          write_toggle <= not write_toggle;
               end if;
             end loop;
           when "01" =>
             for byte_index in 0 to (C_SLV_DWIDTH/8)-1 loop
               if ( Bus2IP_BE(byte_index) = '1' ) then
                 slv_reg1(byte_index*8+7 downto byte_index*8) <= Bus2IP_Data(byte_index*8+7 downto byte_index*8);
-		enable_img_proc <= '1';
+                enable_write <= '0';
               end if;
             end loop;
           when others => null;
@@ -303,8 +314,13 @@ begin
 
     case slv_reg_read_sel is
       --when "10" => slv_ip2bus_data <= filter_data_out;
-      when "10" => slv_ip2bus_data <= slave_out;
-      when "01" => slv_ip2bus_data <= slv_reg1;
+      when "10" => 
+        slv_ip2bus_data <= slave_out;
+        enable_read <= '0';
+        read_toggle <= not read_toggle;
+      when "01" => 
+        slv_ip2bus_data <= slv_reg1;
+        enable_read <= '1';
       when others => slv_ip2bus_data <= (others => '0');
     end case;
 
@@ -323,27 +339,45 @@ begin
   ------------------------------------------
   -- State maschine for processing image data
   ------------------------------------------
-  STATE_MASCHINE_PROC : process (state, enable_img_proc) is
+  STATE_MASCHINE_PROC : process (state, enable_write, enable_read, write_toggle, read_toggle, counter) is
   begin
 	--prevent latches
 	state_next <= state;
+	counter_next <= counter;
 	case state is 
 	  when STATE_IDLE =>		
-		if (fifo_full = '0') then
-			fifo_write_en <= '1';
-			fifo_read_en <= '0';
-		end if;
-		if (enable_img_proc = '1') then
-			state_next <= 	STATE_PROC;	
-		end if;
-	  when STATE_PROC =>
-		--filter_data_in <= slv_reg0;
-		if (fifo_empty = '0') then
-			fifo_write_en <= '0';
-			fifo_write_en <= '1';
-		else
-			state_next <= 	STATE_IDLE;
-		end if;
+            if (enable_write = '1') then
+                state_next <= STATE_FIFO_WR_EN;	
+            end if;
+	  when STATE_FIFO_WR_EN =>
+            if (fifo_full = '0') then
+                  fifo_write_en <= '1';
+                  fifo_read_en <= '0';
+                  state_next <= STATE_FIFO_WR;
+            end if;
+	  when STATE_FIFO_WR =>
+	       if (enable_read = '0') and (enable_write = '1') then
+	           if (write_toggle = '1') or (write_toggle = '0') then
+	               filter_data_in <= slv_reg0;
+	               counter_next <= counter + 1;
+	           end if; 
+	       elsif (enable_read = '1') then
+	           state_next <= STATE_FIFO_RD_EN;
+	       end if;
+	  when STATE_FIFO_RD_EN =>
+           if (fifo_empty = '0') then
+                fifo_write_en <= '0';
+                fifo_read_en <= '1';
+                state_next <= STATE_FIFO_RD;
+           end if;
+	  when STATE_FIFO_RD =>  
+           if (read_toggle = '1') or (read_toggle = '0') then
+               slave_out <= fifo_out;
+               counter_next <= counter - 1;
+           end if;
+           if (counter = 0) then 
+            state_next <= STATE_IDLE;
+           end if;
 	  when others =>
 	end case;
 
@@ -356,8 +390,10 @@ begin
   begin
 	if (Bus2IP_Resetn = '0') then
 		state <= STATE_IDLE;
+		counter <= 0;
 	elsif (rising_edge(Bus2IP_Clk)) then
 		state <= state_next;
+		counter <= counter_next;
 	end if;
   end process sync_proc;
 
