@@ -103,54 +103,120 @@ begin
 		Bus2IP_Resetn <= '1';
 		wait for 50 ns;
 		
+		-- First Round
 		Bus2IP_WrCE <= "10";
         Bus2IP_BE <= "1111";
         Bus2IP_Data <= (others => '0');
         wait for period;
-        Bus2IP_WrCE <= (others => '0');
+        Bus2IP_WrCE <= "00";
         wait for 10 ns;
         Bus2IP_WrCE <= "10";
         Bus2IP_BE <= "1111";
         Bus2IP_Data <= "00000000000000000000000000111011";
         wait for period;
-        Bus2IP_WrCE <= (others => '0');
+        Bus2IP_WrCE <= "00";
         wait for 10 ns;
         Bus2IP_WrCE <= "10";
         Bus2IP_BE <= "1111";
         Bus2IP_Data <= "00000000000011000000000000111001";
         wait for period;
-        Bus2IP_WrCE <= (others => '0');
+        Bus2IP_WrCE <= "00";
+        wait for 10 ns;
+        Bus2IP_WrCE <= "10";
+        Bus2IP_BE <= "1111";
+        Bus2IP_Data <= (others => '1');
+        wait for period;
+        Bus2IP_WrCE <= "00";
         wait for 10 ns;
         
         Bus2IP_WrCE <= "01";
         Bus2IP_BE <= "1111";
         Bus2IP_Data <= (others => '1');
-        wait for 40 ns;
-        Bus2IP_WrCE <= (others => '0');
+        wait for period;
+        Bus2IP_WrCE <= "00";
         wait for 10 ns;
         
-        Bus2IP_WrCE <= "10";
+        Bus2IP_RdCE <= "01";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;
+        
+        
+        Bus2IP_RdCE <= "10";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;
+        Bus2IP_RdCE <= "10";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;
+        Bus2IP_RdCE <= "10";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;    
+        Bus2IP_RdCE <= "10";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;
+
+        -- Second Round
+		Bus2IP_WrCE <= "10";
         Bus2IP_BE <= "1111";
         Bus2IP_Data <= (others => '1');
         wait for period;
-        Bus2IP_WrCE <= (others => '0');
+        Bus2IP_WrCE <= "00";
         wait for 10 ns;
+        Bus2IP_WrCE <= "10";
+        Bus2IP_BE <= "1111";
+        Bus2IP_Data <= "00000000000000000000000000111011";
+        wait for period;
+        Bus2IP_WrCE <= "00";
+        wait for 10 ns;
+        Bus2IP_WrCE <= "10";
+        Bus2IP_BE <= "1111";
+        Bus2IP_Data <= "00000000000011000000000000111001";
+        wait for period;
+        Bus2IP_WrCE <= "00";
+        wait for 10 ns;
+        Bus2IP_WrCE <= "10";
+        Bus2IP_BE <= "1111";
+        Bus2IP_Data <= (others => '0');
+        wait for period;
+        Bus2IP_WrCE <= "00";
+        wait for 10 ns;
+        
+        Bus2IP_WrCE <= "01";
+        Bus2IP_BE <= "1111";
+        Bus2IP_Data <= (others => '1');
+        wait for period;
+        Bus2IP_WrCE <= "00";
+        wait for 10 ns;
+        
+        Bus2IP_RdCE <= "01";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;
+        
         
         Bus2IP_RdCE <= "10";
         wait for period;
-        Bus2IP_RdCE <= (others => '0');
+        Bus2IP_RdCE <= "00";
         wait for 10 ns;
         Bus2IP_RdCE <= "10";
         wait for period;
-        Bus2IP_RdCE <= (others => '0');
+        Bus2IP_RdCE <= "00";
         wait for 10 ns;
         Bus2IP_RdCE <= "10";
         wait for period;
-        Bus2IP_RdCE <= (others => '0');
+        Bus2IP_RdCE <= "00";
         wait for 10 ns;    
+        Bus2IP_RdCE <= "10";
+        wait for period;
+        Bus2IP_RdCE <= "00";
+        wait for 10 ns;
 
 	
-		wait for period*10000;
+		wait for period*100;
 
 		ended <= '1';
 
