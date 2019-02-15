@@ -52,6 +52,17 @@ make -f Makefile.zynq
 
 cp root.img ../bootimage
 
+cd ../bootimage
+
+mkdir -p root
+sudo mount root.img -o loop,rw,sync root
+sudo mkdir -p root/system/usr/idc/
+sudo cp ../linux-files/touchscreen_config.idc root/system/usr/idc/Vendor_222a_Product_0001.idc
+sleep 1
+sudo umount root
+sleep 1
+rmdir root
+
 cd ..
 
 cp linux-files/startup_android.sh bootimage
