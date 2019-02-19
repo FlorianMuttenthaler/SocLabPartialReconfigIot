@@ -6,7 +6,7 @@ function pretty_header() {
         echo "$edge"
 }
 
-sh generate_without_android.sh
+#sh generate_without_android.sh
 
 cd ..
 
@@ -58,6 +58,9 @@ mkdir -p root
 sudo mount root.img -o loop,rw,sync root
 sudo mkdir -p root/system/usr/idc/
 sudo cp ../linux-files/touchscreen_config.idc root/system/usr/idc/Vendor_222a_Product_0001.idc
+#sudo cp ../linux-files/touchscreen_config.idc "root/system/usr/idc/ILITEK ILITEK-TP.idc"
+sudo chmod 664 root/system/usr/idc/*.idc
+sudo cp ../android/external/tslib/etc/ts.conf root/system/etc
 sleep 1
 sudo umount root
 sleep 1
@@ -66,4 +69,3 @@ rmdir root
 cd ..
 
 cp linux-files/startup_android.sh bootimage
-cp linux-files/ramdisk8M.image.gz bootimage

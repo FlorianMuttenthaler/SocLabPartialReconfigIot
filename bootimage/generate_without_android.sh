@@ -70,3 +70,4 @@ rm ../bootimage/u-boot.elf
 cd ..
 
 cp linux-files/startup.sh bootimage
+cp linux-files/ramdisk8M.image.gz bootimage
