@@ -55,7 +55,7 @@ static ssize_t proc_image_filter_write(struct file *file, const char __user * bu
 		wmb();
 		iowrite32(image_data[i], image_addr);
 	}
-	//udelay(10);
+	udelay(10);
 	
 	return count;	
 }
@@ -74,6 +74,13 @@ static int proc_image_filter_show(struct seq_file *p, void *v)
 
 	wmb();
 	iowrite32(size_image, enable_addr);
+
+	udelay(10);
+
+	wmb();
+	ioread32(enable_addr);
+
+	udelay(10);
 
 	for (i = 0 ; i < (size_image/4); i++)
 	{

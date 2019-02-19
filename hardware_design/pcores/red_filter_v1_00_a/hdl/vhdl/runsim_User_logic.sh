@@ -8,16 +8,16 @@ rm -f *.o *.cf *.vcd
 # Simulate design
 
 # Syntax check
-ghdl -s red_filter_logic.vhd user_logic.vhd user_logic_tb.vhd
+ghdl -s --std=08  red_filter_logic.vhd red_filter_logic_pkg.vhd fifo.vhd fifo_pkg.vhd user_logic.vhd user_logic_tb.vhd
 
 # Compile the design
-ghdl -a red_filter_logic.vhd user_logic.vhd user_logic_tb.vhd
+ghdl -a --std=08  red_filter_logic.vhd red_filter_logic_pkg.vhd fifo.vhd fifo_pkg.vhd user_logic.vhd user_logic_tb.vhd
 
 # Create executable
-ghdl -e user_logic_tb
+ghdl -e --std=08  user_logic_tb
 
 # Simulate
-ghdl -r user_logic_tb --vcd=user_logic_tb.vcd
+ghdl -r --std=08  user_logic_tb --vcd=user_logic_tb.vcd
 
 # Show simulation result as wave form
 gtkwave user_logic_tb.vcd &
