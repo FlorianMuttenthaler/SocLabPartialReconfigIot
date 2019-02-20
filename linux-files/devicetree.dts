@@ -275,11 +275,17 @@
 			interrupts = <0x0 0x37 0x01>;
 			interrupt-parent = <&gic>;
 		};
-
+		
 		image_filter {
 			compatible = "dglnt,image_filter-1.00.a";
-			reg = <0x7e420000 0x1000>;
+			reg = <0x7e420000 0xFFFF>;
 		};
+
+		simple_filters {
+			compatible = "dglnt,simple_filters-1.00.a";
+			reg = <0x7e430000 0x1000>;
+		};
+
 
 	};
 };
