@@ -57,7 +57,7 @@ static ssize_t proc_simple_filters_write(struct file *file, const char __user * 
 	
 	for (i = 0; i < (count/4); i++)
 	{
-		image_data_write[i] = (((u32)input[4*i]) << 24u) | (((u32)input[(4*i) + 1u]) << 16u) | (((u32)input[(4*i) + 3u]) << 8u) | (((u32)input[(4*i) + 3u])); 
+		image_data_write[i] = (((u32)input[4*i]) << 24u) | (((u32)input[(4*i) + 1u]) << 16u) | (((u32)input[(4*i) + 2u]) << 8u) | (((u32)input[(4*i) + 3u])); 
 	}
 	
 	for (i = 0; i < (count/4); i++)
@@ -94,10 +94,20 @@ static int proc_simple_filters_show(struct seq_file *p, void *v)
 
 	/*for (i = 0; i < (size_image/4); i++)
 	{
-		seq_printf(p, "%x", i);
+		//seq_printf(p, "%x", i);
 		seq_printf(p, "x%x", image_data_write[i]);
 		seq_printf(p, "x%x", image_data_read[i]);
-	}*/
+	}
+	
+	seq_printf(p, "i");
+	for (i = 0; i < size_image; i++)
+	{
+		seq_printf(p, "%x", input[i]);
+	}	
+
+	seq_printf(p, "o");*/
+
+	//seq_printf(p, "%xIIIIIIII", size_image);
 
 	for (i = 0; i < size_image; i++)
 	{
