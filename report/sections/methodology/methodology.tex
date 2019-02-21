@@ -1,4 +1,21 @@
-?
+The Digilent ZedBoard is a developement Platform for the Xilinx Zynq \gls{soc}.
+It features a dual-core ARM Cortex-A9 MPCore with a clock-frequency of up to
+$866 Mhz$, external memory support, USB and Gigabit Ethernet interfaces as
+\gls{ps} and \gls{pl} based on the Xilinx Artix-7 \gls{fpga} series.
+The \gls{pl} can be used stand-alone, but the \gls{ps} is dependent on the
+\gls{pl}.
+
+For this project, the \gls{pl} needs to be configured with peripherals for the
+processor that are needed by the Linux kernel as well as the hardware
+accelerators.
+The resulting system must then be partitioned for the dynamic partial
+reconfiguration.
+This is discussed in \Cref{ssec:zynqhardwaredesign}.
+
+The \gls{ps} needs to be configured with all the software that Android needs to
+boot, to interact with the hardware accelerators and to dynamically reconfigure
+the \gls{pl}.
+This is done in \Cref{ssec:zynqsoftwaredesign}.
 \subsection{Zynq Hardware Design}\label{ssec:zynqhardwaredesign}
 \input{sections/methodology/zynqhardwaredesign}
 \subsubsection{Blake2B Module}\label{sssec:blake2bmodule}
