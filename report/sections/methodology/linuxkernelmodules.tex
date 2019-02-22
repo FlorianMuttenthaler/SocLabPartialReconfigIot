@@ -1,4 +1,22 @@
+
 \textbf{Blake2b Driver:}\\
-Benedikt\\
+The blake2b device driver sits between the userspace application that desires to
+compute the hash of a file and the \gls{pl} implementation of Blake2B.\\
+The communication with the \gls{pl} was discussed in detail in
+\Cref{sssec:blake2bmodule}.\\
+The interface to the userspace application is simple.
+The driver creates a device file \emph{/proc/blake2b}.
+The userspace application can then write a file path to that file.
+This triggers the start of the hashing function.
+Afterwards, the application can read $64$ bytes from the device file, these
+bytes will contain the hash.\\
+The blake2b driver code is available at \emph{<repo>/drivers/blake2b/blake2b.c}.
+The code is quite self explanatory and therefore not discussed in detail here.
+One caveat is that one has to call the function \emph{wmb} between subsequent
+reads or writes to the device.
+This function will impede the compiler to rearrange the calls during
+optimization and therefore guarantees that the reads and writes are executed in
+specified order.
+\\
 \textbf{Image Filter Driver:}\\
 The Image Filter Linux Kernel driver writes the to process raw RGB data to an address of the AXI-Lite bus, which belongs to the defined filter logic. Afterwards the filter data is read by the driver by reading from an other address. The raw RGB data of an image is communicated to the device driver by writing data streams with the related data values. Finally the modified data is read by reading an output data stream.\\
