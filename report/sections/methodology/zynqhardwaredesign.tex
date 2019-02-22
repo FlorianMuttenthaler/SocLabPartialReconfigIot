@@ -3,7 +3,7 @@ includes all the peripherals that are needed by the linux kernel to run on the
 ZedBoard.
 This is the design that is used to build the boot-image flashed onto the SD
 card that comes with the ZedBoard.
-It contains a Xilinx Platform Studio Project that can be opened and built using
+It contains a \gls{xps} Project that can be opened and built using
 the corresponding \emph{xps} tool that is included in the Xilinx ISE Design
 Suite.
 Digilent claims that they used version \emph{14.4}. Unfortunately, that version
@@ -63,7 +63,7 @@ The address-table for the included devices is configured as follows:
 
 The custom logic cores can be assigned addresses starting from $0x7E400000$.
 
-Xilinx Platform Studio generates two \gls{vhdl} files for the core.
+\gls{xps} generates two \gls{vhdl} files for the core.
 One is called `user\_logic.vhd' and the other carries the name of the core
 itself.
 The first one contains the actual logic.
@@ -71,6 +71,9 @@ The tool generates a simple interface so that the logic can react to register
 reads and writes.
 The second file maps that simple interface to the an \gls{axi} interface so that
 it can be connected to Zynq's \gls{axi} bus.
+
+The complete hardware design is available as a \gls{xps} project in the git repo
+at \emph{<repo>/hardware\_design/system.xmp}.
 
 The logic design of the two hardware accelerators is discussed in the following
 subsections.

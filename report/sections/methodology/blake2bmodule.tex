@@ -18,6 +18,32 @@ Blake2B, since at hardware level we can chose what bit-width to use.
 The core is added to the system design as described in
 \Cref{ssec:zynqhardwaredesign} and given the address $0x7E410000$. A size of
 $64K$ is sufficient.
+\gls{xps} generates the needed files in
+\emph{<repo>hardware\_design/pcores/blake2b\_v1\_00\_a}.
+The files from~\cite{blake2hardware} are then added to the vhdl-source directory
+of the core,\\
+\emph{<repo>/hardware\_design/pcores/blake2b\_v1\_00\_a/hdl/vhdl}.
+\gls{xps} needs to be made aware of the additional files, otherwise they will be
+left out of the synthesis flow.
+To include them, the \gls{pao} file of the core, found in
+\emph{<repo>/hardware\_design/pcores/blake2b\_v1\_00\_a/data/blake2b_v2_1_0.pao},
+needs to be adapted accordingly:
+
+\begin{lstlisting}[
+	language=Bash,
+	caption={\gls{pao} file of the blake2b core},
+	label={lst:mpdblake},
+	basicstyle=\small,
+	float=h,
+	floatplacement=h
+	]
+lib proc_common_v3_00_a  all 
+lib axi_lite_ipif_v1_01_a  all 
+lib blake2b_v1_00_a blake2 vhdl
+lib blake2b_v1_00_a blake2b_wrapper vhdl
+lib blake2b_v1_00_a user_logic vhdl
+lib blake2b_v1_00_a blake2b vhdl
+\end{lstlisting}
 
 The entity from~\cite{blake2hardware} needs to be wrapped in the user\_logic.vhd
 file.
@@ -39,7 +65,8 @@ added added and routed through the wrapper in \emph{blake2b.vhd} so that it is
 visible as an output port of the peripheral.
 It is called \emph{Interrupt}.
 To have it act as an interrupt signal, it has to be declared as such in the
-\emph{blake2b\_v2\_1\_0.mpd} file.
+cores \gls{mpd} file,
+\emph{<repo>/hardware_design/pcores/blake2b_v1_00_a/data/blake2b\_v2\_1\_0.mpd}.
 This is done with the following lines:
 
 \begin{lstlisting}[
