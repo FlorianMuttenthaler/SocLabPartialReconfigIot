@@ -3,7 +3,7 @@ Android Gingerbread (2.3.7) was released on December 6\textsuperscript{th} 2010,
 more than 8 years ago at the time of writing this document.
 9 major versions were released since then.
 Unfortunately, the ZedBoard does not have the hardware requirements for more
-recent version.
+recent version (little RAM and no dedicated \gls{gpu}).
 Although, the higher-range Zynq chips do have the requirements to run the most
 up to date versions and Mentor Embedded even provides support for Android 6
 (Marshmallow), 7 (Nougat) and 8 (Oreo).
@@ -16,6 +16,17 @@ distributed in binary format) and therefore not allow to alter the logic fabric
 on the \gls{fpga}.
 One could create a custom hardware design, but that task was deemed to be too
 time consuming considering the deadline for this project.
+
+Noritsuna Imamura managed to get Android 5.0 running on the
+ZedBoard~\cite{noritsuna}.
+A linux swap partition was used to extend the RAM.
+Noritsuna states that his system is very slow.
+This is most probably due to the fact that it still uses software rendering and
+that the swap partition lies on the SD card and is therefore very slow.
+Nevertheless we tried to replicate his project but did not manage to do so.
+All the parts build without errors, but the system does not boot.
+Noritsuna has not configured the kernel to have a terminal console over the
+\gls{uart} interface, so we had no lead on where to start debugging.
 
 \subsection{Touchscreen Input}
 The touchscreen is not working in the current design.
@@ -57,5 +68,5 @@ We observed the following:
 		We observed that this is not working either.
 		The behavior is much the same as with the touch-screen in single-touch
 		configuration.
-		Events are detected but not handled by the \gls{ui}.
+		Events are detected but not handled by the \gls{gui}.
 \end{itemize}
