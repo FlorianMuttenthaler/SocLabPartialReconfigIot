@@ -27,7 +27,7 @@ of the core,\\
 left out of the synthesis flow.
 To include them, the \gls{pao} file of the core, found in
 \emph{<repo>/hardware\_design/pcores/blake2b\_v1\_00\_a/data/blake2b_v2_1_0.pao},
-needs to be adapted accordingly:
+needs to be adapted accordingly (\Cref{lst:blake2,lst:blake2bwrapper}):
 
 \begin{lstlisting}[
 	language=Bash,
@@ -39,8 +39,8 @@ needs to be adapted accordingly:
 	]
 lib proc_common_v3_00_a  all 
 lib axi_lite_ipif_v1_01_a  all 
-lib blake2b_v1_00_a blake2 vhdl
-lib blake2b_v1_00_a blake2b_wrapper vhdl
+lib blake2b_v1_00_a blake2 vhdl(*@\label{lst:blake2}@*)
+lib blake2b_v1_00_a blake2b_wrapper vhdl(*@\label{lst:blake2bwrapper}@*)
 lib blake2b_v1_00_a user_logic vhdl
 lib blake2b_v1_00_a blake2b vhdl
 \end{lstlisting}

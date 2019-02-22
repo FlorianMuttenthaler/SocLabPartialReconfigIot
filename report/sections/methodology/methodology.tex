@@ -20,6 +20,15 @@ This is done in \Cref{ssec:zynqsoftwaredesign}.
 The complete design is available as a git repository at~\cite{repo}.
 File paths within this document may refer to the root directory of the git
 repository by using \emph{<repo>}.
+To interact with the ZedBoard, multiple interfaces are used:
+\begin{itemize}
+	\item A command line interface is available over an \gls{uart} interface
+	\item Ethernet is used to access the internet
+	\item Graphical output is available over a \gls{hdmi}
+	\item Peripherals can be attached via \gls{otg}
+\end{itemize}
+To achieve the best android experience, a touchscreen is attached via \gls{hdmi}
+(for graphics) and \gls{otg} (for the \gls{hid}).
 \subsection{Zynq Hardware Design}\label{ssec:zynqhardwaredesign}
 \input{sections/methodology/zynqhardwaredesign}
 \subsubsection{Blake2B Module}\label{sssec:blake2bmodule}
