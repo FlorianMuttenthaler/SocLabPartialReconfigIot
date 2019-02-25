@@ -39,6 +39,7 @@ public class MsgProcessor {
             Repository temp = new Repository(index,title,version,descp,changelogList,file,date,checksum);
 
             // compare version if there is already a firmware installed
+            debug("Json-Index:" + config.get(Constants.JSON.INDEX));
             if(config.get(Constants.JSON.INDEX) != null){
                 // if new; init download
                 if( Integer.parseInt(version) > Integer.parseInt(config.get(Constants.JSON.VERSION)) ){
@@ -58,8 +59,16 @@ public class MsgProcessor {
         } catch (JSONException e){
             e.printStackTrace();
         }
+    }
 
 
+    public void verifyBitstream(Repository repo){
+        String hash = mCallback.calculateHash(repo.getFile());
+        if(hash.equals(repo.getChecksum())){
+            mCallback.onVerifiedBitstream(repo,true);
+        }else{
+            mCallback.onVerifiedBitstream(repo,false);
+        }
     }
 
 
@@ -68,13 +77,17 @@ public class MsgProcessor {
         //add exception
     }
 
-
+    public void debug(Object o) {
+        System.out.println(o.toString());
+    }
 
     public interface Callback{
         void onUpdateAvailable(Repository repo);
         void updateDB();
         HashMap<String,String> getCurrentConfig();
         void printToTextBox(String text);
+        String calculateHash(String path);
+        void onVerifiedBitstream(Repository repo,boolean valid);
     }
 
 }

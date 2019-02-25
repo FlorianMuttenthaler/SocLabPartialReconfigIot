@@ -82,6 +82,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
         mAsync = new AsyncTask() {
             String dump = null;
             JSONObject mJson = null;
+            boolean connected = false;
 
             @Override
             protected Object doInBackground(Object[] objects) {
@@ -93,6 +94,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
 
                     if (mConnection.getResponseCode() == 200){
                         //everything went fine
+                        connected = true;
                         InputStream mResponse = mConnection.getInputStream();
                         InputStreamReader mSR = new InputStreamReader(mResponse,"UTF-8");
                         BufferedReader reader = new BufferedReader(mSR,8);
@@ -107,6 +109,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
                         dump = mStringBuilder.toString();
 //
                     }else {
+                        mCallback.printToTextBox("Connection failed.\r\n");
                         debug("Connection failed.\r\n");
                     }
 
@@ -132,6 +135,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
                     //mCallback.printToTextBox(dump);
                     mCallback.onDataAvailable(mJson);
                 }
+
             }
         };
         mAsync.execute();
@@ -186,7 +190,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                mCallback.onDownloadComplete();
+                mCallback.onDownloadComplete(repo);
 
             }
         };
@@ -208,7 +212,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
         void onWifiEnabled(boolean wifi);
         void printToTextBox(String text);
         void onDataAvailable(JSONObject json);
-        void onDownloadComplete();
+        void onDownloadComplete(Repository repo);
     }
 
 

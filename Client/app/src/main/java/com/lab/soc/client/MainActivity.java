@@ -2,28 +2,43 @@ package com.lab.soc.client;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.HashMap;
 
-// todo : write fabric interaction, check md5 hash, cleanup
+// todo : ip field, cleanup, debug on hardware, comments
 
 
-public class MainActivity extends AppCompatActivity implements NetworkManager.Callback,MsgProcessor.Callback, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements NetworkManager.Callback,MsgProcessor.Callback,FabricManager.Callback, View.OnClickListener {
     private FragmentManager mFragManager;
     private NetworkManager mNetworkFragment;
     private MsgProcessor mMsgProcessor;
+    private FabricManager mFabricManager;
     private TextView mConsole;
-    private Button mButton;
+    private Button mButtonConnect;
+    private Button mButtonFilter;
+
+    private ImageView mImageView;
+    private Bitmap mBitmap;
     private SharedPreferences mSharedPref;
     private boolean download;
+
+    private String preProcessedBitmap = "bitmapARGB.bin";
 
 
     @Override
@@ -35,17 +50,22 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ca
 
         mConsole = (TextView) findViewById(R.id.textView);
         mConsole.setMovementMethod(new ScrollingMovementMethod());
-        mButton = (Button) findViewById(R.id.button);
+        mButtonConnect = (Button) findViewById(R.id.button);
+        mButtonFilter = (Button) findViewById(R.id.button2);
+        mImageView = (ImageView) findViewById(R.id.imageView);
+        mBitmap = ((BitmapDrawable)mImageView.getDrawable()).getBitmap();
 
         mNetworkFragment = new NetworkManager();
         mMsgProcessor = new MsgProcessor(this);
+        mFabricManager = new FabricManager(this);
 
         mFragManager = getSupportFragmentManager();
         mFragManager.beginTransaction().add(mNetworkFragment,"NetworkManager").commit();
 
         mNetworkFragment.configure("http://10.0.2.2:5000/api/","SOC-LAB-IOT");
 
-        mButton.setOnClickListener(this);
+        mButtonConnect.setOnClickListener(this);
+        mButtonFilter.setOnClickListener(this);
 
         download = false;
 
@@ -81,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ca
                     mNetworkFragment.getUpdate();
                 }
                 break;
+            case R.id.button2:
+                preProcessBitmap(preProcessedBitmap);
+                mFabricManager.applyFilter( this.getFilesDir() + preProcessedBitmap);
+                break;
             default:
                 break;
         }
@@ -104,6 +128,49 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ca
         dict.put(Constants.JSON.CHECKSUM,mSharedPref.getString(Constants.JSON.CHECKSUM,null));
 
         return dict;
+    }
+
+    private void preProcessBitmap(String filepath){
+        int height = mBitmap.getHeight();
+        int width = mBitmap.getWidth();
+
+        int[] buffer = new int[height*width];
+        mConsole.append("W: " + width + "H: " + height);
+        mBitmap.getPixels(buffer,0,width,0,0,width,height);
+        try{
+            RandomAccessFile bitmap = new RandomAccessFile(this.getFilesDir()+filepath,"rws");
+
+            for(int i:buffer){
+                bitmap.writeInt(i);
+            }
+            bitmap.close();
+            mConsole.append("Bitmap processed\r\n");
+            mConsole.append("Bitmap saved\r\n");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void loadBitmap(String filepath){
+        int height = mBitmap.getHeight();
+        int width = mBitmap.getWidth();
+
+        int[] buffer = new int[height*width];
+
+        try{
+            RandomAccessFile bitmap = new RandomAccessFile(this.getFilesDir()+filepath,"rws");
+
+            for(int i:buffer){
+                i = bitmap.readInt();
+            }
+
+            bitmap.close();
+
+            mBitmap.setPixels(buffer,0,width,0,0,width,height);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     private void printDebug(String text){
@@ -132,10 +199,11 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ca
     }
 
     @Override
-    public void onDownloadComplete() {
+    public void onDownloadComplete(Repository repo) {
         download = false;
         Toast.makeText(this.getApplicationContext(),"Download complete", Toast.LENGTH_LONG).show();
-       // mConsole.append("\r\nDownload Complete\r\n");
+        mConsole.append("\r\nDownload Complete\r\n");
+        mMsgProcessor.verifyBitstream(repo);
     }
 
     // Message Processor callback interface
@@ -144,8 +212,25 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ca
         //init download
         download = true;
         mConsole.append("\r\n"+ repo.toString());
+        saveConfig(repo);
         mNetworkFragment.download(repo,repo.getFile());
+    }
 
+    @Override
+    public String calculateHash(String path) {
+        return mFabricManager.calculateHashFromFile(path);
+    }
+
+    @Override
+    public void onVerifiedBitstream(Repository repo, boolean valid) {
+        if(valid){
+            mConsole.append("Bitstream integrity verified\r\n");
+            mConsole.append("Reconfigure fabric\r\n");
+            mFabricManager.reconfigureFabric(repo.getFile());
+        }else{
+            Toast.makeText(this.getApplicationContext(),"Bitstream corrupted\r\n", Toast.LENGTH_LONG).show();
+            //repeat download
+        }
     }
 
     @Override
@@ -158,4 +243,10 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ca
         return getConfig();
     }
 
+
+    /// FABRIC MANAGER CALLBACKS
+    @Override
+    public void onFilterApplied(String filepath) {
+        loadBitmap(filepath);
+    }
 }
