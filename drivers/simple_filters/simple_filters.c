@@ -92,7 +92,7 @@ static int proc_simple_filters_show(struct seq_file *p, void *v)
 {
 	u32 i;
 
-	for (i = 0; i < (size_image/4); i++)
+	/*for (i = 0; i < (size_image/4); i++)
 	{
 		//seq_printf(p, "%x", i);
 		seq_printf(p, "x%x", image_data_write[i]);
@@ -105,7 +105,7 @@ static int proc_simple_filters_show(struct seq_file *p, void *v)
 		seq_printf(p, "%x", input[i]);
 	}	
 
-	seq_printf(p, "o");
+	seq_printf(p, "o");*/
 
 	//seq_printf(p, "%xIIIIIIII", size_image);
 
