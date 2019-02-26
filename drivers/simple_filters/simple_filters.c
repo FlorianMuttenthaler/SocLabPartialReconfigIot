@@ -75,7 +75,7 @@ static ssize_t proc_simple_filters_write(struct file *file, const char __user * 
 		output[4*i] = (u8)(image_data_read[i] >> 24u);
 		output[(4*i) + 1u] = (u8)(image_data_read[i] >> 16u);
 		output[(4*i) + 2u] = (u8)(image_data_read[i] >> 8u);
-		output[(4*i) + 31] = (u8)(image_data_read[i]);
+		output[(4*i) + 3u] = (u8)(image_data_read[i]);
 	}
 	
 	return count;	
