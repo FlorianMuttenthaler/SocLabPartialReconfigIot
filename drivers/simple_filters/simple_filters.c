@@ -90,9 +90,9 @@ static ssize_t proc_simple_filters_write(struct file *file, const char __user * 
 	
 	set_fs(oldfs);
 
-	if (size_image > IMAGE_SIZE_MAX)
+	if ((size_image/4) > IMAGE_SIZE_MAX)
 	{
-		printk("Size of the Image %u is bigger than actual configured size %u in device driver!\n", size_image, IMAGE_SIZE_MAX);
+		printk("Size of the Image (%u bytes) is bigger than actual configured size (%u bytes) in device driver!\n", size_image, (IMAGE_SIZE_MAX*4));
 	}
 
 	//read from file
