@@ -31,7 +31,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 
-public class NetworkManager extends android.support.v4.app.Fragment{
+public class NetworkManager extends android.support.v4.app.Fragment {
     private Callback mCallback;
     private String serverURL = null;
     private String downloadURL = null;
@@ -68,17 +68,12 @@ public class NetworkManager extends android.support.v4.app.Fragment{
     }
 
 
-    public void configure(String url, String repo){
+    public void configure(String url, String repo) {
         this.serverURL = url;
         this.repo = repo;
     }
 
-
-    public void isWifiEnabled(){
-        mCallback.onWifiEnabled(true);
-    }
-
-    public void getUpdate(){
+    public void getUpdate() {
         mAsync = new AsyncTask() {
             String dump = null;
             JSONObject mJson = null;
@@ -86,29 +81,31 @@ public class NetworkManager extends android.support.v4.app.Fragment{
 
             @Override
             protected Object doInBackground(Object[] objects) {
-                try{
-                    //URL serverEndpoint = new URL("http://10.0.2.2:5000/api/SOC-LAB-IOT");
-                    URL serverEndpoint = new URL(serverURL+repo);
+                try {
+                    // set repository url
+                    URL serverEndpoint = new URL(serverURL + repo);
+                    // create connection
                     HttpURLConnection mConnection = (HttpURLConnection) serverEndpoint.openConnection();
-                    mConnection.setRequestProperty("User-Agent","Zedboard");
+                    // set who is connecting
+                    mConnection.setRequestProperty("User-Agent", "Zedboard");
 
-                    if (mConnection.getResponseCode() == 200){
+                    if (mConnection.getResponseCode() == 200) {
                         //everything went fine
                         connected = true;
                         InputStream mResponse = mConnection.getInputStream();
-                        InputStreamReader mSR = new InputStreamReader(mResponse,"UTF-8");
-                        BufferedReader reader = new BufferedReader(mSR,8);
+                        InputStreamReader mSR = new InputStreamReader(mResponse, "UTF-8");
+                        BufferedReader reader = new BufferedReader(mSR, 8);
 
                         StringBuilder mStringBuilder = new StringBuilder();
                         String line = null;
 
-                        while((line = reader.readLine()) != null){
+                        while ((line = reader.readLine()) != null) {
                             mStringBuilder.append(line + "\n");
                         }
 
                         dump = mStringBuilder.toString();
 //
-                    }else {
+                    } else {
                         mCallback.printToTextBox("Connection failed.\r\n");
                         debug("Connection failed.\r\n");
                     }
@@ -117,11 +114,11 @@ public class NetworkManager extends android.support.v4.app.Fragment{
                     e.printStackTrace();
                 }
 
-                try{
-                    if(dump != null){
+                try {
+                    if (dump != null) {
                         mJson = new JSONObject(dump);
                     }
-                } catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -131,7 +128,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                if(dump != null){
+                if (dump != null) {
                     //mCallback.printToTextBox(dump);
                     mCallback.onDataAvailable(mJson);
                 }
@@ -141,13 +138,12 @@ public class NetworkManager extends android.support.v4.app.Fragment{
         mAsync.execute();
     }
 
-    public void download(final Repository repo, String filepath){
+    public void download(final Repository repo, String filepath) {
         mAsync = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] objects) {
                 try {
-                    // set download URL to file
-                    //URL serverEndpoint = new URL("http://10.0.2.2:5000/api/download/" + repo.getFile());
+                    // set download URL
                     URL serverEndpoint = new URL(serverURL + "download/" + repo.getFile());
                     // create connection
                     HttpURLConnection mConnection = (HttpURLConnection) serverEndpoint.openConnection();
@@ -160,7 +156,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
 
                     // create the bitstream file
                     File bitStream = new File(getContext().getFilesDir(), repo.getFile());
-                    // output stream to save data on the sdcard
+                    // create output stream to save data
                     FileOutputStream out = new FileOutputStream(bitStream);
                     // input stream to read data from the server
                     InputStream in = mConnection.getInputStream();
@@ -179,7 +175,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
                     out.close();
 
                     return null;
-                // handle exceptions
+                    // handle exceptions
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -187,6 +183,7 @@ public class NetworkManager extends android.support.v4.app.Fragment{
                 }
                 return null;
             }
+
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
@@ -198,20 +195,20 @@ public class NetworkManager extends android.support.v4.app.Fragment{
     }
 
 
-    public void disconect(){
+    public void disconect() {
 
     }
 
-    public void startDownload(){
+    public void startDownload() {
 
     }
-
 
 
     public interface Callback {
-        void onWifiEnabled(boolean wifi);
         void printToTextBox(String text);
+
         void onDataAvailable(JSONObject json);
+
         void onDownloadComplete(Repository repo);
     }
 
