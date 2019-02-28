@@ -143,7 +143,7 @@ architecture IMP of user_logic is
   signal slv_read_ack                   : std_logic;
   signal slv_write_ack                  : std_logic;
 
-  component green_filter_logic is
+  component blue_filter_logic is
 
 	  generic(
 		-- Width of S_AXI data bus
@@ -156,14 +156,14 @@ architecture IMP of user_logic is
 	    regout   	: out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)  
 	);
 	
-	end component green_filter_logic;
+	end component blue_filter_logic;
 
 begin
 
   --USER logic implementation added here
 
   --  Component instantiation.
-	green_filter_logic_0: green_filter_logic
+	blue_filter_logic_0: blue_filter_logic
 		generic map(
 			C_S_AXI_DATA_WIDTH	=> C_SLV_DWIDTH
 		)
