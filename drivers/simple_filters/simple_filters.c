@@ -137,6 +137,11 @@ static ssize_t proc_simple_filters_write(struct file *file, const char __user * 
     	set_fs(get_ds());
 	ret = vfs_write(filp, &output, size_image, &filp->f_pos);
 	set_fs(oldfs);
+
+	//close file
+	if(filp > 0)
+		filp_close(filp, 0);
+	filp = NULL;
 	
 
 	// old implementation:
