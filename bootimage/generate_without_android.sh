@@ -43,9 +43,13 @@ cp ./drivers/*/*.ko bootimage
 
 pretty_header "Generating Netlists"
 cd hardware_design
-#make -f system.make bits
-#make -f system.make exporttosdk
 make -f system.make netlist
+
+# generate netlists for filter logic
+cd pcores/simple_filter_v1_00_a/hdl/vhdl
+xst -ifn synth_filter_logic.xst
+
+cd ../../../..
 
 pretty_header "Generating Bitstreams"
 planAhead -mode tcl -source planAhead.tcl
