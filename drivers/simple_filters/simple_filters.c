@@ -1,17 +1,23 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include <asm/segment.h>
 #include <asm/uaccess.h> /* Needed for copy_from_user */
 #include <asm/io.h> /* Needed for IO Read/Write Functions */
 #include <linux/proc_fs.h> /* Needed for Proc File System Functions */
 #include <linux/seq_file.h> /* Needed for Sequence File Operations */
 #include <linux/platform_device.h> /* Needed for Platform Driver Functions */
 #include <linux/delay.h>	/* Needed for udelay function */
+#include <linux/fs.h>
+#include <linux/proc_fs.h> /* Needed for Proc File System Functions */
+#include <linux/buffer_head.h>
+#include <linux/signal.h>
 
 /* Define Driver Name */
 #define DRIVER_NAME "simple_filters"
 
 /* reason for minimizing the maximum array size is that ist is not allowed to transfer more than than 1 KByte via write/read from device driver*/
-#define IMAGE_SIZE_MAX 256	/* Maximum Imgae resolution is 16 * 16 */
+//#define IMAGE_SIZE_MAX 3750	/* Maximum Imgae resolution is 75 * 50 */
+#define IMAGE_SIZE_MAX 50000
 
 //unsigned long *base_addr;	/* Vitual Base Address */
 unsigned long *image_addr_wrtie;	
@@ -19,12 +25,16 @@ unsigned long *image_addr_read;
 struct resource *res;		/* Device Resource Structure */
 unsigned long remap_size;	/* Device Memory Size */
 
-u32 size_image;
-u32 image_data_write[IMAGE_SIZE_MAX];
-u32 image_data_read[IMAGE_SIZE_MAX];
+static u32 size_image;
+static u32 image_data_write[IMAGE_SIZE_MAX];
+static u32 image_data_read[IMAGE_SIZE_MAX];
 
-u8 input[4 * IMAGE_SIZE_MAX];
-u8 output[4 * IMAGE_SIZE_MAX];
+static u8 input[4 * IMAGE_SIZE_MAX];
+static u8 output[4 * IMAGE_SIZE_MAX];
+
+static struct file *filp = NULL;
+//static uint32_t filesize = 0;
+//static uint32_t bytes_sent = 0;
 
 /* Write operation for /proc/simple_filters
 * -----------------------------------
@@ -36,20 +46,111 @@ u8 output[4 * IMAGE_SIZE_MAX];
 */
 static ssize_t proc_simple_filters_write(struct file *file, const char __user * buf, size_t count, loff_t * ppos)
 {	
+	char filename[64];
+	mm_segment_t oldfs;
+	int ret;
 	u32 i;
+
+	if(filp > 0 && !IS_ERR(filp))
+	{
+		printk("Simple Filters Module busy");
+		return -EFAULT;
+	}
+
+	if (count < 64) {
+		/*
+		Copy data from user space to kernel space.
+		Returns number of bytes that could not be copied. On success, this will be zero.
+		*
+		unsigned long copy_from_user(void *to,const void __user *from,unsigned long n);
+		to	Destination address, in kernel space. 
+		from	Source address, in user space. 
+		n	Number of bytes to copy. 
+		*/
+		if (copy_from_user(filename, buf, count))
+			return -EFAULT;
+		filename[count-1] = '\0';
+	}
+
+	oldfs = get_fs();
+	set_fs(get_ds());
+	filp = filp_open(filename, O_RDWR, 0);
+
+	if(IS_ERR(filp))
+	{
+		printk("File \"%s\" is invalid\n", filename);
+		return -EFAULT;
+	}
+
+	set_fs(oldfs);
+
+	size_image = vfs_llseek(filp, 0, SEEK_END);
+	vfs_llseek(filp, 0, 0);
+	printk("Image of File %s is %u (0x%x) bytes long\n", filename, size_image, size_image);
+	
+	set_fs(oldfs);
+
+	if ((size_image/4) > IMAGE_SIZE_MAX)
+	{
+		printk("Size of the Image (%u bytes) is bigger than actual configured size (%u bytes) in device driver!\n", size_image, (IMAGE_SIZE_MAX*4));
+	}
+
+	//read from file
+	oldfs = get_fs();
+	set_fs(get_ds());
+	ret = vfs_read(filp, &input, size_image, &filp->f_pos);
+	set_fs(oldfs);
+
+	if(size_image != ret)
+	{
+		printk("Could only read %u bytes, need %u\n",ret,size_image);
+	}
+
+	for (i = 0; i < (size_image/4); i++)
+	{
+		image_data_write[i] = (((u32)input[4*i]) << 24u) | (((u32)input[(4*i) + 1u]) << 16u) | (((u32)input[(4*i) + 2u]) << 8u) | (((u32)input[(4*i) + 3u])); 
+	}
+
+	for (i = 0; i < (size_image/4); i++)
+	{
+		wmb();
+		iowrite32(image_data_write[i], image_addr_wrtie);
+		//udelay(10);
+		wmb();
+		image_data_read[i] = ioread32(image_addr_read);
+		//udelay(10);
+	}
+
+	for (i = 0; i < (size_image/4); i++)
+	{
+		output[4*i] = (u8)(image_data_read[i] >> 24u);
+		output[(4*i) + 1u] = (u8)(image_data_read[i] >> 16u);
+		output[(4*i) + 2u] = (u8)(image_data_read[i] >> 8u);
+		output[(4*i) + 3u] = (u8)(image_data_read[i]);
+	}
+	
+	//got to begin of file
+	vfs_llseek(filp, 0, 0);
+
+	//wrtie to file
+	oldfs = get_fs();
+    	set_fs(get_ds());
+	ret = vfs_write(filp, &output, size_image, &filp->f_pos);
+	set_fs(oldfs);
+
+	//close file
+	if(filp > 0)
+		filp_close(filp, 0);
+	filp = NULL;
+	
+
+	// old implementation:
+	/*u32 i;
 
 	size_image = count - 1;
 	if (count <  (IMAGE_SIZE_MAX * 4))
 	{
-		/*
-			Copy data from user space to kernel space.
-			Returns number of bytes that could not be copied. On success, this will be zero.
-			*
-			unsigned long copy_from_user(void *to,const void __user *from,unsigned long n);
-			to	Destination address, in kernel space. 
-			from	Source address, in user space. 
-			n	Number of bytes to copy. 
-		*/
+		
 		//if (copy_from_user(image_data_write, buf, count))
 		if (copy_from_user(input, buf, count))	 
 			return -EFAULT;
@@ -76,7 +177,7 @@ static ssize_t proc_simple_filters_write(struct file *file, const char __user * 
 		output[(4*i) + 1u] = (u8)(image_data_read[i] >> 16u);
 		output[(4*i) + 2u] = (u8)(image_data_read[i] >> 8u);
 		output[(4*i) + 31] = (u8)(image_data_read[i]);
-	}
+	}*/
 	
 	return count;	
 }
@@ -108,10 +209,17 @@ static int proc_simple_filters_show(struct seq_file *p, void *v)
 	seq_printf(p, "o");*/
 
 	//seq_printf(p, "%xIIIIIIII", size_image);
+	
 
-	for (i = 0; i < size_image; i++)
+	// old implementation:
+	/*for (i = 0; i < size_image; i++)
 	{
 		seq_printf(p, "%x", output[i]);
+	}*/
+
+	for (i = 0; i < (size_image/4); i++)
+	{
+		seq_printf(p, "%x", image_data_read[i]);
 	}	
 
 	return 0;
@@ -157,6 +265,8 @@ static const struct file_operations proc_simple_filters_operations = {
 */
 static void simple_filters_shutdown(struct platform_device *pdev)
 {
+	if(filp > 0)
+		filp_close(filp, 0);
 	printk("Exit simple_filters Module. \n");	// print unload message
 }
 
