@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 --use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
-entity red_filter_logic is
+entity filter_logic is
   generic(
     -- Width of S_AXI data bus
     C_S_AXI_DATA_WIDTH	: integer	:= 32
@@ -15,9 +15,9 @@ entity red_filter_logic is
     regin   	: in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     regout   	: out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)
   );
-end red_filter_logic;
+end filter_logic;
 
-architecture IMP of red_filter_logic is
+architecture IMP of filter_logic is
 begin
   process (regin)
   variable temp : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0) := (others => '0');

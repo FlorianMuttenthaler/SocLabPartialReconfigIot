@@ -13,9 +13,9 @@ use ieee.numeric_std.all;
 --
 -------------------------------------------------------------------------------
 --
-package red_filter_logic_pkg is
+package filter_logic_pkg is
 
-	component red_filter_logic is
+	component filter_logic is
 
 	  generic(
 		-- Width of S_AXI data bus
@@ -28,7 +28,7 @@ package red_filter_logic_pkg is
 	    regout   	: out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0)  
 	);
 	
-	end component red_filter_logic;
+	end component filter_logic;
 	
-end red_filter_logic_pkg;
+end filter_logic_pkg;
 
