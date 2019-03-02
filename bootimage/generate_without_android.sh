@@ -41,10 +41,22 @@ do
 done
 cp ./drivers/*/*.ko bootimage
 
-pretty_header "Generating Bitstream"
+pretty_header "Generating Netlists"
 cd hardware_design
-make -f system.make bits
-make -f system.make exporttosdk
+#make -f system.make bits
+#make -f system.make exporttosdk
+make -f system.make netlist
+
+pretty_header "Generating Bitstreams"
+planAhead -mode tcl -source planAhead.tcl
+
+# convert bitstreams from .bit to .bin
+promgen -b -w -p bin -data_width 32 -u 0 ./planAhead/partial_reconfiguration/partial_reconfiguration.config_1/config_1_simple_filter_0_simple_filter_0_USER_LOGIC_I_filter_logic_0_red_filter_partial.bit -o ./planAhead/generated_Bitstreams/red_filter.bin
+promgen -b -w -p bin -data_width 32 -u 0 ./planAhead/partial_reconfiguration/partial_reconfiguration.config_2/config_2_simple_filter_0_simple_filter_0_USER_LOGIC_I_filter_logic_0_green_filter_partial.bit -o ./planAhead/generated_Bitstreams/green_filter.bin
+promgen -b -w -p bin -data_width 32 -u 0 ./planAhead/partial_reconfiguration/partial_reconfiguration.config_3/config_3_simple_filter_0_simple_filter_0_USER_LOGIC_I_filter_logic_0_blue_filter_partial.bit -o ./planAhead/generated_Bitstreams/blue_filter.bin
+
+cp ./planAhead/generated_Bitstreams/*.bin ../bootimage/
+
 cd ..
 
 pretty_header "Building u-boot"
@@ -63,6 +75,7 @@ cd ../../../../../
 cd hardware_design
 
 pretty_header "Generating BOOT.BIN"
+# default red_filter is active
 bootgen -image boot.bif -w -o i ../bootimage/BOOT.BIN
 
 rm ../bootimage/u-boot.elf
