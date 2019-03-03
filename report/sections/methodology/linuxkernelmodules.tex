@@ -17,7 +17,10 @@ reads or writes to the device.
 This function will impede the compiler to rearrange the calls during
 optimization and therefore guarantees that the reads and writes are executed in
 specified order.
-\\
+\\\\
 \textbf{Image Filter Driver:}\\
-The Image Filter Linux Kernel driver writes the to process raw \gls{rgb} data to the write register address of the AXI-Lite bus, which belongs to the defined filter logic. Afterwards the filter data is read from the read register address by the driver. The interface to the userspace application is implemented by writing and reading from a related \emph{.bin} file. The absolute path of this file has to be communicated to the device driver.\\
+%---------------------
+% Satz überarbeiten!! |
+%---------------------
+The Image Filter device driver writes the to process raw \gls{rgb} data to the write register address of the AXI-Lite bus, which belongs to the defined filter logic. Afterwards the filter data is read from the read register address by the driver. The interface to the userspace application is implemented by writing and reading from a related \emph{.bin} file. The absolute path of this file has to be communicated to the device driver.\\
 The communication with the \gls{pl} was discussed in section \ref{sssec:imageprocessingmodule}. The communication with the application was discussed in section \ref{sssec:imageprocessingapp}. The developed driver creates a device file \emph{/proc/simple_filters}, which can be triggered by the user application. The driver code itself is available at \emph{<repo>/drivers/simple_filters/simple_filters.c}.
