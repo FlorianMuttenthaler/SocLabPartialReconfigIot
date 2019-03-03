@@ -52,7 +52,7 @@ save_constraints
 report_drc -name drc_1 -rules {PABB-1 PALI-1 PAP-1 PAP-2 PAP-3 PAP-4 PAP-5 PAP-6 PAP-7 PAST-1 PRAG-1 PRAG-2 PRCC-1 PRGB-1 PRGL-1 PRGR-1 PRGR-2 PRGR-3 PRLL-1 PRLO-1 PROL-1 PRPR-1 PRRC-1 PRRM-1 PRSC-1 PRSF-1 PRSL-1}
 
 # run implementation for config_1 (red_filter)
-launch_runs config_1
+launch_runs config_1 -jobs 2
 
 # wait until finished
 wait_on_run config_1
@@ -62,7 +62,7 @@ promote_run -run config_1 -partition_names {system simple_filter_0/simple_filter
 
 # create config_2 (green_filter)
 create_run config_2 -flow {ISE 14} -strategy {ISE Defaults}
-config_partition -run config_2 -import -import_dir ./planAhead/PR/PR.promote/Xconfig_1 -preservation routing
+config_partition -run config_2 -import -import_dir ./planAhead/partial_reconfiguration/partial_reconfiguration.promote/Xconfig_1 -preservation routing
 config_partition -run config_2 -cell simple_filter_0/simple_filter_0/USER_LOGIC_I/filter_logic_0 -reconfig_module green_filter -implement
 
 # create config_3 (blue_filter)
@@ -70,22 +70,35 @@ create_run config_3 -flow {ISE 14} -strategy {ISE Defaults}
 config_partition -run config_3 -import -import_dir ./planAhead/partial_reconfiguration/partial_reconfiguration.promote/Xconfig_1 -preservation routing
 config_partition -run config_3 -cell simple_filter_0/simple_filter_0/USER_LOGIC_I/filter_logic_0 -reconfig_module blue_filter -implement
 
-# run implementation for config_2 & config_3
-launch_runs config_2 config_3 -jobs 2
+# run implementation for config_2
+launch_runs config_2 -jobs 2
 
 # wait until finished
 wait_on_run config_2
+
+# run implementation for config_3
+launch_runs config_3 -jobs 2
+
+# wait until finished
 wait_on_run config_3
 
 # verify configuration
-verify_config -runs {  config_1 config_2 config_3 } -file ./pcores/simple_filter_v1_00_a/hdl/vhdl/netlist/pr_verify.log
+verify_config -runs {  config_1 config_2 config_3 } -file ./planAhead/partial_reconfiguration/pr_verify.log
 
-# generate bitstreams
+# generate bitstream
 launch_runs config_1 -to_step Bitgen -jobs 2
-launch_runs config_2 -to_step Bitgen -jobs 2
-launch_runs config_3 -to_step Bitgen -jobs 2
 
 # wait until finished
 wait_on_run config_1
+
+# generate bitstream
+launch_runs config_2 -to_step Bitgen -jobs 2
+
+# wait until finished
 wait_on_run config_2
+
+# generate bitstream
+launch_runs config_3 -to_step Bitgen -jobs 2
+
+# wait until finished
 wait_on_run config_3
