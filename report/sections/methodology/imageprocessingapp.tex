@@ -122,57 +122,89 @@ Open http://*your ip*:5000 to see if the server is reachable
 
 \subsection{Server API}
 
-Get all information for repository <index>
-\begin{table}
-\small{
-    \begin{tabular}[h]{lllll}
-    URL          & URL PARAM      & DATA PARAM & METHOD & SUCCESS RESPONSE & ERROR RESPONSE \\
-    /api/<index> & index=[string] & n/a        & GET    & 200              & 404            \\ \hline
-    \end{tabular}
-}
-\end{table}
-
-
-Create repository <index>
-\begin{table}
-    \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM                                                                                                                                                                                                                                                                                                             & METHOD & SUCCESS RESPONSE & ERROR RESPONSE \\
-    /api/<index> & index=[string] & \{\\        "Index": "SOC-LAB-IOT",\\        "Title": "IOT Image Processing",\\        "Version": "001",\\        "Description": "",\\        "Changelog": ["3.11.2018 Primary release", "4.11.2018 Bug fixing"],\\        "File": "filter\_0\_0\_1.txt",\\        "Date": "4.11.2018",\\        "Checksum": ""\\\}    & POST   & 201              & 400            \\ \hline
-    \end{tabular}
-\end{table}
-
-Update repository <index> or create it if not existing
-\begin{table}
-    \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM                                                                                                                                                                                                                                                                                                             & METHOD & SUCCESS RESPONSE & ERROR RESPONSE \\
-    /api/<index> & index=[string] & \{\\        "Index": "SOC-LAB-IOT",\\        "Title": "IOT Image Processing",\\        "Version": "001",\\        "Description": "",\\        "Changelog": ["3.11.2018 Primary release", "4.11.2018 Bug fixing"],\\        "File": "filter\_0\_0\_1.txt",\\        "Date": "4.11.2018",\\        "Checksum": ""\\\}    & PUT    & 200              & 201            \\ \hline
-    \end{tabular}
-\end{table}
-
-Delete  repository  <index>
-\begin{table}
-    \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM & METHOD & SUCCESS RESPONSE & ERROR RESPONSE \\
-    /api/<index> & index=[string] & n/a        & DELETE & 200              & 404            \\ \hline
-    \end{tabular}
-\end{table}
-
-
-Download file <filename>
-\begin{table}
-    \begin{tabular}[h]{llllll}
-    URL                           & URL PARAM          & DATA PARAM & METHOD & SUCCESS RESPONSE & ERROR RESPONSE \\
-    /api/download/<path:filename> &  filename=[string] & n/a        & GET    & 200              & 404            \\ \hline
-    \end{tabular}
-\end{table}
-
-Insomnia, a free open source REST client available for Mac,Windows and Linux, was used for server communication.
+Insomnia, a free open source REST client available for Mac,Windows and Linux, was used for API testing and server communication.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\textwidth]{sections/methodology/insomnia.png}
 \caption{\label{fig:gic} Insomnia}
 \end{figure}
+
+
+
+
+\subsubsection{Get all information for repository <index>:}
+\begin{table}[h]
+    \begin{tabular}[h]{llllll}
+    URL          & URL PARAM      & DATA PARAM  & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    /api/<index> & index=[string] & n/a    & GET   & 200              & 404            \\ 
+    \end{tabular}
+\end{table}
+
+
+
+\subsubsection{Create repository <index>:}
+\begin{table}[h]
+    \begin{tabular}[h]{llllll}
+    URL          & URL PARAM      & DATA PARAM  & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    /api/<index> & index=[string] & JSON    & POST   & 201              & 400            \\ 
+    \end{tabular}
+\end{table}
+
+JSON:
+\begin{verbatim}
+{
+    "Index": "SOC-LAB-IOT",
+    "Title": "IOT Image Processing",
+    "Version": "001",
+    "Description": "",
+    "Changelog": ["3.11.2018 Primary release", "4.11.2018 Bug fixing"],
+    "File": "filter_0_0_1.txt",
+    "Date": "4.11.2018",
+    "Checksum": ""
+}	    
+\end{verbatim}
+
+\subsubsection{Update repository <index> or create it if not existing:}
+\begin{table}[h]
+    \begin{tabular}[h]{llllll}
+    URL          & URL PARAM      & DATA PARAM   & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    /api/<index> & index=[string] & JSON  & PUT    & 200              & 201            \\ 
+    \end{tabular}
+\end{table}
+
+JSON:
+\begin{verbatim}
+{
+    "Index": "SOC-LAB-IOT",
+    "Title": "IOT Image Processing",
+    "Version": "002",
+    "Description": "",
+    "Changelog": ["3.11.2018 Primary release", 
+    "4.11.2018 Bug fixing", 
+    "6.11.2018 added stuff"],
+    "File": "filter_0_0_4.bin",
+    "Date": "6.11.2018",
+    "Checksum": "fdg851dfg654dfg6541dfg65514dfghdfg45534terg"
+}	
+\end{verbatim}
+
+\subsubsection{Delete repository <index>:}
+
+\begin{table}[h]
+    \begin{tabular}[h]{llllll}
+    URL          & URL PARAM      & DATA PARAM & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    /api/<index> & index=[string] & n/a        & DELETE & 200              & 404            \\ 
+    \end{tabular}
+\end{table}
+
+\subsubsection{Download file <filename>}
+\begin{table}[h]
+    \begin{tabular}[h]{llllll}
+    URL                           & URL PARAM          & DATA PARAM & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    /api/download/<path:filename> &  filename=[string] & n/a        & GET    & 200              & 404            \\ 
+    \end{tabular}
+\end{table}
 
 
 
