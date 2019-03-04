@@ -1,0 +1,6 @@
+the_ROM_image:
+{
+	[bootloader]./SDK/SDK_Export/FSBL/Debug/FSBL.elf
+	./planAhead/partial_reconfiguration/partial_reconfiguration.runs/config_1/config_1.bit
+	../bootimage/u-boot.elf
+}
