@@ -4,9 +4,7 @@ the android app (client) which interacts with the server and the hardware on the
 \subsection{Client aplication}
 
 The client is a native android application written in Android Studio version 3.2.1 for Android API 10 (Gingerbread 2.3.3).
-Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread.
-
-To compile for Gingerbread set compileSdkVersion to 25 with the
+Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread.To compile for Gingerbread set compileSdkVersion to 25 with the
 targetSdk set to 10. This way it is possible to use Google's support libraries.
 
 \begin{verbatim}
@@ -42,9 +40,7 @@ dependencies {
 }    
 \end{verbatim}
 
-
-Which delivers backward compatibility for newer Android classes (e.g fragments) and allows to run the app on all following Android versions from Gingerbread to Pie without version specific modifications.
-Whenever possible Androids own APIs has been used, if not available on Gingerbread they were replaced with own implementations.
+Which delivers backward compatibility for newer Android classes (e.g fragments) and allows to run the app on all following Android versions from Gingerbread to Pie without version specific modifications. Whenever possible Androids own APIs has been used, if not available on Gingerbread they were replaced with own implementations.\newline
 
 The architecture is following the single responsibility principle, separating the concerns into several classes:
 
@@ -59,11 +55,9 @@ The architecture is following the single responsibility principle, separating th
 \end{itemize}
 
 
-The Network Manager spawns a new thread and opens a connection to the server.Then requests new information using the REST API (see server section).
+The Network Manager spawns a new thread and opens a connection to the server.Then requests new information using the REST API (see server section). The received information are packed inside a JSON object (JavaScript Object Notation) and are forwarded to the MsgProcessor. Where they are unpacked,compared and saved.
 
-The received information are packed inside a JSON object (JavaScript Object Notation) and are forwarded to the MsgProcessor. Where they are unpacked,compared and saved.
-
-Example JSON object
+Example JSON object:
 \begin{verbatim}
 {
     "Index": "SOC-LAB-IOT",
@@ -80,13 +74,8 @@ Example JSON object
 \end{verbatim}
 
 
-If there is a new version available.The Network Manager will download the new bitstream from the sever using the REST API (see server section). The Fabric Manager will then calculate the hash from the bitstream file on the programmable logic.
 
-If they match, the PL fabric will be reconfigured with the downloaded bitstream.
-
-In a real world scenario, the whole process would run in the background without user interference. 
-
-For demonstration purposes a simple user interface was implemented to trigger the download and apply filters on a test picture.
+If there is a new version available.The Network Manager will download the new bitstream from the sever using the REST API (see server section). The Fabric Manager will then calculate the hash from the bitstream file on the programmable logic. If they match, the PL fabric will be reconfigured with the downloaded bitstream. In a real world scenario, the whole process would run in the background without user interference. For demonstration purposes a simple user interface was implemented to trigger the download and apply filters on a test picture.
 
 \begin{figure}[h]
 \centering
@@ -94,25 +83,17 @@ For demonstration purposes a simple user interface was implemented to trigger th
 \caption{\label{fig:gic} user interface}
 \end{figure}
 
-
-
 To apply filters the app has to pre process the image for  the device driver to the following specification:
 32 bit integer
-ALPHA | RED  |GREEN  |BLUE
-8bit  |  8bit| 8bit |8bit
-
-Example : Full opaque red (hex notation)
-FF FF 00 00
-
-Every pixel will be read out and saved together to a new binary file. 
+ALPHA | RED |GREEN | BLUE (8bit|8bit|8bit|8bit) e.g full opaque red would be (hex notation) FF FF 00 00. Every pixel will be read out and saved together to a new binary file. 
 The path to this file will be written to the device driver, soon after the filtered data will be read back into the UI from the same file.
 
 
 \subsection{Server}
 
-Tiny webserver with a REST API (Representatioln State transfer), 
-written with python 3.7 using Flask and its extension FlaskRESTful, therefore fully WSGI compliant.
-However Flask internal development server is used for the demonstration and for simplicity.
+A tiny webserver with a REST API (Representational State Transfer), 
+written with python 3.7 using Flask and its extension FlaskRESTful, therefore fully WSGI compliant
+(Webserver Gateway Interface). However Flask internal development server is used for the demonstration and for simplicity.
 
 To start the server, open a terminal in the server directory. Type in following command:
 \begin{verbatim}
@@ -132,11 +113,13 @@ Insomnia, a free open source REST client available for Mac,Windows and Linux, wa
 
 
 
-
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+  
 \subsubsection{Get all information for repository <index>:}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM  & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
     /api/<index> & index=[string] & n/a    & GET   & 200              & 404            \\ 
     \end{tabular}
 \end{table}
@@ -146,7 +129,7 @@ Insomnia, a free open source REST client available for Mac,Windows and Linux, wa
 \subsubsection{Create repository <index>:}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM  & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
     /api/<index> & index=[string] & JSON    & POST   & 201              & 400            \\ 
     \end{tabular}
 \end{table}
@@ -168,7 +151,7 @@ JSON:
 \subsubsection{Update repository <index> or create it if not existing:}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM   & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
     /api/<index> & index=[string] & JSON  & PUT    & 200              & 201            \\ 
     \end{tabular}
 \end{table}
@@ -193,7 +176,7 @@ JSON:
 
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
-    URL          & URL PARAM      & DATA PARAM & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
+    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
     /api/<index> & index=[string] & n/a        & DELETE & 200              & 404            \\ 
     \end{tabular}
 \end{table}
@@ -201,28 +184,7 @@ JSON:
 \subsubsection{Download file <filename>}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
-    URL                           & URL PARAM          & DATA PARAM & METHOD & SUCCESS RESP & ERROR RESP \\ \hline
-    /api/download/<path:filename> &  filename=[string] & n/a        & GET    & 200              & 404            \\ 
+    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
+    \specialcell{/api/download/\\<path:filename>} &  filename=[string] & n/a        & GET    & 200              & 404            \\ 
     \end{tabular}
 \end{table}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
