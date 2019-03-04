@@ -56,6 +56,10 @@ par_usage_statistics.html
 usage_statistics_webtalk.html
 webtalk.log
 webtalk_pn.xml
+# planAhead generated files
+planAhead.jou
+planAhead.log
+planAhead.ngc2edif.log
 # generated folders
 iseconfig/
 xlnx_auto_0_xdb/
@@ -65,3 +69,4 @@ _xmsgs/
 implementation
 synthesis
 hdl
+planAhead
