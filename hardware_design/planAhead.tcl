@@ -102,3 +102,6 @@ launch_runs config_3 -to_step Bitgen -jobs 2
 
 # wait until finished
 wait_on_run config_3
+
+# close planAhead
+exit
