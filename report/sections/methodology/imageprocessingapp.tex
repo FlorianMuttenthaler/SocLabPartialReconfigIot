@@ -1,11 +1,10 @@
 The Image processing app splits into two parts. An external server which provides the infrastructure to store and distribute bitstreams and 
-the android app (client) which interacts with the server and the hardware on the zedboard. 
+the android app (client) which interacts with the server and the hardware on the ZedBoard. 
 
-\subsubsection{Client aplication}
+\subsubsection{Client application}
 
 The client is a native android application written in Android Studio version 3.2.1 for Android API 10 (Gingerbread 2.3.3).
-Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread. To compile for Gingerbread set compileSdkVersion to 25 with the
-targetSdk set to 10 as seen in~\Cref{lst:appbuild}.
+Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread. To compile for Gingerbread set compileSdkVersion to 25 with the targetSdk set to 10 as seen in~\Cref{lst:appbuild}.
 \begin{lstlisting}[
 	language=Bash,
 	caption={App build setup},
@@ -49,7 +48,7 @@ backward compatibility for newer Android classes (e.g fragments) and allows to r
 The architecture is following the single responsibility principle, separating the concerns into several classes:
 
 \begin{itemize}
-    \item MainActivity 	    - Android specific (UI,Events,Life cycle,)
+    \item MainActivity 	    - Android specific (UI, Events, Life cycle)
     \item NetworkManager	- Network operations 
     \item MsgProcessor	    - JSON processing 
     \item FabricManager	    - PL Fabric interaction
@@ -59,7 +58,7 @@ The architecture is following the single responsibility principle, separating th
 \end{itemize}
 
 
-The Network Manager spawns a new thread and opens a connection to the server. Then requests new information using the REST API (see server section). The received information is packed inside a JSON object (JavaScript Object Notation) and forwarded to the MsgProcessor. Where they are unpacked,compared and saved.
+The Network Manager spawns a new thread and opens a connection to the server. Then requests new information using the REST API (see server section). The received information is packed inside a JSON object (JavaScript Object Notation) and forwarded to the MsgProcessor. Where they are unpacked, compared and saved.
 
 Example JSON object:
 \begin{verbatim}
