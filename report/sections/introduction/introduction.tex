@@ -1,1 +1,9 @@
-The purpose of this project is to implement a partial reconfigurable \gls{iot} device, which can exchange parts of the synthesized hardware during runtime for a suitable application. Therefore Android runs on the Zynq's ARM core processing unit of the ZedBoard from Digilent as operating system and an application was developed, which downloads different bitstreams of the logic parts of different image processing filters from a server to the \gls{fpga}. These logic parts can then be exchanged via dynamic partial reconfiguration, triggered by the application. Finally a modification of pictures can be processed, regarding to the actual logic part, which is synthesized on the \gls{fpga}, triggered by the application.
+The purpose of this project is to implement a partial reconfigurable \gls{iot}
+device, which can exchange parts of the synthesized hardware during runtime for
+a suitable application.
+Android is set up to run on the Zynq software processing unit on board of the
+Digilent ZedBoard.
+An application is presented that applies filters to given images.
+These filters may be subject to updates in the future and the app is able to
+download such updates and apply them to the \gls{pl} using dynamic partial
+reconfiguration.

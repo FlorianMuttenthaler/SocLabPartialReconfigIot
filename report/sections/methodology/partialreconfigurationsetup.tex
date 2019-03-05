@@ -2,7 +2,7 @@ Partial reconfiguration was done using the planAhead tool included in the Xilinx
 
 For \gls{dpr} a Bottom-Up Synthesis is required. The static logic is synthesized with a black box module definition for each \gls{dpr} module.
 
-The synthesis is done inside the script \emph{<repo>/bootimage/generate\_without\_android.sh}. Since the netlists for the different filter logics are not synthesized with the flow, they must be generated separately. Both is done with the following lines: 
+The synthesis is done inside the script\\\emph{<repo>/bootimage/generate\_without\_android.sh}. Since the netlists for the different filter logics are not synthesized with the flow, they must be generated separately. Both is done with the following lines: 
 
 \begin{lstlisting}[
 	language=Bash,
@@ -25,7 +25,8 @@ caption={Run planAhead in \gls{tcl} mode},
 label={lst:runplanahead},
 basicstyle=\small,
 float=h,
-floatplacement=h
+floatplacement=h,
+breaklines=true
 ]
 planAhead -mode tcl -source planAhead.tcl
 \end{lstlisting}

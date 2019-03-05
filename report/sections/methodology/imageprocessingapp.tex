@@ -4,10 +4,14 @@ the android app (client) which interacts with the server and the hardware on the
 \subsubsection{Client aplication}
 
 The client is a native android application written in Android Studio version 3.2.1 for Android API 10 (Gingerbread 2.3.3).
-Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread.To compile for Gingerbread set compileSdkVersion to 25 with the
-targetSdk set to 10. This way it is possible to use Google's support libraries.
-
-\begin{verbatim}
+Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread. To compile for Gingerbread set compileSdkVersion to 25 with the
+targetSdk set to 10 as seen in~\Cref{lst:appbuild}.
+\begin{lstlisting}[
+	language=Bash,
+	caption={App build setup},
+	label={lst:appbuild},
+	basicstyle=\small
+	]
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
@@ -38,9 +42,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }    
-\end{verbatim}
-
-Which delivers backward compatibility for newer Android classes (e.g fragments) and allows to run the app on all following Android versions from Gingerbread to Pie without version specific modifications. Whenever possible Androids own APIs has been used, if not available on Gingerbread they were replaced with own implementations.\newline
+\end{lstlisting}
+This way it is possible to use Google's support libraries, which deliver
+backward compatibility for newer Android classes (e.g fragments) and allows to run the app on all Android versions from Gingerbread to Pie without version specific modifications. Whenever possible Androids own APIs has been used, if not available on Gingerbread they were replaced with own implementations.\newline
 
 The architecture is following the single responsibility principle, separating the concerns into several classes:
 
@@ -55,7 +59,7 @@ The architecture is following the single responsibility principle, separating th
 \end{itemize}
 
 
-The Network Manager spawns a new thread and opens a connection to the server.Then requests new information using the REST API (see server section). The received information are packed inside a JSON object (JavaScript Object Notation) and are forwarded to the MsgProcessor. Where they are unpacked,compared and saved.
+The Network Manager spawns a new thread and opens a connection to the server. Then requests new information using the REST API (see server section). The received information is packed inside a JSON object (JavaScript Object Notation) and forwarded to the MsgProcessor. Where they are unpacked,compared and saved.
 
 Example JSON object:
 \begin{verbatim}
@@ -75,7 +79,7 @@ Example JSON object:
 
 
 
-If there is a new version available.The Network Manager will download the new bitstream from the sever using the REST API (see server section). The Fabric Manager will then calculate the hash from the bitstream file on the programmable logic. If they match, the PL fabric will be reconfigured with the downloaded bitstream. In a real world scenario, the whole process would run in the background without user interference. For demonstration purposes a simple user interface was implemented to trigger the download and apply filters on a test picture.
+If there is a new version available, the Network Manager will download the new bitstream from the sever using the REST API (see server section). The Fabric Manager will then calculate the hash from the bitstream file on the programmable logic. If they match, the PL fabric will be reconfigured with the downloaded bitstream. In a real world scenario, the whole process would run in the background without user interference. For demonstration purposes a simple user interface was implemented to trigger the download and apply filters on a test picture.
 
 \begin{figure}[h]
 \centering
