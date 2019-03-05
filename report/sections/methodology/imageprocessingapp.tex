@@ -177,18 +177,13 @@ JSON:
 \end{verbatim}
 
 \subsubsubsection{Delete repository <index>:}
-
-\begin{table}[h]
-    \begin{tabular}[h]{llllll}
-    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
-    /api/<index> & index=[string] & n/a        & DELETE & 200              & 404            \\ 
-    \end{tabular}
-\end{table}
+\begin{tabular}[h]{llllll}
+URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
+/api/<index> & index=[string] & n/a        & DELETE & 200              & 404            \\ 
+\end{tabular}
 
 \subsubsubsection{Download file <filename>}
-\begin{table}[h]
-    \begin{tabular}[h]{llllll}
-    URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
-    \specialcell{/api/download/\\<path:filename>} &  filename=[string] & n/a        & GET    & 200              & 404            \\ 
-    \end{tabular}
-\end{table}
+\begin{tabular}[h]{llllll}
+URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
+\specialcell{/api/download/\\<path:filename>} &  filename=[string] & n/a        & GET    & 200              & 404            \\ 
+\end{tabular}
