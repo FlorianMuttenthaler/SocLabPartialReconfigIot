@@ -1,7 +1,7 @@
 The Image processing app splits into two parts. An external server which provides the infrastructure to store and distribute bitstreams and 
 the android app (client) which interacts with the server and the hardware on the zedboard. 
 
-\subsection{Client aplication}
+\subsubsection{Client aplication}
 
 The client is a native android application written in Android Studio version 3.2.1 for Android API 10 (Gingerbread 2.3.3).
 Unfortunately todays Android SDK (API 28) does not support Gingerbread anymore, version 25 was the last SDK that officially supports Gingerbread.To compile for Gingerbread set compileSdkVersion to 25 with the
@@ -89,7 +89,7 @@ ALPHA | RED |GREEN | BLUE (8bit|8bit|8bit|8bit) e.g full opaque red would be (he
 The path to this file will be written to the device driver, soon after the filtered data will be read back into the UI from the same file.
 
 
-\subsection{Server}
+\subsubsection{Server}
 
 A tiny webserver with a REST API (Representational State Transfer), 
 written with python 3.7 using Flask and its extension FlaskRESTful, therefore fully WSGI compliant
@@ -101,7 +101,7 @@ Flask run -h *your ip* -p 5000
 \end{verbatim}
 Open http://*your ip*:5000 to see if the server is reachable
 
-\subsection{Server API}
+\subsubsection{Server API}
 
 Insomnia, a free open source REST client available for Mac,Windows and Linux, was used for API testing and server communication.
 
@@ -116,7 +116,7 @@ Insomnia, a free open source REST client available for Mac,Windows and Linux, wa
 \newcommand{\specialcell}[2][c]{%
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
   
-\subsubsection{Get all information for repository <index>:}
+\subsubsubsection{Get all information for repository <index>:}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
     URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
@@ -126,7 +126,7 @@ Insomnia, a free open source REST client available for Mac,Windows and Linux, wa
 
 
 
-\subsubsection{Create repository <index>:}
+\subsubsubsection{Create repository <index>:}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
     URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
@@ -148,7 +148,7 @@ JSON:
 }	    
 \end{verbatim}
 
-\subsubsection{Update repository <index> or create it if not existing:}
+\subsubsubsection{Update repository <index> or create it if not existing:}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
     URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
@@ -172,7 +172,7 @@ JSON:
 }	
 \end{verbatim}
 
-\subsubsection{Delete repository <index>:}
+\subsubsubsection{Delete repository <index>:}
 
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
@@ -181,7 +181,7 @@ JSON:
     \end{tabular}
 \end{table}
 
-\subsubsection{Download file <filename>}
+\subsubsubsection{Download file <filename>}
 \begin{table}[h]
     \begin{tabular}[h]{llllll}
     URL          & \specialcell{URL\\PARAM}     & \specialcell{DATA\\PARAM}  & METHOD &  \specialcell{SUCCESS\\RESPONSE} & \specialcell{ERROR\\RESPONSE} \\ \hline
